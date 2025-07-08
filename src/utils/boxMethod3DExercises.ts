@@ -59,28 +59,29 @@ export const getBoxMethod3DProblems = (): BoxMethodProblem3D[] => {
         diagonalHighlight: true
       }
     },
-    // Second exercise: 10 × 10 (still simple but introduces larger numbers)
+    // Second exercise: 3 × 12 (single digit × teens)
     {
       id: 2,
-      problem: "10 × 10",
-      context: "A solar energy project installs 10 solar panels, each generating 10 watts of power. How many watts can they generate in total?",
+      problem: "3 × 12",
+      context: "A recycling center processes 3 batches of materials, with each batch containing 12 items. How many items are processed in total?",
       difficulty: 'easy',
       placeValueDecomposition: {
-        firstNumber: [10],
-        secondNumber: [10]
+        firstNumber: [3],
+        secondNumber: [10, 2]
       },
       boxGrid: [
-        { rowLabel: "10", columnLabel: "10", product: 100 }
+        { rowLabel: "3", columnLabel: "10", product: 30 },
+        { rowLabel: "3", columnLabel: "2", product: 6 }
       ],
       sumStep: {
-        individualProducts: [100],
-        total: 100
+        individualProducts: [30, 6],
+        total: 36
       },
       threeJSRepresentation: {
-        gridLayout: "1x1",
+        gridLayout: "1x2",
         interactiveTiles: true,
         tileColorCoding: "based on value magnitude",
-        axisLabels: { x: ["10"], y: ["10"] },
+        axisLabels: { x: ["10", "2"], y: ["3"] },
         sumDisplay: "floating number above the grid",
         animations: "tiles appear with multiplication animation",
         diagonalHighlight: true
@@ -141,9 +142,39 @@ export const getBoxMethod3DProblems = (): BoxMethodProblem3D[] => {
         diagonalHighlight: true
       }
     },
-    // Medium level problems (2-digit × 2-digit)
+    // Medium level problems (teens × 2-digit)
     {
       id: 5,
+      problem: "12 × 23",
+      context: "A wind farm has 12 turbines, each producing 23 kilowatts of clean energy. What is the total energy output?",
+      difficulty: 'medium',
+      placeValueDecomposition: {
+        firstNumber: [10, 2],
+        secondNumber: [20, 3]
+      },
+      boxGrid: [
+        { rowLabel: "10", columnLabel: "20", product: 200 },
+        { rowLabel: "10", columnLabel: "3", product: 30 },
+        { rowLabel: "2", columnLabel: "20", product: 40 },
+        { rowLabel: "2", columnLabel: "3", product: 6 }
+      ],
+      sumStep: {
+        individualProducts: [200, 30, 40, 6],
+        total: 276
+      },
+      threeJSRepresentation: {
+        gridLayout: "2x2",
+        interactiveTiles: true,
+        tileColorCoding: "based on value magnitude",
+        axisLabels: { x: ["20", "3"], y: ["10", "2"] },
+        sumDisplay: "floating number above the grid",
+        animations: "tiles appear with multiplication animation",
+        diagonalHighlight: true
+      }
+    },
+    // Medium level problems (2-digit × 2-digit)
+    {
+      id: 6,
       problem: "24 × 36",
       context: "We have 24 rows with 36 panels in each row. How many panels are there in total?",
       difficulty: 'medium',
@@ -173,7 +204,7 @@ export const getBoxMethod3DProblems = (): BoxMethodProblem3D[] => {
     },
     // Hard level problems (2-digit × 2-digit with larger numbers)
     {
-      id: 6,
+      id: 7,
       problem: "32 × 45",
       context: "Water conservation: Our town saved 32 liters of water per household across 45 households. How many liters of water did we save in total?",
       difficulty: 'hard',
@@ -196,6 +227,36 @@ export const getBoxMethod3DProblems = (): BoxMethodProblem3D[] => {
         interactiveTiles: true,
         tileColorCoding: "based on value magnitude",
         axisLabels: { x: ["40", "5"], y: ["30", "2"] },
+        sumDisplay: "floating number above the grid",
+        animations: "tiles appear with multiplication animation",
+        diagonalHighlight: true
+      }
+    },
+    // Advanced level problems (challenging 2-digit × 2-digit)
+    {
+      id: 8,
+      problem: "47 × 58",
+      context: "Carbon offset: A forest restoration project plants 47 trees per section across 58 sections. How many trees are planted to offset carbon emissions?",
+      difficulty: 'hard',
+      placeValueDecomposition: {
+        firstNumber: [40, 7],
+        secondNumber: [50, 8]
+      },
+      boxGrid: [
+        { rowLabel: "40", columnLabel: "50", product: 2000 },
+        { rowLabel: "40", columnLabel: "8", product: 320 },
+        { rowLabel: "7", columnLabel: "50", product: 350 },
+        { rowLabel: "7", columnLabel: "8", product: 56 }
+      ],
+      sumStep: {
+        individualProducts: [2000, 320, 350, 56],
+        total: 2726
+      },
+      threeJSRepresentation: {
+        gridLayout: "2x2",
+        interactiveTiles: true,
+        tileColorCoding: "based on value magnitude",
+        axisLabels: { x: ["50", "8"], y: ["40", "7"] },
         sumDisplay: "floating number above the grid",
         animations: "tiles appear with multiplication animation",
         diagonalHighlight: true
