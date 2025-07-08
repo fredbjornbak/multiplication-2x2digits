@@ -1,3 +1,5 @@
+export type Block = 1 | 10 | 100;
+
 export interface BoxMethodProblem3D {
   id: number;
   problem: string;
