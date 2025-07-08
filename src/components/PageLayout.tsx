@@ -35,9 +35,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({
         <div className="max-w-7xl mx-auto flex items-center gap-6">
           
           <h1 className="text-4xl font-heading font-bold text-foreground">{title}</h1>
-          <div className="ml-auto">
-            <FontToggle fontFamily={preferences.fontFamily} onFontChange={setFontFamily} />
-          </div>
+          
         </div>
       </header>
 
