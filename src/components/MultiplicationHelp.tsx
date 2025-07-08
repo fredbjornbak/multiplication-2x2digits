@@ -140,7 +140,7 @@ const MultiplicationHelp = ({ open, onOpenChange, factor1, factor2, problem }: M
                           First, solve the simpler problem:
                         </div>
                         <div className="text-3xl font-bold text-yellow-700 dark:text-yellow-300 bg-yellow-100 dark:bg-yellow-900/50 p-4 rounded-lg">
-                          {zeroHelp.simplifiedFactor1} × {zeroHelp.simplifiedFactor2} = {zeroHelp.simplifiedResult}
+                          {zeroHelp.simplifiedFactor1} × {zeroHelp.simplifiedFactor2} = ?
                         </div>
                         <div className="flex items-center justify-center gap-2 text-lg text-yellow-700 dark:text-yellow-300">
                           <ArrowRight className="h-5 w-5" />
@@ -180,7 +180,7 @@ const MultiplicationHelp = ({ open, onOpenChange, factor1, factor2, problem }: M
                         className="my-4"
                       />
                       <div className="text-sm text-blue-600 dark:text-blue-400">
-                        {zeroHelp.simplifiedFactor1} rows × {zeroHelp.simplifiedFactor2} columns = {zeroHelp.simplifiedResult} squares
+                        {zeroHelp.simplifiedFactor1} rows × {zeroHelp.simplifiedFactor2} columns = ? squares
                       </div>
                       <div className="text-lg text-blue-700 dark:text-blue-300 font-bold">
                         Don't forget to add {zeroHelp.totalZeros} zero{zeroHelp.totalZeros !== 1 ? 's' : ''}!
