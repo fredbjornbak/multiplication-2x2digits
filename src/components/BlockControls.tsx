@@ -3,7 +3,7 @@ import React from 'react';
 import { Plus, RotateCcw, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { useTranslation } from 'react-i18next';
+
 
 interface BlockControlsProps {
   onAddBlock: (value: 1 | 10 | 100) => void;
@@ -22,7 +22,7 @@ const BlockControls: React.FC<BlockControlsProps> = ({
   isDisabled = false,
   className
 }) => {
-  const { t } = useTranslation();
+  
 
   return (
     <div className={cn("bg-white p-4 rounded-lg shadow-md", className)}>
@@ -70,7 +70,7 @@ const BlockControls: React.FC<BlockControlsProps> = ({
           variant="outline"
         >
           <RotateCcw size={18} className="mr-1" />
-          <span>{t('boxMethod3D.reset')}</span>
+          <span>Reset</span>
         </Button>
         
         <Button
@@ -81,7 +81,7 @@ const BlockControls: React.FC<BlockControlsProps> = ({
           variant="default"
         >
           <Check size={18} className="mr-1" />
-          <span>{t('boxMethod3D.check')}</span>
+          <span>Check Your Result</span>
         </Button>
       </div>
     </div>
