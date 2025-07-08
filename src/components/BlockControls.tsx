@@ -30,11 +30,11 @@ const BlockControls: React.FC<BlockControlsProps> = ({
           </div>
           <div className="text-center">
             <MathBlock value={10} isDraggable={true} className="hover:scale-110 transition-transform mb-2" />
-            <p className="text-sm text-muted-foreground font-medium">Tens</p>
+            
           </div>
           <div className="text-center">
             <MathBlock value={1} isDraggable={true} className="hover:scale-110 transition-transform mb-2" />
-            <p className="text-sm text-muted-foreground font-medium">Ones</p>
+            
           </div>
         </div>
       </div>
