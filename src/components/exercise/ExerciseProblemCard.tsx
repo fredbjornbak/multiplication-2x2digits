@@ -1,12 +1,14 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import MultiplicationGrid from '@/components/MultiplicationGrid';
 import BlockControls from '@/components/BlockControls';
+import GridTotalCounter from './GridTotalCounter';
 import { Block } from '@/utils/boxMethod/types';
 
 interface ExerciseProblemCardProps {
   problem: string;
   factor1: number;
   factor2: number;
+  expectedTotal: number;
   onCellClick: (row: number, col: number) => void;
   onRemoveBlock: (cellId: string, blockIndex: number) => void;
   onDropBlock: (cellId: string, value: Block) => void;
@@ -23,6 +25,7 @@ const ExerciseProblemCard = ({
   problem,
   factor1,
   factor2,
+  expectedTotal,
   onCellClick,
   onRemoveBlock,
   onDropBlock,
@@ -53,7 +56,15 @@ const ExerciseProblemCard = ({
         />
       </div>
 
-      <CardContent className="p-4">
+      <CardContent className="p-4 space-y-4">
+        {/* Grid Total Counter */}
+        <GridTotalCounter 
+          cellBlocks={cellBlocks}
+          expectedTotal={expectedTotal}
+          className="mx-auto max-w-md"
+        />
+        
+        {/* Multiplication Grid */}
         <div className="flex justify-center">
           <MultiplicationGrid 
             factor1={factor1} 
