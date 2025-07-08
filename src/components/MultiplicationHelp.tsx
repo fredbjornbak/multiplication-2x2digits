@@ -1,6 +1,7 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Grid3X3, Image, Plus, ArrowRight, Calculator, Repeat, SkipForward } from "lucide-react";
+import ArrayVisual from "./ArrayVisual";
 
 interface MultiplicationHelpProps {
   open: boolean;
@@ -123,7 +124,7 @@ const MultiplicationHelp = ({ open, onOpenChange, factor1, factor2, problem }: M
         
         {isZeroBased ? (
           /* Zero-based problems: Show simplified equation with zero reminder */
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto space-y-6">
             <div className="bg-yellow-50 dark:bg-yellow-950/30 p-6 rounded-lg border-2 border-yellow-200 dark:border-yellow-800">
               <div className="flex items-center gap-2 mb-4 justify-center">
                 <Calculator className="h-6 w-6 text-yellow-600" />
@@ -153,6 +154,37 @@ const MultiplicationHelp = ({ open, onOpenChange, factor1, factor2, problem }: M
                       <p className="text-sm text-yellow-600 dark:text-yellow-400 mt-4">
                         When multiplying with zeros, solve without the zeros first, then add them back!
                       </p>
+                    </>
+                  );
+                })()}
+              </div>
+            </div>
+
+            {/* Array Model */}
+            <div className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-lg border-2 border-blue-200 dark:border-blue-800">
+              <div className="flex items-center gap-2 mb-4 justify-center">
+                <Grid3X3 className="h-6 w-6 text-blue-600" />
+                <h3 className="font-bold text-xl text-blue-700 dark:text-blue-300">Array Model</h3>
+              </div>
+              <div className="text-center space-y-4">
+                {(() => {
+                  const zeroHelp = generateZeroBasedHelp();
+                  return (
+                    <>
+                      <div className="text-lg text-blue-700 dark:text-blue-300">
+                        {zeroHelp.simplifiedFactor1} × {zeroHelp.simplifiedFactor2} array:
+                      </div>
+                      <ArrayVisual 
+                        rows={zeroHelp.simplifiedFactor1} 
+                        columns={zeroHelp.simplifiedFactor2}
+                        className="my-4"
+                      />
+                      <div className="text-sm text-blue-600 dark:text-blue-400">
+                        {zeroHelp.simplifiedFactor1} rows × {zeroHelp.simplifiedFactor2} columns = {zeroHelp.simplifiedResult} squares
+                      </div>
+                      <div className="text-lg text-blue-700 dark:text-blue-300 font-bold">
+                        Don't forget to add {zeroHelp.totalZeros} zero{zeroHelp.totalZeros !== 1 ? 's' : ''}!
+                      </div>
                     </>
                   );
                 })()}
