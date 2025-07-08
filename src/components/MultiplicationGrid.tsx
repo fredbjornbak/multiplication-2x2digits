@@ -59,9 +59,9 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
     <div className={cn("relative bg-white rounded-xl shadow-lg overflow-hidden max-w-6xl mx-auto border-2 border-gray-200", className)}>
       {/* Top row with factor2 digits */}
       <div className="flex">
-        <div className="w-32 h-32 flex items-center justify-center bg-gray-100 border-b-2 border-r-2 border-gray-300"></div> {/* Empty top-left corner */}
+        <div className="w-24 h-24 flex items-center justify-center bg-gray-100 border-b-2 border-r-2 border-gray-300"></div> {/* Empty top-left corner */}
         {factor2Digits.map((digit, index) => (
-          <div key={`top-${index}`} className="flex-1 flex items-center justify-center h-32 font-bold text-4xl text-gray-700 bg-gray-100 border-b-2 border-r-2 border-gray-300">
+          <div key={`top-${index}`} className="flex-1 flex items-center justify-center h-24 font-bold text-2xl text-gray-700 bg-gray-100 border-b-2 border-r-2 border-gray-300">
             {digit}
           </div>
         ))}
@@ -71,7 +71,7 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
       {factor1Digits.map((digit1, rowIndex) => (
         <div key={`row-${rowIndex}`} className="flex">
           {/* Left column with factor1 digits */}
-          <div className="w-32 flex items-center justify-center font-bold text-4xl text-gray-700 bg-gray-100 border-b-2 border-r-2 border-gray-300">
+          <div className="w-24 flex items-center justify-center font-bold text-2xl text-gray-700 bg-gray-100 border-b-2 border-r-2 border-gray-300">
             {digit1}
           </div>
           
@@ -83,7 +83,7 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
             const product = digit1 * digit2;
             
             return (
-              <div key={`cell-${rowIndex}-${colIndex}`} className="flex-1 h-80 border-b-2 border-r-2 border-gray-300">
+              <div key={`cell-${rowIndex}-${colIndex}`} className="flex-1 h-96 border-b-2 border-r-2 border-gray-300">
                 <GridCell
                   row={rowIndex}
                   col={colIndex}
