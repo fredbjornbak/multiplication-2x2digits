@@ -33,6 +33,15 @@ const PageLayout: React.FC<PageLayoutProps> = ({
       {/* Header */}
       <header className="flex-none p-3 border-b-2 border-border bg-background">
         <div className="max-w-7xl mx-auto flex items-center gap-4">
+          <Button 
+            variant="outline" 
+            size="sm" 
+            onClick={handleBackClick}
+            className="flex items-center gap-2"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back to Tutorial
+          </Button>
           
           <h1 className="text-2xl font-heading font-bold text-foreground">{title}</h1>
           
