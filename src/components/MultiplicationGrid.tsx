@@ -13,7 +13,7 @@ interface MultiplicationGridProps {
   completedCells: string[];
   activeCell: string | null;
   className?: string;
-  onShowHelp?: () => void;
+  onShowHelp?: (factor1: number, factor2: number, problem: string) => void;
 }
 const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
   factor1,
@@ -55,18 +55,6 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
     }
   };
   return <div className={cn("relative bg-background rounded-2xl overflow-hidden w-fit mx-auto border-4 border-border", className)}>
-      {/* Floating Help Button */}
-      {onShowHelp && (
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={onShowHelp}
-          className="absolute top-4 left-4 z-10 rounded-full w-8 h-8 p-0 bg-primary/10 hover:bg-primary/20 border-primary/20"
-        >
-          <HelpCircle className="h-4 w-4 text-primary" />
-        </Button>
-      )}
-      
       {/* Top row with factor2 digits */}
       <div className="flex">
         <div className="w-24 h-20 flex items-center justify-center bg-muted border-b-2 border-r-2 border-border">
@@ -93,7 +81,18 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
             const isComplete = completedCells.includes(cellId);
             const product = digit1 * digit2;
             return (
-              <div key={`cell-${rowIndex}-${colIndex}`} className="flex-1 min-w-48 min-h-80 border-b-2 border-r-2 border-border">
+              <div key={`cell-${rowIndex}-${colIndex}`} className="flex-1 min-w-48 min-h-80 border-b-2 border-r-2 border-border relative">
+                {/* Help button for this specific cell */}
+                {onShowHelp && (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => onShowHelp(digit1, digit2, `${digit1} × ${digit2}`)}
+                    className="absolute top-2 right-2 z-10 rounded-full w-6 h-6 p-0 bg-primary/10 hover:bg-primary/20 border-primary/20"
+                  >
+                    <HelpCircle className="h-3 w-3 text-primary" />
+                  </Button>
+                )}
                 <GridCell 
                   row={rowIndex} 
                   col={colIndex} 

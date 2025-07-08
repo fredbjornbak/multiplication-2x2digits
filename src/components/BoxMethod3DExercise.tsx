@@ -46,6 +46,7 @@ const BoxMethod3DExercise = ({
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [showHint, setShowHint] = useState(false);
   const [showHelpDialog, setShowHelpDialog] = useState(false);
+  const [helpFactors, setHelpFactors] = useState<{factor1: number, factor2: number, problem: string}>({factor1: 0, factor2: 0, problem: ''});
 
   // Box Method Math Blocks state
   const [factor1, setFactor1] = useState(0);
@@ -455,6 +456,11 @@ const BoxMethod3DExercise = ({
     setActiveCell(null);
   };
 
+  const handleShowHelp = (factor1: number, factor2: number, problem: string) => {
+    setHelpFactors({factor1, factor2, problem});
+    setShowHelpDialog(true);
+  };
+
   const currentProblem = getCurrentProblem();
   if (!currentProblem) return null;
 
@@ -491,7 +497,7 @@ const BoxMethod3DExercise = ({
               completedCells={completedCells} 
               activeCell={activeCell} 
               className="shadow-xl" 
-              onShowHelp={() => setShowHelpDialog(true)}
+              onShowHelp={handleShowHelp}
             />
           </div>
         </CardContent>
@@ -511,9 +517,9 @@ const BoxMethod3DExercise = ({
       <MultiplicationHelp
         open={showHelpDialog}
         onOpenChange={setShowHelpDialog}
-        factor1={factor1}
-        factor2={factor2}
-        problem={currentProblem?.problem || ''}
+        factor1={helpFactors.factor1}
+        factor2={helpFactors.factor2}
+        problem={helpFactors.problem}
       />
     </div>
   );
