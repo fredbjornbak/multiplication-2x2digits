@@ -23,11 +23,8 @@ const PageLayout: React.FC<PageLayoutProps> = ({
   const { preferences, setFontFamily } = usePreferencesStore();
 
   const handleBackClick = () => {
-    if (location.pathname === '/box') {
-      navigate('/');
-    } else if (location.pathname === '/') {
-      // Already on dashboard, no need to navigate
-      return;
+    if (location.pathname === '/') {
+      navigate('/onboarding');
     } else {
       navigate('/');
     }
