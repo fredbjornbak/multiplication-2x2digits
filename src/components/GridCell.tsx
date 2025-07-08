@@ -59,7 +59,7 @@ const GridCell: React.FC<GridCellProps> = ({
   return (
     <div 
       className={cn(
-        "h-full border-2 rounded-xl p-8 transition-all min-h-[320px] border-gray-300 bg-white", 
+        "h-full border-2 rounded-xl p-4 transition-all min-h-[220px] border-gray-300 bg-white",
         isComplete ? "border-green-500 bg-green-50" : "",
         isDragOver && !isComplete ? "border-blue-400 bg-blue-100 border-dashed border-4" : "",
         className
@@ -72,17 +72,17 @@ const GridCell: React.FC<GridCellProps> = ({
       <div className="text-gray-700 text-lg font-semibold mb-4">{label}</div>
       
       {isComplete ? (
-        <div className="text-green-600 font-bold text-2xl flex items-center justify-center gap-3 mt-12">
-          <CheckCircle2 size={28} />
-          <span className="text-xl">Complete!</span>
+        <div className="text-green-600 font-bold text-xl flex items-center justify-center gap-2 mt-6">
+          <CheckCircle2 size={24} />
+          <span className="text-lg">Complete!</span>
         </div>
       ) : (
         <>
-          <div className="text-blue-600 font-bold text-2xl mb-6">
+          <div className="text-blue-600 font-bold text-xl mb-4">
             Current: {currentSum}
           </div>
           
-          <div className="flex flex-wrap gap-4 justify-center items-center min-h-[180px] p-6 bg-gray-50 rounded-lg border-4 border-dashed border-gray-400">
+          <div className="flex flex-wrap gap-3 justify-center items-center min-h-[120px] p-4 bg-gray-50 rounded-lg border-4 border-dashed border-gray-400">
             {blocks.length === 0 ? (
               <div className="text-gray-500 text-lg font-medium">Drop blocks here</div>
             ) : (

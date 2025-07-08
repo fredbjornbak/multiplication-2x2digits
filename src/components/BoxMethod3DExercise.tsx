@@ -465,17 +465,17 @@ const BoxMethod3DExercise = ({
   if (!currentProblem) return null;
 
   return (
-    <div className="max-w-7xl mx-auto p-6 space-y-6">
+    <div className="max-w-7xl mx-auto p-3 space-y-3">
       {/* Main Problem Card */}
       <Card className="overflow-hidden">
-        <CardHeader className="text-center bg-muted/30 py-6">
+        <CardHeader className="text-center bg-muted/30 py-3">
           <CardTitle className="text-3xl font-bold text-foreground">
             {getCurrentProblem()?.problem}
           </CardTitle>
         </CardHeader>
         
         {/* Control Panel */}
-        <div className="bg-muted/20 border-b p-6">
+        <div className="bg-muted/20 border-b p-4">
           <BlockControls 
             onAddBlock={handleAddBlock} 
             onResetCell={handleResetCell} 
@@ -485,7 +485,7 @@ const BoxMethod3DExercise = ({
           />
         </div>
 
-        <CardContent className="p-8">
+        <CardContent className="p-4">
           <div className="flex justify-center">
             <MultiplicationGrid 
               factor1={factor1} 

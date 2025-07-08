@@ -31,16 +31,16 @@ const PageLayout: React.FC<PageLayoutProps> = ({
   };
   return <div className="flex flex-col h-screen">
       {/* Header */}
-      <header className="flex-none p-6 border-b-2 border-border bg-background">
-        <div className="max-w-7xl mx-auto flex items-center gap-6">
+      <header className="flex-none p-3 border-b-2 border-border bg-background">
+        <div className="max-w-7xl mx-auto flex items-center gap-4">
           
-          <h1 className="text-4xl font-heading font-bold text-foreground">{title}</h1>
+          <h1 className="text-2xl font-heading font-bold text-foreground">{title}</h1>
           
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-auto p-6 bg-background">
+      <main className="flex-1 overflow-auto p-3 bg-background">
         <div className="max-w-4xl mx-auto">
           {children}
           

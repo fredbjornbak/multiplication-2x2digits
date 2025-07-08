@@ -19,11 +19,11 @@ const BlockControls: React.FC<BlockControlsProps> = ({
   isDisabled = false,
   className
 }) => {
-  return <div className={cn("bg-card border-2 border-border rounded-xl p-6 shadow-sm", className)}>
+  return <div className={cn("bg-card border-2 border-border rounded-xl p-4 shadow-sm", className)}>
       {/* Drag Blocks Section */}
-      <div className="text-center mb-6">
-        <h3 className="text-lg font-semibold text-foreground mb-4">Drag!</h3>
-        <div className="flex justify-center gap-6">
+      <div className="text-center mb-4">
+        <h3 className="text-base font-semibold text-foreground mb-3">Drag!</h3>
+        <div className="flex justify-center gap-4">
           <div className="text-center">
             <MathBlock value={100} isDraggable={true} className="hover:scale-110 transition-transform mb-2" />
             <p className="text-sm text-muted-foreground font-medium"></p>
@@ -40,7 +40,7 @@ const BlockControls: React.FC<BlockControlsProps> = ({
       </div>
         
       {/* Action Buttons */}
-      <div className="flex gap-4 justify-center">
+      <div className="flex gap-3 justify-center">
         <Button onClick={onResetCell} disabled={isDisabled} data-testid="reset-btn" variant="outline" size="default" className="min-w-[120px]">
           <RotateCcw size={16} className="mr-2" />
           Reset Cell

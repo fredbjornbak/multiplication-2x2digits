@@ -114,16 +114,16 @@ const MultiplicationHelp = ({
     return groups;
   };
   return <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-2xl text-center mb-4">
             How to solve {problem}
           </DialogTitle>
         </DialogHeader>
         
-        <div className="max-w-4xl mx-auto space-y-6">
+        <div className="max-w-3xl mx-auto space-y-4">
           {/* Basic Equation */}
-          <div className="bg-yellow-50 dark:bg-yellow-950/30 p-6 rounded-lg border-2 border-yellow-200 dark:border-yellow-800">
+          <div className="bg-yellow-50 dark:bg-yellow-950/30 p-4 rounded-lg border-2 border-yellow-200 dark:border-yellow-800">
             <div className="flex items-center gap-2 mb-4 justify-center">
               <Calculator className="h-6 w-6 text-yellow-600" />
               <h3 className="font-bold text-xl text-yellow-700 dark:text-yellow-300">Basic Equation</h3>
@@ -167,7 +167,7 @@ const MultiplicationHelp = ({
           </div>
 
           {/* Array Model */}
-          <div className="bg-blue-50 dark:bg-blue-950/30 p-6 rounded-lg border-2 border-blue-200 dark:border-blue-800">
+          <div className="bg-blue-50 dark:bg-blue-950/30 p-4 rounded-lg border-2 border-blue-200 dark:border-blue-800">
             <div className="flex items-center gap-2 mb-4 justify-center">
               <Grid3X3 className="h-6 w-6 text-blue-600" />
               <h3 className="font-bold text-xl text-blue-700 dark:text-blue-300">Array Model</h3>
@@ -199,7 +199,7 @@ const MultiplicationHelp = ({
           </div>
         </div>
 
-        <div className="flex justify-center mt-6">
+        <div className="flex justify-center mt-4">
           <Button onClick={() => onOpenChange(false)} className="px-8">
             Got it!
           </Button>
