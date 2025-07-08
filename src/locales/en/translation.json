@@ -1,0 +1,212 @@
+{
+  "aiTutor": {
+    "title": "Math Tutor",
+    "listeningStatus": "Listening to tutor...",
+    "typingStatus": "Tutor is typing...",
+    "nextButton": "Next: Box Method",
+    "helpButtons": {
+      "howToStart": "How do I start?",
+      "howToSolve": "How do I solve this?",
+      "imStuck": "I'm stuck!",
+      "whatsNext": "What's next?",
+      "showMeHow": "Show me how",
+      "helpMeUnderstand": "Help me understand"
+    },
+    "speech": {
+      "exerciseComplete": "Great job completing that exercise! You're making excellent progress. Let's continue with the next level.",
+      "boxMethodComplete": "Fantastic work with the 3D Box Method! You're developing strong visualization skills for multiplication.",
+      "onboardingComplete": "Welcome, {{name}}! I'm excited to help you practice {{topic}} in {{subject}}. Choose an exercise to get started!",
+      "tutorial": {
+        "initial": "Let's start learning multiplication! I'll guide you through each step.",
+        "selectRow": "First, let's set the number of rows. Use the slider to change it.",
+        "selectColumn": "Great! Now set the number of columns using the other slider.",
+        "countCubes": "Count how many boxes we have in total. Each row has the same number of boxes.",
+        "inputAnswer": "Type your answer in the input box and click 'Check' when you're ready.",
+        "celebration": "Fantastic job! You got it right! 🎉",
+        "newChallenge": "Let's try another problem to practice more.",
+        "done": "You've completed this tutorial! You're doing great with multiplication."
+      },
+      "startMultiplication": "Let's practice multiplication together! I'll guide you through each step.",
+      "startBoxMethod": "The 3D Box Method is a great way to visualize multiplication! Let me walk you through an example. First, you'll see place values broken down - like 24 becomes 20 and 4. Each cell in the grid represents the product of those values. Let's say we're solving 6 × 24. First, click on a cell, then add blocks to represent the product of those values - for example, 6 × 20 = 120, so add one 100-block and two 10-blocks. Click 'Check' when done. Complete all cells, then add them together for your final answer!",
+      "backToExercises": "Let's go back to the exercise selection. What would you like to practice next?",
+      "welcome": "Hi there! 👋 Ready to explore some fun math exercises?"
+    }
+  },
+  "onboarding": {
+    "welcome": {
+      "title": "Welcome to GradeAid!",
+      "description": "Learn in a fun and interactive way!",
+      "startButton": "Start"
+    },
+    "basicMultiplication": {
+      "title": "Basic Multiplication",
+      "description": "Start with simple multiplication problems to build your foundation."
+    },
+    "boxMethod": {
+      "title": "Box Method",
+      "description": "Learn the box method to visualize and understand multiplication better."
+    }
+  },
+  "mainPage": {
+    "welcome": "Welcome back, {{name}}!",
+    "restart": "Restart",
+    "backToExercises": "Back to Exercises",
+    "welcomeTitle": "Welcome to GradeAid!",
+    "exercises": {
+      "multiplication": {
+        "title": "Basic Multiplication",
+        "description": "Practice multiplication with an environmental theme!",
+        "details": "Start with simple multiplication problems and work your way up to more complex ones. Each exercise is connected to environmental themes like planting trees or installing solar panels.",
+        "startButton": "Start Exercise"
+      },
+      "boxMethod": {
+        "title": "3D Box Method",
+        "description": "Experience Box Method in 3D interactive space!",
+        "details": "Visualize multiplication using a 3D box method that helps understand the concept spatially. Great for visual learners!",
+        "startButton": "Start Exercise"
+      }
+    }
+  },
+  "languageSwitcher": {
+    "label": "Language / Sprog",
+    "english": "English",
+    "danish": "Dansk"
+  },
+  "multiplicationExercise": {
+    "problem": "{{row}} × {{column}} = ?",
+    "rows": "Rows: {{value}}",
+    "columns": "Columns: {{value}}",
+    "enterAnswer": "Enter your answer:",
+    "placeholder": "Type your answer here",
+    "submit": "Submit",
+    "correct": "Correct!",
+    "tryAgain": "Try Again",
+    "help": {
+      "button": {
+        "show": "I'm Stuck",
+        "hide": "Hide Help"
+      },
+      "title": "How to solve:",
+      "steps": {
+        "step1": "Count the boxes in each row",
+        "step2": "Count how many rows there are",
+        "step3": "Multiply: rows × boxes in each row",
+        "step4": "That's your answer!"
+      }
+    },
+    "feedback": {
+      "title": "Remember:",
+      "tips": {
+        "tip1": "Each box = 1",
+        "tip2": "Count all boxes to find the answer",
+        "tip3": "Take your time!"
+      }
+    },
+    "tutorial": {
+      "moveSlider": "Move the dot to {{value}}"
+    },
+    "adjustSlidersText": "Adjust rows and columns by moving the dots above",
+    "guidedModeInstructions": "Follow the tutor's instructions!"
+  },
+  "boxMethod3D": {
+    "selectDifficulty": "Select difficulty",
+    "difficulty": {
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    },
+    "reset": "Start over",
+    "newExercise": "New Exercise",
+    "startExercise": "Start Exercise",
+    "tutorialTitle": "Box Method Tutorial",
+    "exerciseTitle": "Box Method Multiplication",
+    "problem": "Problem",
+    "hint": "Hint",
+    "hintContent": "Break down each number by place value. Fill each box with the corresponding product of the values.",
+    "firstNumber": "First Number",
+    "secondNumber": "Second Number",
+    "previous": "Previous",
+    "next": "Next",
+    "continue": "Continue",
+    "startExercises": "Start Exercises",
+    "correct": "Correct! Great job!",
+    "incorrect": "Not quite right. Try again!",
+    "cellCompleted": "This cell is already completed!",
+    "followTutorial": "Please follow the tutorial. Click on the highlighted cell.",
+    "placeValueBreakdown": "Let's break down our numbers by place value. This makes multiplication easier to understand visually.",
+    "gridExplanation": "This grid represents our multiplication problem. Each cell shows the product of the corresponding row and column values.",
+    "firstCell": "Let's start with the first cell. This represents the product of the first digits from each number.",
+    "secondCell": "Great! Now let's fill the second cell. This represents the product of the first digit from the first number and the second digit from the second number.",
+    "thirdCell": "Now let's fill the third cell. This represents the product of the second digit from the first number and the first digit from the second number.",
+    "fourthCell": "Finally, let's fill the fourth cell. This represents the product of the second digits from each number.",
+    "sumExplanation": "Now we add all the cell values together to get our final answer! This is the complete product of our original numbers.",
+    "tutorialComplete": "Great job! You've completed the tutorial. Now you're ready to try exercises on your own.",
+    "progressLabel": {
+      "tree": "Trees planted",
+      "household": "Homes powered",
+      "solar": "Solar panels built"
+    },
+    "goalLabel": {
+      "tree": "Help reforest the area!",
+      "household": "Help power the community!",
+      "solar": "Help build a solar array!"
+    },
+    "completion": {
+      "tree": "You've Planted a Forest!",
+      "household": "You've Powered a Community!",
+      "solar": "You've Powered a Solar Farm!"
+    },
+    "details": {
+      "tree": "Your multiplication skills have helped plant trees and restore natural habitats. Amazing job!",
+      "household": "Your multiplication skills have helped provide clean energy to homes in the community. Amazing job!",
+      "solar": "Your multiplication skills have helped generate clean energy for the community. Amazing job!"
+    },
+    "blocksReset": "Blocks reset",
+    "problemComplete": "Amazing! You've completed all parts of the problem!",
+    "tutorial": {
+      "welcome": "Welcome to the Box Method tutorial! Let's solve 6 × 24 together. I'll guide you through each step.",
+      "selectCell": "First, let's select the top-left cell. Click on it to begin.",
+      "addHundredBlock": "Now, let's add a 100 block to represent 6 × 20.",
+      "addTenBlocks": "Let's add two 10 blocks to complete the first cell.",
+      "checkFirstCell": "Great! Now let's check if our first cell is correct.",
+      "selectSecondCell": "Now, let's select the top-right cell.",
+      "addSecondCellBlocks": "Let's add the blocks for 6 × 4. We need two 10 blocks and four 1 blocks.",
+      "checkSecondCell": "Let's check if our second cell is correct.",
+      "explainSum": "Now we can add up all the cells to get our final answer: 6 × 24 = 144.",
+      "complete": "Excellent! You've completed the tutorial. Now you can try solving problems on your own!"
+    },
+    "check": "Check your result"
+  },
+  "fontToggle": {
+    "dyslexiaFontOn": "Dyslexia Font: On",
+    "dyslexiaFontOff": "Dyslexia Font: Off",
+    "fontOptions": "Font Options",
+    "defaultFont": "Default Font",
+    "openDyslexicFont": "OpenDyslexic Font" 
+  },
+  "aiTutorBubble": {
+    "readyToHelp": "AI Tutor is ready to help!"
+  },
+  "basicMultiplication": {
+    "welcome": "Welcome to Basic Multiplication! Let's start with some simple problems.",
+    "addRows": "Let's add 4 rows! Watch how I move the slider.",
+    "addColumns": "Now let's add 6 columns! Watch the slider move.",
+    "countBoxes": "Now you can count the boxes and enter your answer! Take your time and think carefully.",
+    "correctAnswer": "Great job! You counted all the boxes correctly!",
+    "tryAgain": "Let's try counting again. Take your time and count each box carefully.",
+    "createYourOwn": "Great! Now you can try with different numbers. Move the sliders to create your own multiplication problem!",
+    "correctFeedback": "Great job! You got it right! Try another one with different numbers!",
+    "incorrectFeedback": "That's okay! Let's try another one. Remember to take your time and think carefully.",
+    "masterFeedback": "Amazing! You've mastered basic multiplication! You're ready for the next step, champion! Click the Next button when you're ready to try the box method!",
+    "practiceFeedback": "You're doing great! Let's practice 3 more exercises to make sure you're really comfortable with basic multiplication.",
+    "nextBoxMethod": "Great! Let's move on to the box method. This will help you understand multiplication even better!"
+  },
+  "boxMethodMultiplication": {
+    "welcome": "Welcome to Box Method Multiplication! Let's visualize multiplication using boxes.",
+    "exerciseComplete": "Excellent work! You've mastered the box method! Would you like to try another problem?"
+  },
+  "soundCheck": {
+    "title": "Let's check your sound",
+    "description": "Make sure your speakers or headphones are on. When ready, click the button below to hear Aidly!"
+  }
+} 
