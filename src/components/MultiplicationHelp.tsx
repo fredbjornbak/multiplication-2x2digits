@@ -143,11 +143,11 @@ const MultiplicationHelp = ({ open, onOpenChange, factor1, factor2, problem }: M
                         </div>
                         <div className="flex items-center justify-center gap-2 text-lg text-yellow-700 dark:text-yellow-300">
                           <ArrowRight className="h-5 w-5" />
-                          <span>Then add {zeroHelp.totalZeros} zero{zeroHelp.totalZeros !== 1 ? 's' : ''}</span>
+                          <span className="font-bold">Then add {zeroHelp.totalZeros} zero{zeroHelp.totalZeros !== 1 ? 's' : ''}</span>
                           <ArrowRight className="h-5 w-5" />
                         </div>
                         <div className="text-3xl font-bold text-yellow-700 dark:text-yellow-300 bg-yellow-200 dark:bg-yellow-800/50 p-4 rounded-lg border-2 border-yellow-400 dark:border-yellow-600">
-                          {factor1} × {factor2} = {result}
+                          {factor1} × {factor2} = ?
                         </div>
                       </div>
                       <p className="text-sm text-yellow-600 dark:text-yellow-400 mt-4">
@@ -177,7 +177,7 @@ const MultiplicationHelp = ({ open, onOpenChange, factor1, factor2, problem }: M
                     </div>
                   ))}
                   <p className="text-sm text-green-600 dark:text-green-400 mt-2">
-                    {factor2} groups of {factor1} = {result}
+                    {factor2} groups of {factor1} = ?
                   </p>
                 </div>
               </div>
@@ -195,7 +195,7 @@ const MultiplicationHelp = ({ open, onOpenChange, factor1, factor2, problem }: M
                     ))}
                   </div>
                   <p className="text-sm text-blue-600 dark:text-blue-400">
-                    {factor1} × {factor2} array = {result}
+                    {factor1} × {factor2} array = ?
                   </p>
                 </div>
               </div>
@@ -249,7 +249,7 @@ const MultiplicationHelp = ({ open, onOpenChange, factor1, factor2, problem }: M
                     return (
                       <>
                         <div className="text-2xl font-bold text-yellow-700 dark:text-yellow-300">
-                          {breakdown.factor1Breakdown} × {breakdown.factor2Breakdown} = {result}
+                          {breakdown.factor1Breakdown} × {breakdown.factor2Breakdown} = ?
                         </div>
                         <p className="text-sm text-yellow-600 dark:text-yellow-400">
                           Breaking down {factor1} × {factor2} using place values
