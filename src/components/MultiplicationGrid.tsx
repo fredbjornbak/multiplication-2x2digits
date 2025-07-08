@@ -56,12 +56,12 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
   };
 
   return (
-    <div className={cn("relative bg-white rounded-lg shadow-md overflow-hidden max-w-2xl mx-auto", className)}>
+    <div className={cn("relative bg-white rounded-xl shadow-lg overflow-hidden max-w-6xl mx-auto border-2 border-gray-200", className)}>
       {/* Top row with factor2 digits */}
       <div className="flex">
-        <div className="w-20 h-20 flex items-center justify-center bg-gray-50 border-b border-r border-gray-200"></div> {/* Empty top-left corner */}
+        <div className="w-32 h-32 flex items-center justify-center bg-gray-100 border-b-2 border-r-2 border-gray-300"></div> {/* Empty top-left corner */}
         {factor2Digits.map((digit, index) => (
-          <div key={`top-${index}`} className="flex-1 flex items-center justify-center h-20 font-bold text-2xl text-gray-700 bg-gray-50 border-b border-r border-gray-200">
+          <div key={`top-${index}`} className="flex-1 flex items-center justify-center h-32 font-bold text-4xl text-gray-700 bg-gray-100 border-b-2 border-r-2 border-gray-300">
             {digit}
           </div>
         ))}
@@ -71,7 +71,7 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
       {factor1Digits.map((digit1, rowIndex) => (
         <div key={`row-${rowIndex}`} className="flex">
           {/* Left column with factor1 digits */}
-          <div className="w-20 flex items-center justify-center font-bold text-2xl text-gray-700 bg-gray-50 border-b border-r border-gray-200">
+          <div className="w-32 flex items-center justify-center font-bold text-4xl text-gray-700 bg-gray-100 border-b-2 border-r-2 border-gray-300">
             {digit1}
           </div>
           
@@ -83,7 +83,7 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
             const product = digit1 * digit2;
             
             return (
-              <div key={`cell-${rowIndex}-${colIndex}`} className="flex-1 h-64 border-b border-r border-gray-200">
+              <div key={`cell-${rowIndex}-${colIndex}`} className="flex-1 h-80 border-b-2 border-r-2 border-gray-300">
                 <GridCell
                   row={rowIndex}
                   col={colIndex}

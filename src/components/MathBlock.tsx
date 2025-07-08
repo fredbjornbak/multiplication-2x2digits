@@ -27,13 +27,13 @@ const MathBlock: React.FC<MathBlockProps> = ({
     
     switch (value) {
       case 1:
-        return cn(baseStyles, "w-10 h-10 text-sm bg-amber-500 hover:bg-amber-600", isDraggable ? "cursor-grab active:cursor-grabbing" : "", className);
+        return cn(baseStyles, "w-14 h-14 text-lg bg-amber-500 hover:bg-amber-600 shadow-md", isDraggable ? "cursor-grab active:cursor-grabbing" : "", className);
       case 10:
-        return cn(baseStyles, "w-11 h-11 text-sm bg-green-600 hover:bg-green-700", isDraggable ? "cursor-grab active:cursor-grabbing" : "", className);
+        return cn(baseStyles, "w-16 h-16 text-lg bg-green-600 hover:bg-green-700 shadow-md", isDraggable ? "cursor-grab active:cursor-grabbing" : "", className);
       case 100:
-        return cn(baseStyles, "w-12 h-12 text-sm bg-indigo-700 hover:bg-indigo-800", isDraggable ? "cursor-grab active:cursor-grabbing" : "", className);
+        return cn(baseStyles, "w-18 h-18 text-xl bg-indigo-700 hover:bg-indigo-800 shadow-md", isDraggable ? "cursor-grab active:cursor-grabbing" : "", className);
       default:
-        return cn(baseStyles, "w-10 h-10 text-sm bg-amber-500 hover:bg-amber-600", isDraggable ? "cursor-grab active:cursor-grabbing" : "", className);
+        return cn(baseStyles, "w-14 h-14 text-lg bg-amber-500 hover:bg-amber-600 shadow-md", isDraggable ? "cursor-grab active:cursor-grabbing" : "", className);
     }
   };
 
@@ -65,7 +65,7 @@ const MathBlock: React.FC<MathBlockProps> = ({
       {value}
       {isRemovable && (
         <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 rounded-md flex items-center justify-center transition-opacity opacity-0 group-hover:opacity-100">
-          <Minus size={10} className="text-white" />
+          <Minus size={16} className="text-white" />
         </div>
       )}
     </div>
