@@ -55,19 +55,21 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
     }
   };
   return <div className={cn("relative bg-background rounded-2xl overflow-hidden w-fit mx-auto border-4 border-border", className)}>
+      {/* Floating Help Button */}
+      {onShowHelp && (
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={onShowHelp}
+          className="absolute top-4 left-4 z-10 rounded-full w-8 h-8 p-0 bg-primary/10 hover:bg-primary/20 border-primary/20"
+        >
+          <HelpCircle className="h-4 w-4 text-primary" />
+        </Button>
+      )}
+      
       {/* Top row with factor2 digits */}
       <div className="flex">
-        <div className="w-24 h-20 flex items-center justify-center bg-muted border-b-2 border-r-2 border-border relative">
-          {onShowHelp && (
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={onShowHelp}
-              className="rounded-full w-8 h-8 p-0 bg-primary/10 hover:bg-primary/20 border-primary/20"
-            >
-              <HelpCircle className="h-4 w-4 text-primary" />
-            </Button>
-          )}
+        <div className="w-24 h-20 flex items-center justify-center bg-muted border-b-2 border-r-2 border-border">
         </div>
         {factor2Digits.map((digit, index) => (
           <div key={`top-${index}`} className="flex-1 min-w-48 flex items-center justify-center h-20 font-bold text-xl text-foreground bg-muted border-b-2 border-r-2 border-border">
