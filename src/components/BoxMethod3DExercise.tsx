@@ -100,7 +100,6 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
         problem={currentProblem.problem}
         factor1={factor1}
         factor2={factor2}
-        expectedTotal={currentProblem.sumStep.total}
         onCellClick={handleCellClick}
         onRemoveBlock={handleRemoveBlock}
         onDropBlock={handleDropBlock}

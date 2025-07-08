@@ -8,7 +8,6 @@ interface ExerciseProblemCardProps {
   problem: string;
   factor1: number;
   factor2: number;
-  expectedTotal: number;
   onCellClick: (row: number, col: number) => void;
   onRemoveBlock: (cellId: string, blockIndex: number) => void;
   onDropBlock: (cellId: string, value: Block) => void;
@@ -25,7 +24,6 @@ const ExerciseProblemCard = ({
   problem,
   factor1,
   factor2,
-  expectedTotal,
   onCellClick,
   onRemoveBlock,
   onDropBlock,
@@ -60,7 +58,6 @@ const ExerciseProblemCard = ({
         {/* Grid Total Counter */}
         <GridTotalCounter 
           cellBlocks={cellBlocks}
-          expectedTotal={expectedTotal}
           className="mx-auto max-w-md"
         />
         
