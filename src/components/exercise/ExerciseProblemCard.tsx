@@ -37,14 +37,14 @@ const ExerciseProblemCard = ({
 }: ExerciseProblemCardProps) => {
   return (
     <Card className="overflow-hidden">
-      <CardHeader className="text-center bg-muted/30 py-3">
-        <CardTitle className="text-3xl font-bold text-foreground">
+      <CardHeader className="text-center bg-muted/30 py-2">
+        <CardTitle className="text-2xl font-bold text-foreground">
           {problem}
         </CardTitle>
       </CardHeader>
       
       {/* Control Panel */}
-      <div className="bg-muted/20 border-b p-4">
+      <div className="bg-muted/20 border-b p-3">
         <BlockControls 
           onAddBlock={onAddBlock} 
           onResetCell={onResetCell} 
@@ -54,7 +54,7 @@ const ExerciseProblemCard = ({
         />
       </div>
 
-      <CardContent className="p-4 space-y-4">
+      <CardContent className="p-3 space-y-2">
         {/* Grid Total Counter */}
         <GridTotalCounter 
           cellBlocks={cellBlocks}

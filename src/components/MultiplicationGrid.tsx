@@ -57,10 +57,10 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
   return <div className={cn("relative bg-background rounded-2xl overflow-hidden w-fit mx-auto border-4 border-border", className)}>
       {/* Top row with factor2 digits */}
       <div className="flex">
-        <div className="w-20 h-16 flex items-center justify-center bg-muted border-b-2 border-r-2 border-border">
+        <div className="w-16 h-12 flex items-center justify-center bg-muted border-b-2 border-r-2 border-border">
         </div>
         {factor2Digits.map((digit, index) => (
-          <div key={`top-${index}`} className="flex-1 min-w-36 flex items-center justify-center h-16 font-bold text-lg text-foreground bg-muted border-b-2 border-r-2 border-border">
+          <div key={`top-${index}`} className="flex-1 min-w-28 flex items-center justify-center h-12 font-bold text-base text-foreground bg-muted border-b-2 border-r-2 border-border">
             {digit}
           </div>
         ))}
@@ -70,7 +70,7 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
       {factor1Digits.map((digit1, rowIndex) => (
         <div key={`row-${rowIndex}`} className="flex">
           {/* Left column with factor1 digits */}
-          <div className="w-20 min-h-60 flex items-center justify-center font-bold text-lg text-foreground bg-muted border-b-2 border-r-2 border-border">
+          <div className="w-16 min-h-32 flex items-center justify-center font-bold text-base text-foreground bg-muted border-b-2 border-r-2 border-border">
             {digit1}
           </div>
           
@@ -81,7 +81,7 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
             const isComplete = completedCells.includes(cellId);
             const product = digit1 * digit2;
             return (
-              <div key={`cell-${rowIndex}-${colIndex}`} className="flex-1 min-w-36 min-h-60 border-b-2 border-r-2 border-border relative">
+              <div key={`cell-${rowIndex}-${colIndex}`} className="flex-1 min-w-28 min-h-32 border-b-2 border-r-2 border-border relative">
                 {/* Help button for this specific cell */}
                 {onShowHelp && (
                   <Button

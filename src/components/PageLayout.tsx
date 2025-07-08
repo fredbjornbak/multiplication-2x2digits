@@ -31,7 +31,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({
   };
   return <div className="flex flex-col h-screen">
       {/* Header */}
-      <header className="flex-none p-3 border-b-2 border-border bg-background">
+      <header className="flex-none p-2 border-b-2 border-border bg-background">
         <div className="max-w-7xl mx-auto flex items-center gap-4">
           <Button 
             variant="outline" 
@@ -49,7 +49,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-auto p-3 bg-background">
+      <main className="flex-1 overflow-auto p-2 bg-background">
         <div className="max-w-4xl mx-auto">
           {children}
           

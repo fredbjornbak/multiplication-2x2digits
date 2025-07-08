@@ -19,9 +19,9 @@ const BlockControls: React.FC<BlockControlsProps> = ({
   isDisabled = false,
   className
 }) => {
-  return <div className={cn("bg-card border-2 border-border rounded-xl p-4 shadow-sm", className)}>
+  return <div className={cn("bg-card border-2 border-border rounded-xl p-3 shadow-sm", className)}>
       {/* Drag Blocks Section */}
-      <div className="text-center mb-4">
+      <div className="text-center mb-2">
         <h3 className="text-base font-semibold text-foreground mb-3">Drag!</h3>
         <div className="flex justify-center gap-4">
           <div className="text-center">
@@ -40,14 +40,14 @@ const BlockControls: React.FC<BlockControlsProps> = ({
       </div>
         
       {/* Action Buttons */}
-      <div className="flex gap-3 justify-center">
-        <Button onClick={onResetCell} disabled={isDisabled} data-testid="reset-btn" variant="outline" size="default" className="min-w-[120px]">
-          <RotateCcw size={16} className="mr-2" />
+      <div className="flex gap-2 justify-center">
+        <Button onClick={onResetCell} disabled={isDisabled} data-testid="reset-btn" variant="outline" size="sm" className="min-w-[100px]">
+          <RotateCcw size={14} className="mr-1" />
           Reset Cell
         </Button>
         
-        <Button onClick={onCheckGrid} disabled={isDisabled} data-testid="check-btn" variant="default" size="default" className="min-w-[120px]">
-          <Check size={16} className="mr-2" />
+        <Button onClick={onCheckGrid} disabled={isDisabled} data-testid="check-btn" variant="default" size="sm" className="min-w-[100px]">
+          <Check size={14} className="mr-1" />
           Check Answer
         </Button>
       </div>

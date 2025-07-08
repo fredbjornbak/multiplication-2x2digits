@@ -8,9 +8,9 @@ interface VisualProgressProps {
 
 const VisualProgress = ({ currentIndex, totalQuestions, className }: VisualProgressProps) => {
   return (
-    <div className={cn("flex items-center justify-center gap-4", className)}>
+    <div className={cn("flex items-center justify-center gap-2", className)}>
       {/* Numeric Counter */}
-      <div className="text-lg font-bold text-muted-foreground">
+      <div className="text-base font-bold text-muted-foreground">
         {currentIndex + 1}/{totalQuestions}
       </div>
       
@@ -20,7 +20,7 @@ const VisualProgress = ({ currentIndex, totalQuestions, className }: VisualProgr
           <div
             key={index}
             className={cn(
-              "w-3 h-3 rounded-full transition-all duration-300",
+              "w-2 h-2 rounded-full transition-all duration-300",
               index <= currentIndex
                 ? "bg-primary scale-110 shadow-sm"
                 : "bg-muted border-2 border-muted-foreground/20"
