@@ -59,7 +59,7 @@ const GridCell: React.FC<GridCellProps> = ({
   return (
     <div 
       className={cn(
-        "h-full border rounded-md p-3 transition-all min-h-[120px]", 
+        "h-full border rounded-md p-4 transition-all min-h-[160px]", 
         isActive ? "border-blue-500 bg-blue-50 shadow-md" : "border-gray-200 bg-white",
         isComplete ? "border-green-500 bg-green-50" : "",
         isDragOver && !isComplete ? "border-blue-400 bg-blue-100 border-dashed" : "",

@@ -83,7 +83,7 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
             const product = digit1 * digit2;
             
             return (
-              <div key={`cell-${rowIndex}-${colIndex}`} className="flex-1 h-32 border-b border-r border-gray-200">
+              <div key={`cell-${rowIndex}-${colIndex}`} className="flex-1 h-44 border-b border-r border-gray-200">
                 <GridCell
                   row={rowIndex}
                   col={colIndex}
