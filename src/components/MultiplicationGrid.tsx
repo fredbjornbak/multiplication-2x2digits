@@ -56,12 +56,12 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
   };
 
   return (
-    <div className={cn("relative bg-white rounded-lg shadow-md overflow-hidden max-w-md mx-auto", className)}>
+    <div className={cn("relative bg-white rounded-lg shadow-md overflow-hidden max-w-2xl mx-auto", className)}>
       {/* Top row with factor2 digits */}
       <div className="flex">
-        <div className="w-12 h-12 flex items-center justify-center bg-gray-50 border-b border-r border-gray-200"></div> {/* Empty top-left corner */}
+        <div className="w-16 h-16 flex items-center justify-center bg-gray-50 border-b border-r border-gray-200"></div> {/* Empty top-left corner */}
         {factor2Digits.map((digit, index) => (
-          <div key={`top-${index}`} className="flex-1 flex items-center justify-center h-12 font-bold text-lg text-gray-700 bg-gray-50 border-b border-r border-gray-200">
+          <div key={`top-${index}`} className="flex-1 flex items-center justify-center h-16 font-bold text-xl text-gray-700 bg-gray-50 border-b border-r border-gray-200">
             {digit}
           </div>
         ))}
@@ -71,7 +71,7 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
       {factor1Digits.map((digit1, rowIndex) => (
         <div key={`row-${rowIndex}`} className="flex">
           {/* Left column with factor1 digits */}
-          <div className="w-12 flex items-center justify-center font-bold text-lg text-gray-700 bg-gray-50 border-b border-r border-gray-200">
+          <div className="w-16 flex items-center justify-center font-bold text-xl text-gray-700 bg-gray-50 border-b border-r border-gray-200">
             {digit1}
           </div>
           
@@ -83,7 +83,7 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
             const product = digit1 * digit2;
             
             return (
-              <div key={`cell-${rowIndex}-${colIndex}`} className="flex-1 h-20 border-b border-r border-gray-200">
+              <div key={`cell-${rowIndex}-${colIndex}`} className="flex-1 h-32 border-b border-r border-gray-200">
                 <GridCell
                   row={rowIndex}
                   col={colIndex}
