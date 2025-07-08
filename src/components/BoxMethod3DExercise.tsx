@@ -3,6 +3,7 @@ import { useExerciseState } from '@/hooks/useExerciseState';
 import { useExerciseLogic } from '@/hooks/useExerciseLogic';
 import ExerciseProblemCard from './exercise/ExerciseProblemCard';
 import ExerciseFeedback from './exercise/ExerciseFeedback';
+import VisualProgress from './exercise/VisualProgress';
 import MultiplicationHelp from './MultiplicationHelp';
 
 interface BoxMethod3DExerciseProps {
@@ -87,6 +88,13 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
 
   return (
     <div className="max-w-7xl mx-auto p-3 space-y-3">
+      {/* Visual Progress Indicator */}
+      <VisualProgress 
+        currentIndex={currentProblemIndex} 
+        totalQuestions={problems.length || 8} 
+        className="mb-4"
+      />
+
       {/* Main Problem Card */}
       <ExerciseProblemCard
         problem={currentProblem.problem}
