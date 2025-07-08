@@ -442,52 +442,74 @@ const BoxMethod3DExercise = ({
   };
   const currentProblem = getCurrentProblem();
   if (!currentProblem) return null;
-  return <div className="flex flex-col space-y-4">
-      <div className="flex flex-col space-y-4">
-        <div className="flex justify-between items-center">
-          <div className="flex items-center space-x-4">
-            <Select value={selectedDifficulty} onValueChange={(value: Difficulty) => handleDifficultySelect(value)}>
-              <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Select Difficulty" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="easy">Easy</SelectItem>
-                <SelectItem value="medium">Medium</SelectItem>
-                <SelectItem value="hard">Hard</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          <div className="flex items-center space-x-2">
-            <AudioToggle isAudioEnabled={isAudioEnabled} onToggle={handleAudioToggle} />
-          </div>
+  return <div className="max-w-7xl mx-auto p-6 space-y-6">
+      {/* Header Section */}
+      <div className="flex items-center justify-between bg-card rounded-xl p-4 border-2 border-border">
+        <div className="flex items-center gap-4">
+          <Select value={selectedDifficulty} onValueChange={(value: Difficulty) => handleDifficultySelect(value)}>
+            <SelectTrigger className="w-[140px]">
+              <SelectValue placeholder="Difficulty" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="easy">Easy</SelectItem>
+              <SelectItem value="medium">Medium</SelectItem>
+              <SelectItem value="hard">Hard</SelectItem>
+            </SelectContent>
+          </Select>
+          <Button variant="outline" size="sm" onClick={handleNewExercise}>
+            New Exercise
+          </Button>
         </div>
-
-        <BlockControls onAddBlock={handleAddBlock} onResetCell={handleResetCell} onCheckCell={handleCheckCell} isDisabled={!activeCell} />
+        <AudioToggle isAudioEnabled={isAudioEnabled} onToggle={handleAudioToggle} />
       </div>
 
-      <Card>
-        <CardHeader>
-          <div className="flex items-center justify-between relative">
-            <div className="absolute right-0">
-              <Button variant="outline" size="sm" onClick={handleNewExercise}>
-                New Exercise
-              </Button>
-            </div>
-            <CardTitle className="text-2xl font-bold text-center w-full">
-              {getCurrentProblem()?.problem}
-            </CardTitle>
-          </div>
+      {/* Main Problem Card */}
+      <Card className="overflow-hidden">
+        <CardHeader className="text-center bg-muted/30 py-6">
+          <CardTitle className="text-3xl font-bold text-foreground">
+            {getCurrentProblem()?.problem}
+          </CardTitle>
         </CardHeader>
-        <CardContent>
-          <div className="flex flex-col space-y-4 px-0 mx-0 py-0 my-0">
-            <MultiplicationGrid factor1={factor1} factor2={factor2} onCellClick={handleCellClick} onRemoveBlock={handleRemoveBlock} onDropBlock={handleDropBlock} cellBlocks={cellBlocks} completedCells={completedCells} activeCell={activeCell} />
+        
+        {/* Control Panel */}
+        <div className="bg-muted/20 border-b p-6">
+          <BlockControls 
+            onAddBlock={handleAddBlock} 
+            onResetCell={handleResetCell} 
+            onCheckCell={handleCheckCell} 
+            isDisabled={!activeCell}
+            className="max-w-2xl mx-auto"
+          />
+        </div>
+
+        <CardContent className="p-8">
+          <div className="flex justify-center">
+            <MultiplicationGrid 
+              factor1={factor1} 
+              factor2={factor2} 
+              onCellClick={handleCellClick} 
+              onRemoveBlock={handleRemoveBlock} 
+              onDropBlock={handleDropBlock} 
+              cellBlocks={cellBlocks} 
+              completedCells={completedCells} 
+              activeCell={activeCell}
+              className="shadow-xl"
+            />
           </div>
         </CardContent>
       </Card>
 
-      {feedback && <div className={cn("p-4 rounded-lg text-center", isCorrect ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800")}>
+      {/* Feedback Section */}
+      {feedback && (
+        <div className={cn(
+          "p-4 rounded-xl text-center font-medium border-2 transition-all",
+          isCorrect 
+            ? "bg-green-50 text-green-800 border-green-200" 
+            : "bg-red-50 text-red-800 border-red-200"
+        )}>
           {feedback}
-        </div>}
+        </div>
+      )}
     </div>;
 };
 export default BoxMethod3DExercise;

@@ -26,51 +26,62 @@ const BlockControls: React.FC<BlockControlsProps> = ({
   
 
   return (
-    <div className={cn("bg-white p-2 rounded-lg shadow-md", className)}>
-      <div className="mb-3">
-        <div className="text-sm font-medium text-gray-700 mb-2">Drag blocks to add them:</div>
-        <div className="flex justify-center gap-2">
-          <MathBlock 
-            value={100} 
-            isDraggable={true}
-            className="hover:scale-110 transition-transform"
-          />
-          <MathBlock 
-            value={10} 
-            isDraggable={true}
-            className="hover:scale-110 transition-transform"
-          />
-          <MathBlock 
-            value={1} 
-            isDraggable={true}
-            className="hover:scale-110 transition-transform"
-          />
+    <div className={cn("bg-card border-2 border-border rounded-xl p-6 shadow-sm", className)}>
+      {/* Drag Blocks Section */}
+      <div className="text-center mb-6">
+        <h3 className="text-lg font-semibold text-foreground mb-4">Drag Blocks to Grid Cells</h3>
+        <div className="flex justify-center gap-6">
+          <div className="text-center">
+            <MathBlock 
+              value={100} 
+              isDraggable={true}
+              className="hover:scale-110 transition-transform mb-2"
+            />
+            <p className="text-sm text-muted-foreground font-medium">Hundreds</p>
+          </div>
+          <div className="text-center">
+            <MathBlock 
+              value={10} 
+              isDraggable={true}
+              className="hover:scale-110 transition-transform mb-2"
+            />
+            <p className="text-sm text-muted-foreground font-medium">Tens</p>
+          </div>
+          <div className="text-center">
+            <MathBlock 
+              value={1} 
+              isDraggable={true}
+              className="hover:scale-110 transition-transform mb-2"
+            />
+            <p className="text-sm text-muted-foreground font-medium">Ones</p>
+          </div>
         </div>
       </div>
         
-      <div className="flex space-x-2">
+      {/* Action Buttons */}
+      <div className="flex gap-4 justify-center">
         <Button
           onClick={onResetCell}
-          className="flex-1"
           disabled={isDisabled}
           data-testid="reset-btn"
           variant="outline"
-          size="sm"
+          size="default"
+          className="min-w-[120px]"
         >
-          <RotateCcw size={14} className="mr-1" />
-          <span className="text-sm">Reset</span>
+          <RotateCcw size={16} className="mr-2" />
+          Reset Cell
         </Button>
         
         <Button
           onClick={onCheckCell}
-          className="flex-1"
           disabled={isDisabled}
           data-testid="check-btn"
           variant="default"
-          size="sm"
+          size="default"
+          className="min-w-[120px]"
         >
-          <Check size={14} className="mr-1" />
-          <span className="text-sm">Check</span>
+          <Check size={16} className="mr-2" />
+          Check Answer
         </Button>
       </div>
     </div>
