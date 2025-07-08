@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -25,27 +25,35 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    /* GradeAid Brand Colors */
+    --primary: 270 100% 50%; /* #6F00FF - Primary Purple */
+    --primary-foreground: 0 0% 98%; /* #FAFAFA - Soft White */
+    --secondary: 23 100% 50%; /* #FF6F00 - Primary Orange */
+    --secondary-foreground: 0 0% 98%; /* #FAFAFA - Soft White */
+    --accent: 231 100% 50%; /* #0026FF - Primary Blue */
+    --accent-foreground: 0 0% 98%; /* #FAFAFA - Soft White */
+    
+    /* Brand Neutrals */
+    --foreground: 248 17% 20%; /* #2F2E41 - Brand Black */
+    --background: 0 0% 98%; /* #FAFAFA - Soft White */
+    --muted: 0 0% 94%; /* #F0F0F0 - Input Gray */
+    --muted-foreground: 220 9% 46%; /* Readable gray */
+    --border: 220 13% 91%; /* #E5E7EB - Border Gray */
+    --input: 0 0% 94%; /* #F0F0F0 - Input Gray */
+    --ring: 270 100% 50%; /* Primary Purple for focus rings */
+    
+    /* Card styles */
+    --card: 0 0% 100%; /* Pure white for cards */
+    --card-foreground: 248 17% 20%; /* Brand Black */
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 142 95% 34%;
-    --primary-foreground: 355 100% 100%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
+    --popover-foreground: 248 17% 20%;
+    
+    /* Destructive colors */
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 142 75% 30%;
-    --radius: 0.75rem;
-    --eco-forest: 142 95% 34%;
+    
+    /* Border radius for pill-shaped buttons */
+    --radius: 100px;
 
     --sidebar-background: 120 30% 98%;
     --sidebar-foreground: 120 10% 15%;
@@ -96,8 +104,52 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-body;
     font-feature-settings: "rlig" 1, "calt" 1;
+    font-size: 18px; /* Minimum font size for accessibility */
+    line-height: 1.5;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold;
+  }
+  
+  /* Focus styles for accessibility */
+  *:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+  
+  /* GradeAid Button Shadows */
+  .gradeaid-button-shadow {
+    box-shadow: -10px 10px 40px rgba(0, 0, 0, 0.25);
+  }
+  
+  .gradeaid-button-shadow:hover {
+    box-shadow: -8px 8px 30px rgba(0, 0, 0, 0.3);
+  }
+  
+  .gradeaid-button-shadow:active {
+    box-shadow: -4px 4px 15px rgba(0, 0, 0, 0.35);
+  }
+  
+  /* Success feedback styles */
+  .success-feedback {
+    animation: scale-in 0.3s ease-out;
+  }
+  
+  /* Error feedback styles */
+  .error-feedback {
+    animation: pulse 0.5s ease-out;
+  }
+  
+  /* Hover scale for interactive elements */
+  .hover-scale {
+    transition: transform 0.2s ease-out;
+  }
+  
+  .hover-scale:hover {
+    transform: scale(1.05);
   }
 }
 

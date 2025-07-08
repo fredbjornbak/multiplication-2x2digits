@@ -20,7 +20,20 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ['Roboto', 'sans-serif'],
+				'heading': ['Space Grotesk', 'sans-serif'],
+				'body': ['DM Sans', 'sans-serif'],
+				sans: ['DM Sans', 'sans-serif'], // Default to DM Sans
+			},
+			fontSize: {
+				'xs': ['14px', { lineHeight: '1.5' }],
+				'sm': ['16px', { lineHeight: '1.5' }],
+				'base': ['18px', { lineHeight: '1.5' }], // Minimum 18px
+				'lg': ['20px', { lineHeight: '1.5' }],
+				'xl': ['24px', { lineHeight: '1.5' }],
+				'2xl': ['32px', { lineHeight: '1.4' }],
+				'3xl': ['40px', { lineHeight: '1.3' }],
+				'4xl': ['48px', { lineHeight: '1.2' }],
+				'5xl': ['64px', { lineHeight: '1.1' }],
 			},
 			colors: {
 				border: 'hsl(var(--border))',

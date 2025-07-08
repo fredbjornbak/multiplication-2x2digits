@@ -33,8 +33,8 @@ const PageLayout: React.FC<PageLayoutProps> = ({
   return (
     <div className="flex flex-col h-screen">
       {/* Header */}
-      <header className="flex-none p-4 border-b">
-        <div className="max-w-7xl mx-auto flex items-center gap-4">
+      <header className="flex-none p-6 border-b-2 border-border bg-background">
+        <div className="max-w-7xl mx-auto flex items-center gap-6">
           <Button
             variant="ghost"
             size="icon"
@@ -42,7 +42,7 @@ const PageLayout: React.FC<PageLayoutProps> = ({
           >
             <ArrowLeft className="h-6 w-6" />
           </Button>
-          <h1 className="text-4xl font-bold text-[#1A1F2C]">{title}</h1>
+          <h1 className="text-4xl font-heading font-bold text-foreground">{title}</h1>
           <div className="ml-auto">
             <FontToggle 
               fontFamily={preferences.fontFamily} 
@@ -53,15 +53,15 @@ const PageLayout: React.FC<PageLayoutProps> = ({
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-auto p-4">
+      <main className="flex-1 overflow-auto p-6 bg-background">
         <div className="max-w-4xl mx-auto">
           {children}
           
           {showNextButton && onNextClick && (
-            <div className="mt-6 flex justify-center">
+            <div className="mt-8 flex justify-center">
               <Button 
                 onClick={onNextClick}
-                className="px-8 py-2" 
+                size="lg"
                 variant="default"
               >
                 Next
