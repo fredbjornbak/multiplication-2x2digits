@@ -6,7 +6,7 @@ import MathBlock from './MathBlock';
 interface BlockControlsProps {
   onAddBlock: (value: 1 | 10 | 100) => void;
   onResetCell: () => void;
-  onCheckCell: () => void;
+  onCheckGrid: () => void;
   isDisabled?: boolean;
   className?: string;
   isActive?: boolean;
@@ -15,7 +15,7 @@ interface BlockControlsProps {
 const BlockControls: React.FC<BlockControlsProps> = ({
   onAddBlock,
   onResetCell,
-  onCheckCell,
+  onCheckGrid,
   isDisabled = false,
   className
 }) => {
@@ -46,7 +46,7 @@ const BlockControls: React.FC<BlockControlsProps> = ({
           Reset Cell
         </Button>
         
-        <Button onClick={onCheckCell} disabled={isDisabled} data-testid="check-btn" variant="default" size="default" className="min-w-[120px]">
+        <Button onClick={onCheckGrid} disabled={isDisabled} data-testid="check-btn" variant="default" size="default" className="min-w-[120px]">
           <Check size={16} className="mr-2" />
           Check Answer
         </Button>

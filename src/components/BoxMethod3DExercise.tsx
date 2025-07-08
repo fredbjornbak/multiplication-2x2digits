@@ -221,42 +221,61 @@ const BoxMethod3DExercise = ({
     }, 0);
   };
 
-  // Handle checking cell values
-  const handleCheckCell = () => {
-    if (!activeCell) return;
+  // Handle checking the entire grid
+  const handleCheckGrid = () => {
+    const currentProblem = getCurrentProblem();
+    if (!currentProblem) return;
 
-    // Get total value of blocks in active cell
-    const blocksSum = (cellBlocks[activeCell] || []).reduce((sum, block) => sum + block, 0);
-    const expectedProduct = getActiveCellProduct();
-    const isAnswerCorrect = blocksSum === expectedProduct;
-    if (isAnswerCorrect) {
+    const totalCells = getTotalCells();
+    let allCellsCorrect = true;
+    let totalGridSum = 0;
+
+    // Check each cell in the grid
+    for (let row = 0; row < currentProblem.placeValueDecomposition.firstNumber.length; row++) {
+      for (let col = 0; col < currentProblem.placeValueDecomposition.secondNumber.length; col++) {
+        const cellId = `${row}-${col}`;
+        const blocksInCell = (cellBlocks[cellId] || []);
+        const blocksSum = blocksInCell.reduce((sum, block) => sum + block, 0);
+        
+        const cellIndex = row * currentProblem.placeValueDecomposition.secondNumber.length + col;
+        const expectedProduct = currentProblem.boxGrid[cellIndex]?.product || 0;
+        
+        if (blocksSum !== expectedProduct) {
+          allCellsCorrect = false;
+        } else {
+          totalGridSum += blocksSum;
+        }
+      }
+    }
+
+    // Check if the total matches the expected answer
+    const correctAnswer = currentProblem.sumStep.total;
+    const isCompletelyCorrect = allCellsCorrect && totalGridSum === correctAnswer;
+
+    if (isCompletelyCorrect) {
       if (isAudioEnabled) playSound('correct');
-      setFeedback('Correct! Well done!');
+      setFeedback('Perfect! All cells are correct!');
       setIsCorrect(true);
 
-      // Add cell to completed cells
-      setCompletedCells(prev => [...prev, activeCell]);
-
-      // Clear active cell
-      setActiveCell(null);
-
-      // Update progress for visual feedback
-      const totalCells = getTotalCells();
-      const completedCount = completedCells.length + 1;
-      const newProgress = completedCount / totalCells * 100;
-      setProgressAmount(newProgress);
-
-      // Check if all cells are completed
-      if (completedCells.length + 1 === getTotalCells()) {
-        const finalAnswer = getCurrentTotal() + expectedProduct;
-        const correctAnswer = getCurrentProblem()?.sumStep.total || 0;
-
-        // Handle problem completion
-        handleProblemComplete(finalAnswer === correctAnswer);
+      // Mark all cells as completed
+      const allCellIds = [];
+      for (let row = 0; row < currentProblem.placeValueDecomposition.firstNumber.length; row++) {
+        for (let col = 0; col < currentProblem.placeValueDecomposition.secondNumber.length; col++) {
+          allCellIds.push(`${row}-${col}`);
+        }
       }
+      setCompletedCells(allCellIds);
+      setProgressAmount(100);
+
+      // Handle problem completion
+      handleProblemComplete(true);
     } else {
       if (isAudioEnabled) playSound('error');
-      setFeedback('Not quite right. Try again!');
+      if (!allCellsCorrect) {
+        setFeedback('Some cells are incorrect. Check your block placements!');
+      } else {
+        setFeedback('The total doesn\'t match. Check all cells!');
+      }
       setIsCorrect(false);
       setAttempts(prev => prev + 1);
 
@@ -270,7 +289,7 @@ const BoxMethod3DExercise = ({
     setTimeout(() => {
       setFeedback('');
       setIsCorrect(null);
-    }, 2000);
+    }, 3000);
   };
 
   // Handle cell clicks
@@ -442,6 +461,21 @@ const BoxMethod3DExercise = ({
   };
   const currentProblem = getCurrentProblem();
   if (!currentProblem) return null;
+  // Handle Enter key globally
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        handleCheckGrid();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [cellBlocks, getCurrentProblem]);
+
   return <div className="max-w-7xl mx-auto p-6 space-y-6">
       {/* Header Section */}
       
@@ -456,7 +490,7 @@ const BoxMethod3DExercise = ({
         
         {/* Control Panel */}
         <div className="bg-muted/20 border-b p-6">
-          <BlockControls onAddBlock={handleAddBlock} onResetCell={handleResetCell} onCheckCell={handleCheckCell} isDisabled={!activeCell} className="max-w-2xl mx-auto" />
+          <BlockControls onAddBlock={handleAddBlock} onResetCell={handleResetCell} onCheckGrid={handleCheckGrid} isDisabled={false} className="max-w-2xl mx-auto" />
         </div>
 
         <CardContent className="p-8">
