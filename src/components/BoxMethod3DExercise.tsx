@@ -444,24 +444,7 @@ const BoxMethod3DExercise = ({
   if (!currentProblem) return null;
   return <div className="max-w-7xl mx-auto p-6 space-y-6">
       {/* Header Section */}
-      <div className="flex items-center justify-between bg-card rounded-xl p-4 border-2 border-border">
-        <div className="flex items-center gap-4">
-          <Select value={selectedDifficulty} onValueChange={(value: Difficulty) => handleDifficultySelect(value)}>
-            <SelectTrigger className="w-[140px]">
-              <SelectValue placeholder="Difficulty" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="easy">Easy</SelectItem>
-              <SelectItem value="medium">Medium</SelectItem>
-              <SelectItem value="hard">Hard</SelectItem>
-            </SelectContent>
-          </Select>
-          <Button variant="outline" size="sm" onClick={handleNewExercise}>
-            New Exercise
-          </Button>
-        </div>
-        <AudioToggle isAudioEnabled={isAudioEnabled} onToggle={handleAudioToggle} />
-      </div>
+      
 
       {/* Main Problem Card */}
       <Card className="overflow-hidden">
@@ -473,43 +456,20 @@ const BoxMethod3DExercise = ({
         
         {/* Control Panel */}
         <div className="bg-muted/20 border-b p-6">
-          <BlockControls 
-            onAddBlock={handleAddBlock} 
-            onResetCell={handleResetCell} 
-            onCheckCell={handleCheckCell} 
-            isDisabled={!activeCell}
-            className="max-w-2xl mx-auto"
-          />
+          <BlockControls onAddBlock={handleAddBlock} onResetCell={handleResetCell} onCheckCell={handleCheckCell} isDisabled={!activeCell} className="max-w-2xl mx-auto" />
         </div>
 
         <CardContent className="p-8">
           <div className="flex justify-center">
-            <MultiplicationGrid 
-              factor1={factor1} 
-              factor2={factor2} 
-              onCellClick={handleCellClick} 
-              onRemoveBlock={handleRemoveBlock} 
-              onDropBlock={handleDropBlock} 
-              cellBlocks={cellBlocks} 
-              completedCells={completedCells} 
-              activeCell={activeCell}
-              className="shadow-xl"
-            />
+            <MultiplicationGrid factor1={factor1} factor2={factor2} onCellClick={handleCellClick} onRemoveBlock={handleRemoveBlock} onDropBlock={handleDropBlock} cellBlocks={cellBlocks} completedCells={completedCells} activeCell={activeCell} className="shadow-xl" />
           </div>
         </CardContent>
       </Card>
 
       {/* Feedback Section */}
-      {feedback && (
-        <div className={cn(
-          "p-4 rounded-xl text-center font-medium border-2 transition-all",
-          isCorrect 
-            ? "bg-green-50 text-green-800 border-green-200" 
-            : "bg-red-50 text-red-800 border-red-200"
-        )}>
+      {feedback && <div className={cn("p-4 rounded-xl text-center font-medium border-2 transition-all", isCorrect ? "bg-green-50 text-green-800 border-green-200" : "bg-red-50 text-red-800 border-red-200")}>
           {feedback}
-        </div>
-      )}
+        </div>}
     </div>;
 };
 export default BoxMethod3DExercise;
