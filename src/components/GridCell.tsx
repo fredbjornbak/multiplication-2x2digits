@@ -59,10 +59,10 @@ const GridCell: React.FC<GridCellProps> = ({
   return (
     <div 
       className={cn(
-        "h-full border rounded-md p-4 transition-all min-h-[160px]", 
-        isActive ? "border-blue-500 bg-blue-50 shadow-md" : "border-gray-200 bg-white",
+        "h-full border rounded-lg p-6 transition-all min-h-[240px]", 
+        isActive ? "border-blue-500 bg-blue-50 shadow-lg" : "border-gray-200 bg-white",
         isComplete ? "border-green-500 bg-green-50" : "",
-        isDragOver && !isComplete ? "border-blue-400 bg-blue-100 border-dashed" : "",
+        isDragOver && !isComplete ? "border-blue-400 bg-blue-100 border-dashed border-2" : "",
         className
       )}
       onClick={() => onClick(row, col)}
@@ -71,28 +71,32 @@ const GridCell: React.FC<GridCellProps> = ({
       onDrop={handleDrop}
       data-testid={`grid-cell-${row}-${col}`}
     >
-      <div className="text-gray-600 text-xs font-medium mb-1">{label}</div>
+      <div className="text-gray-600 text-sm font-medium mb-3">{label}</div>
       
       {isComplete ? (
-        <div className="text-green-600 font-bold text-sm flex items-center justify-center gap-1">
-          <CheckCircle2 size={14} />
-          <span className="text-xs">Done</span>
+        <div className="text-green-600 font-bold text-lg flex items-center justify-center gap-2 mt-8">
+          <CheckCircle2 size={20} />
+          <span className="text-base">Complete!</span>
         </div>
       ) : (
         <>
-          <div className="text-blue-600 font-bold text-sm mb-1">
-            {currentSum}
+          <div className="text-blue-600 font-bold text-lg mb-3">
+            Current: {currentSum}
           </div>
           
-          <div className="flex flex-wrap gap-1 justify-center">
-            {blocks.map((block, index) => (
-              <MathBlock 
-                key={`${block}-${index}`} 
-                value={block} 
-                isRemovable={isActive && onRemoveBlock !== undefined}
-                onRemove={() => onRemoveBlock?.(index)}
-              />
-            ))}
+          <div className="flex flex-wrap gap-2 justify-center items-center min-h-[120px] p-2 bg-gray-50 rounded border-2 border-dashed border-gray-300">
+            {blocks.length === 0 ? (
+              <div className="text-gray-400 text-sm">Drop blocks here</div>
+            ) : (
+              blocks.map((block, index) => (
+                <MathBlock 
+                  key={`${block}-${index}`} 
+                  value={block} 
+                  isRemovable={isActive && onRemoveBlock !== undefined}
+                  onRemove={() => onRemoveBlock?.(index)}
+                />
+              ))
+            )}
           </div>
         </>
       )}
