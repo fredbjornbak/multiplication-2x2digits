@@ -88,9 +88,9 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
                     variant="outline"
                     size="sm"
                     onClick={() => onShowHelp(digit1, digit2, `${digit1} × ${digit2}`)}
-                    className="absolute top-2 right-2 z-10 rounded-full w-6 h-6 p-0 bg-primary/10 hover:bg-primary/20 border-primary/20"
+                    className="absolute top-3 right-3 z-20 rounded-full w-7 h-7 p-0 bg-background/90 hover:bg-background border-border shadow-sm hover:shadow-md transition-all duration-200"
                   >
-                    <HelpCircle className="h-3 w-3 text-primary" />
+                    <HelpCircle className="h-4 w-4 text-muted-foreground hover:text-foreground transition-colors" />
                   </Button>
                 )}
                 <GridCell 
