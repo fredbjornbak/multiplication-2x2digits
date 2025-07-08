@@ -26,7 +26,7 @@ const BlockControls: React.FC<BlockControlsProps> = ({
         <div className="flex justify-center gap-6">
           <div className="text-center">
             <MathBlock value={100} isDraggable={true} className="hover:scale-110 transition-transform mb-2" />
-            <p className="text-sm text-muted-foreground font-medium">Hundreds</p>
+            <p className="text-sm text-muted-foreground font-medium"></p>
           </div>
           <div className="text-center">
             <MathBlock value={10} isDraggable={true} className="hover:scale-110 transition-transform mb-2" />
