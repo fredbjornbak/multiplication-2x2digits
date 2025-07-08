@@ -47,6 +47,6 @@ const TtsSpeechBubble: React.FC<TtsSpeechBubbleProps> = ({
       // The TtsContext will handle cleanup when the app unmounts
     };
   }, []);
-  return;
+  return null;
 };
 export default TtsSpeechBubble;
