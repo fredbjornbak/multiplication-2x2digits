@@ -22,9 +22,9 @@ const BoxMethodIntro = ({ onComplete }: BoxMethodIntroProps) => {
 
   const steps = [
     'show-numbers',
+    'create-grid',
     'split-first-number',
     'split-second-number', 
-    'create-grid',
     'fill-products',
     'show-addition',
     'show-result'
