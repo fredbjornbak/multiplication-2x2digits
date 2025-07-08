@@ -20,7 +20,6 @@ import MultiplicationGrid from './MultiplicationGrid';
 import BlockControls from './BlockControls';
 import AudioToggle from './AudioToggle';
 import { playSound } from '@/lib/sounds';
-import { useTts } from '@/contexts/TtsContext';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 
@@ -39,7 +38,6 @@ type TutorialStep = {
 
 const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
   const { userModel, addExercise } = useUserStore();
-  const { speak, stopSpeaking } = useTts();
   const [problems, setProblems] = useState<BoxMethodProblem3D[]>([]);
   const [currentProblemIndex, setCurrentProblemIndex] = useState(0);
   const [feedback, setFeedback] = useState('');
@@ -47,16 +45,6 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
   const [startTime, setStartTime] = useState(0);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [showHint, setShowHint] = useState(false);
-  
-  // Tutorial state
-  const [isTutorialMode, setIsTutorialMode] = useState(true);
-  const [currentTutorialStep, setCurrentTutorialStep] = useState(0);
-  const tutorialTimeoutRef = useRef<NodeJS.Timeout>();
-  const [isTutorialActionInProgress, setIsTutorialActionInProgress] = useState(false);
-  const hasStartedTutorial = useRef(false);
-  const speechTimeoutRef = useRef<NodeJS.Timeout>();
-  const isSpeakingRef = useRef(false);
-  const hasSpokenWelcome = useRef(false);
   
   // Box Method Math Blocks state
   const [factor1, setFactor1] = useState(0);
@@ -79,237 +67,18 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
     setIsAudioEnabled(!isAudioEnabled);
   };
 
-  // Initialize with first problem (6 × 24)
+  // Initialize with first problem
   useEffect(() => {
-    const firstProblem = getBoxMethod3DProblems().find(p => p.problem === "6 × 24");
-    if (firstProblem) {
-      setProblems([firstProblem]);
-      const factors = firstProblem.problem.split('×').map(n => parseInt(n.trim()));
+    const easyProblems = getBoxMethod3DProblems().filter(p => p.difficulty === 'easy');
+    if (easyProblems.length > 0) {
+      setProblems([easyProblems[0]]);
+      const factors = easyProblems[0].problem.split('×').map(n => parseInt(n.trim()));
       setFactor1(factors[0]);
       setFactor2(factors[1]);
     }
+    resetProblem();
   }, []);
 
-  // Tutorial steps with sequential actions
-  const tutorialSteps: TutorialStep[] = [
-    {
-      message: "Welcome to the Box Method tutorial! Let's solve 6 × 24 together. I'll guide you through each step.",
-      delay: 2000
-    },
-    {
-      message: "First, we need to select the top left cell. Click on it to start.",
-      action: async () => {
-        setIsTutorialActionInProgress(true);
-        handleCellClick(0, 0);
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        setIsTutorialActionInProgress(false);
-      },
-      delay: 2000
-    },
-    {
-      message: "Now let's add one hundred block to represent 6 × 20.",
-      action: async () => {
-        setIsTutorialActionInProgress(true);
-        await new Promise(resolve => setTimeout(resolve, 500));
-        handleAddBlock(100);
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        setIsTutorialActionInProgress(false);
-      },
-      delay: 2000
-    },
-    {
-      message: "Let's add two ten blocks to complete the first cell.",
-      action: async () => {
-        setIsTutorialActionInProgress(true);
-        await new Promise(resolve => setTimeout(resolve, 500));
-        handleAddBlock(10);
-        await new Promise(resolve => setTimeout(resolve, 800));
-        handleAddBlock(10);
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        setIsTutorialActionInProgress(false);
-      },
-      delay: 2000
-    },
-    {
-      message: "Great! Now let's check if our first cell is correct.",
-      action: async () => {
-        setIsTutorialActionInProgress(true);
-        await new Promise(resolve => setTimeout(resolve, 500));
-        handleCheckCell();
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        setIsTutorialActionInProgress(false);
-      },
-      delay: 2000
-    },
-    {
-      message: "Now let's select the top right cell.",
-      action: async () => {
-        setIsTutorialActionInProgress(true);
-        handleCellClick(0, 1);
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        setIsTutorialActionInProgress(false);
-      },
-      delay: 2000
-    },
-    {
-      message: "Let's add the blocks for 6 × 4. We need two ten blocks and four one blocks.",
-      action: async () => {
-        setIsTutorialActionInProgress(true);
-        await new Promise(resolve => setTimeout(resolve, 500));
-        handleAddBlock(10);
-        await new Promise(resolve => setTimeout(resolve, 800));
-        handleAddBlock(10);
-        await new Promise(resolve => setTimeout(resolve, 800));
-        handleAddBlock(1);
-        await new Promise(resolve => setTimeout(resolve, 800));
-        handleAddBlock(1);
-        await new Promise(resolve => setTimeout(resolve, 800));
-        handleAddBlock(1);
-        await new Promise(resolve => setTimeout(resolve, 800));
-        handleAddBlock(1);
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        setIsTutorialActionInProgress(false);
-      },
-      delay: 2000
-    },
-    {
-      message: "Let's check if our second cell is correct.",
-      action: async () => {
-        setIsTutorialActionInProgress(true);
-        await new Promise(resolve => setTimeout(resolve, 500));
-        handleCheckCell();
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        setIsTutorialActionInProgress(false);
-      },
-      delay: 2000
-    },
-    {
-      message: "Now we can add all the cells together to get our final answer: 6 × 24 = 144.",
-      delay: 3000
-    },
-    {
-      message: "Great! You've completed the tutorial. Now you can try solving problems on your own!",
-      action: async () => {
-        setIsTutorialActionInProgress(true);
-        // Set the first problem to 2 × 10 before the final message
-        const firstProblem = getBoxMethod3DProblems().find(p => p.problem === "2 × 10");
-        if (firstProblem) {
-          setProblems([firstProblem]);
-          const factors = firstProblem.problem.split('×').map(n => parseInt(n.trim()));
-          setFactor1(factors[0]);
-          setFactor2(factors[1]);
-        }
-        resetProblem();
-        await new Promise(resolve => setTimeout(resolve, 500));
-        setIsTutorialMode(false);
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        setIsTutorialActionInProgress(false);
-      },
-      delay: 2000
-    }
-  ];
-
-  const startTutorial = async () => {
-    if (currentTutorialStep < tutorialSteps.length) {
-      const step = tutorialSteps[currentTutorialStep];
-      
-      // Clear any existing timeouts
-      if (tutorialTimeoutRef.current) {
-        clearTimeout(tutorialTimeoutRef.current);
-      }
-      if (speechTimeoutRef.current) {
-        clearTimeout(speechTimeoutRef.current);
-      }
-
-      // Stop any existing speech
-      stopSpeaking();
-
-      // Calculate speech duration (approximately 0.4 seconds per word for Danish)
-      const speechDuration = step.message.split(' ').length * 0.4 * 1000;
-      
-      // Speak the message
-      isSpeakingRef.current = true;
-      speak(step.message);
-      
-      // Wait for speech to complete with a longer buffer
-      await new Promise<void>((resolve) => {
-        speechTimeoutRef.current = setTimeout(() => {
-          isSpeakingRef.current = false;
-          resolve();
-        }, speechDuration + 1000); // Add 1 second buffer for Danish
-      });
-      
-      // Add a pause after speech
-      await new Promise(resolve => setTimeout(resolve, 500));
-      
-      // Execute the action if present
-      if (step.action) {
-        await step.action();
-      }
-
-      // Add a pause after action
-      await new Promise(resolve => setTimeout(resolve, 500));
-
-      // Move to next step
-      setCurrentTutorialStep(prev => prev + 1);
-    }
-  };
-
-  // Start tutorial only once when component mounts
-  useEffect(() => {
-    if (isTutorialMode && !hasStartedTutorial.current) {
-      hasStartedTutorial.current = true;
-      // Reset all state before starting tutorial
-      setCurrentTutorialStep(0);
-      setIsTutorialActionInProgress(false);
-      setActiveCell(null);
-      setCellBlocks({});
-      setCompletedCells([]);
-      // Stop any existing speech
-      stopSpeaking();
-      // Add a small delay before starting tutorial
-      setTimeout(() => {
-        startTutorial();
-      }, 500);
-    }
-    return () => {
-      if (tutorialTimeoutRef.current) {
-        clearTimeout(tutorialTimeoutRef.current);
-      }
-      if (speechTimeoutRef.current) {
-        clearTimeout(speechTimeoutRef.current);
-      }
-      stopSpeaking();
-    };
-  }, []);
-
-  // Handle tutorial step progression
-  useEffect(() => {
-    if (isTutorialMode && hasStartedTutorial.current && !isTutorialActionInProgress && !isSpeakingRef.current) {
-      startTutorial();
-    }
-  }, [currentTutorialStep]);
-
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => {
-      if (tutorialTimeoutRef.current) {
-        clearTimeout(tutorialTimeoutRef.current);
-      }
-      if (speechTimeoutRef.current) {
-        clearTimeout(speechTimeoutRef.current);
-      }
-      stopSpeaking();
-    };
-  }, []);
-
-  // Disable user interactions during tutorial
-  const handleUserInteraction = (e: React.MouseEvent) => {
-    if (isTutorialMode && !isTutorialActionInProgress) {
-      e.preventDefault();
-      toast.info('Please follow the tutorial. Click on the highlighted cell.');
-    }
-  };
 
   useEffect(() => {
     if (problems.length > 0 && currentProblemIndex < problems.length) {
@@ -653,19 +422,10 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
   
   const handleNewExercise = () => {
     // Get new problems based on selected difficulty
-    let newProblems;
-    if (isTutorialMode) {
-      // After tutorial, start with 2 × 10
-      newProblems = getBoxMethod3DProblems()
-        .filter(p => p.problem === "2 × 10")
-        .slice(0, 1);
-    } else {
-      // Use selected difficulty for regular exercises
-      newProblems = getBoxMethod3DProblems()
-        .filter(p => p.difficulty === selectedDifficulty)
-        .sort(() => Math.random() - 0.5)
-        .slice(0, 1);
-    }
+    const newProblems = getBoxMethod3DProblems()
+      .filter(p => p.difficulty === selectedDifficulty)
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 1);
 
     if (newProblems.length > 0) {
       const newProblem = newProblems[0];

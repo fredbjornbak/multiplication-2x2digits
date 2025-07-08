@@ -5,7 +5,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { routes } from './routes';
 import FontProvider from './components/FontProvider';
-import { TtsProvider } from './contexts/TtsContext';
 import './i18n'; // Import i18n configuration (English only)
 
 const queryClient = new QueryClient();
@@ -22,11 +21,9 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <FontProvider>
-          <TtsProvider>
-            <Toaster />
-            <Sonner />
-            <RouterProvider router={router} />
-          </TtsProvider>
+          <Toaster />
+          <Sonner />
+          <RouterProvider router={router} />
         </FontProvider>
       </TooltipProvider>
     </QueryClientProvider>

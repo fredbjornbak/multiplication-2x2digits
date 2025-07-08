@@ -2,7 +2,6 @@ import { ReactNode } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
-import TtsSpeechBubble from '@/components/TtsSpeechBubble';
 import FontToggle from '@/components/FontToggle';
 import { usePreferencesStore } from '@/store/preferencesStore';
 
@@ -54,31 +53,23 @@ const PageLayout: React.FC<PageLayoutProps> = ({
       </header>
 
       {/* Main Content */}
-      <div className="flex-1 flex overflow-hidden">
-        {/* Exercise Content */}
-        <main className="flex-1 overflow-auto p-4">
-          <div className="max-w-4xl mx-auto">
-            {children}
-          </div>
-        </main>
-
-        {/* AI Tutor Sidebar */}
-        <aside className="w-80 border-l flex-none">
-          <TtsSpeechBubble className="h-full" />
+      <main className="flex-1 overflow-auto p-4">
+        <div className="max-w-4xl mx-auto">
+          {children}
           
           {showNextButton && onNextClick && (
-            <div className="p-4 border-t">
+            <div className="mt-6 flex justify-center">
               <Button 
                 onClick={onNextClick}
-                className="w-full" 
+                className="px-8 py-2" 
                 variant="default"
               >
                 Next
               </Button>
             </div>
           )}
-        </aside>
-      </div>
+        </div>
+      </main>
     </div>
   );
 };

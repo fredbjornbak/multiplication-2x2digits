@@ -1,21 +1,10 @@
 
-import { useEffect } from 'react';
 import BoxMethod3DExercise from '@/components/BoxMethod3DExercise';
 import PageLayout from '@/components/PageLayout';
-import { useTts } from '@/contexts/TtsContext';
 
 const BoxMethodMultiplication = () => {
-  const { speak, stopSpeaking } = useTts();
-
-  // Clean up any ongoing speech when component unmounts
-  useEffect(() => {
-    return () => {
-      stopSpeaking();
-    };
-  }, []);
-
   const handleExerciseComplete = () => {
-    speak('Great work! You have mastered the box method! Would you like to try another exercise?');
+    console.log('Exercise completed!');
   };
 
   return (
