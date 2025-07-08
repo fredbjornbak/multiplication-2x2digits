@@ -13,6 +13,7 @@ import { SolarPanelReward, TreePlantingReward, HouseholdReward } from './RewardV
 import MultiplicationGrid from './MultiplicationGrid';
 import BlockControls from './BlockControls';
 import AudioToggle from './AudioToggle';
+import MultiplicationHelp from './MultiplicationHelp';
 import { playSound } from '@/lib/sounds';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
@@ -44,6 +45,7 @@ const BoxMethod3DExercise = ({
   const [startTime, setStartTime] = useState(0);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [showHint, setShowHint] = useState(false);
+  const [showHelpDialog, setShowHelpDialog] = useState(false);
 
   // Box Method Math Blocks state
   const [factor1, setFactor1] = useState(0);
@@ -461,9 +463,19 @@ const BoxMethod3DExercise = ({
       {/* Main Problem Card */}
       <Card className="overflow-hidden">
         <CardHeader className="text-center bg-muted/30 py-6">
-          <CardTitle className="text-3xl font-bold text-foreground">
-            {getCurrentProblem()?.problem}
-          </CardTitle>
+          <div className="flex items-center justify-center gap-3">
+            <CardTitle className="text-3xl font-bold text-foreground">
+              {getCurrentProblem()?.problem}
+            </CardTitle>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setShowHelpDialog(true)}
+              className="rounded-full w-8 h-8 p-0 bg-primary/10 hover:bg-primary/20 border-primary/20"
+            >
+              <HelpCircle className="h-4 w-4 text-primary" />
+            </Button>
+          </div>
         </CardHeader>
         
         {/* Control Panel */}
@@ -503,6 +515,15 @@ const BoxMethod3DExercise = ({
           {feedback}
         </div>
       )}
+
+      {/* Help Dialog */}
+      <MultiplicationHelp
+        open={showHelpDialog}
+        onOpenChange={setShowHelpDialog}
+        factor1={factor1}
+        factor2={factor2}
+        problem={currentProblem?.problem || ''}
+      />
     </div>
   );
 };
