@@ -283,7 +283,7 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
     }
   };
   
-  // Handle adding blocks to the active cell
+  // Handle adding blocks to the active cell (keep for backward compatibility)
   const handleAddBlock = (value: Block) => {
     if (!activeCell) return;
     
@@ -295,6 +295,23 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
     }));
     
     setAttempts(prev => prev + 1);
+  };
+
+  // Handle dropping blocks onto any cell
+  const handleDropBlock = (cellId: string, value: Block) => {
+    if (completedCells.includes(cellId)) return;
+    
+    if (isAudioEnabled) playSound('add');
+    
+    setCellBlocks(prev => ({
+      ...prev,
+      [cellId]: [...(prev[cellId] || []), value]
+    }));
+    
+    setAttempts(prev => prev + 1);
+    
+    // Auto-select the cell that was dropped on
+    setActiveCell(cellId);
   };
   
   // Reset blocks in the active cell
@@ -516,6 +533,7 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
               factor2={factor2}
               onCellClick={handleCellClick}
               onRemoveBlock={handleRemoveBlock}
+              onDropBlock={handleDropBlock}
               cellBlocks={cellBlocks}
               completedCells={completedCells}
               activeCell={activeCell}

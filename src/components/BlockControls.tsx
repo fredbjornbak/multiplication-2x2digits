@@ -1,8 +1,9 @@
 
 import React from 'react';
-import { Plus, RotateCcw, Check } from 'lucide-react';
+import { RotateCcw, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import MathBlock from './MathBlock';
 
 
 interface BlockControlsProps {
@@ -25,40 +26,26 @@ const BlockControls: React.FC<BlockControlsProps> = ({
   
 
   return (
-    <div className={cn("bg-white p-4 rounded-lg shadow-md", className)}>
-      <div className="grid grid-cols-3 gap-3 mb-4">
-        <Button
-          onClick={() => onAddBlock(100)}
-          className="bg-indigo-700 text-white hover:bg-indigo-800 flex items-center justify-center"
-          disabled={isDisabled}
-          data-testid="add-100-block-btn"
-          variant="default"
-        >
-          <Plus size={16} className="mr-1" />
-          <span className="font-medium">100</span>
-        </Button>
-        
-        <Button
-          onClick={() => onAddBlock(10)}
-          className="bg-green-600 text-white hover:bg-green-700 flex items-center justify-center"
-          disabled={isDisabled}
-          data-testid="add-10-block-btn"
-          variant="default"
-        >
-          <Plus size={16} className="mr-1" />
-          <span className="font-medium">10</span>
-        </Button>
-        
-        <Button
-          onClick={() => onAddBlock(1)}
-          className="bg-amber-500 text-white hover:bg-amber-600 flex items-center justify-center"
-          disabled={isDisabled}
-          data-testid="add-1-block-btn"
-          variant="default"
-        >
-          <Plus size={16} className="mr-1" />
-          <span className="font-medium">1</span>
-        </Button>
+    <div className={cn("bg-white p-2 rounded-lg shadow-md", className)}>
+      <div className="mb-3">
+        <div className="text-sm font-medium text-gray-700 mb-2">Drag blocks to add them:</div>
+        <div className="flex justify-center gap-2">
+          <MathBlock 
+            value={100} 
+            isDraggable={true}
+            className="hover:scale-110 transition-transform"
+          />
+          <MathBlock 
+            value={10} 
+            isDraggable={true}
+            className="hover:scale-110 transition-transform"
+          />
+          <MathBlock 
+            value={1} 
+            isDraggable={true}
+            className="hover:scale-110 transition-transform"
+          />
+        </div>
       </div>
         
       <div className="flex space-x-2">
@@ -68,9 +55,10 @@ const BlockControls: React.FC<BlockControlsProps> = ({
           disabled={isDisabled}
           data-testid="reset-btn"
           variant="outline"
+          size="sm"
         >
-          <RotateCcw size={18} className="mr-1" />
-          <span>Reset</span>
+          <RotateCcw size={14} className="mr-1" />
+          <span className="text-sm">Reset</span>
         </Button>
         
         <Button
@@ -79,9 +67,10 @@ const BlockControls: React.FC<BlockControlsProps> = ({
           disabled={isDisabled}
           data-testid="check-btn"
           variant="default"
+          size="sm"
         >
-          <Check size={18} className="mr-1" />
-          <span>Check Your Result</span>
+          <Check size={14} className="mr-1" />
+          <span className="text-sm">Check</span>
         </Button>
       </div>
     </div>
