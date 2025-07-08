@@ -4,7 +4,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { toast } from 'sonner';
 import { CheckCircle2, XCircle, HelpCircle, ChevronRight, ChevronLeft, InfoIcon } from 'lucide-react';
 import { useUserStore } from '@/store/userStore';
-import { BoxMethodProblem3D, getBoxMethod3DProblems } from '@/utils/boxMethod3DExercises';
+import { BoxMethodProblem3D, getBoxMethod3DProblems } from '@/utils/boxMethod';
 import confetti from 'canvas-confetti';
 import { Progress } from '@/components/ui/progress';
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";

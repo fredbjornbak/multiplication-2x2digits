@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Text, OrbitControls, Float } from '@react-three/drei';
 import * as THREE from 'three';
-import { BoxMethodProblem3D } from '@/utils/boxMethod3DExercises';
+import { BoxMethodProblem3D } from '@/utils/boxMethod';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
 import { toast } from 'sonner';
