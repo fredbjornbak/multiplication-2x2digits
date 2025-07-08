@@ -3,11 +3,9 @@ import { useEffect } from 'react';
 import BoxMethod3DExercise from '@/components/BoxMethod3DExercise';
 import PageLayout from '@/components/PageLayout';
 import { useTts } from '@/contexts/TtsContext';
-import { useTranslation } from 'react-i18next';
 
 const BoxMethodMultiplication = () => {
   const { speak, stopSpeaking } = useTts();
-  const { t } = useTranslation();
 
   // Clean up any ongoing speech when component unmounts
   useEffect(() => {
@@ -17,12 +15,12 @@ const BoxMethodMultiplication = () => {
   }, []);
 
   const handleExerciseComplete = () => {
-    speak(t('boxMethodMultiplication.exerciseComplete'));
+    speak('Great work! You have mastered the box method! Would you like to try another exercise?');
   };
 
   return (
     <PageLayout
-      title={t('onboarding.boxMethod.title')}
+      title="3D Box Method"
     >
       <div className="flex flex-col">
         <div className="flex-1">

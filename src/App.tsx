@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { routes } from './routes';
 import FontProvider from './components/FontProvider';
 import { TtsProvider } from './contexts/TtsContext';
-import './i18n'; // Import i18n configuration
+import './i18n'; // Import i18n configuration (English only)
 
 const queryClient = new QueryClient();
 

@@ -21,7 +21,6 @@ import BlockControls from './BlockControls';
 import AudioToggle from './AudioToggle';
 import { playSound } from '@/lib/sounds';
 import { useTts } from '@/contexts/TtsContext';
-import { useTranslation } from 'react-i18next';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 
@@ -41,7 +40,6 @@ type TutorialStep = {
 const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
   const { userModel, addExercise } = useUserStore();
   const { speak, stopSpeaking } = useTts();
-  const { t } = useTranslation();
   const [problems, setProblems] = useState<BoxMethodProblem3D[]>([]);
   const [currentProblemIndex, setCurrentProblemIndex] = useState(0);
   const [feedback, setFeedback] = useState('');
@@ -95,11 +93,11 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
   // Tutorial steps with sequential actions
   const tutorialSteps: TutorialStep[] = [
     {
-      message: t('boxMethod3D.tutorial.welcome'),
+      message: "Welcome to the Box Method tutorial! Let's solve 6 × 24 together. I'll guide you through each step.",
       delay: 2000
     },
     {
-      message: t('boxMethod3D.tutorial.selectCell'),
+      message: "First, we need to select the top left cell. Click on it to start.",
       action: async () => {
         setIsTutorialActionInProgress(true);
         handleCellClick(0, 0);
@@ -109,7 +107,7 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
       delay: 2000
     },
     {
-      message: t('boxMethod3D.tutorial.addHundredBlock'),
+      message: "Now let's add one hundred block to represent 6 × 20.",
       action: async () => {
         setIsTutorialActionInProgress(true);
         await new Promise(resolve => setTimeout(resolve, 500));
@@ -120,7 +118,7 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
       delay: 2000
     },
     {
-      message: t('boxMethod3D.tutorial.addTenBlocks'),
+      message: "Let's add two ten blocks to complete the first cell.",
       action: async () => {
         setIsTutorialActionInProgress(true);
         await new Promise(resolve => setTimeout(resolve, 500));
@@ -133,7 +131,7 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
       delay: 2000
     },
     {
-      message: t('boxMethod3D.tutorial.checkFirstCell'),
+      message: "Great! Now let's check if our first cell is correct.",
       action: async () => {
         setIsTutorialActionInProgress(true);
         await new Promise(resolve => setTimeout(resolve, 500));
@@ -144,7 +142,7 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
       delay: 2000
     },
     {
-      message: t('boxMethod3D.tutorial.selectSecondCell'),
+      message: "Now let's select the top right cell.",
       action: async () => {
         setIsTutorialActionInProgress(true);
         handleCellClick(0, 1);
@@ -154,7 +152,7 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
       delay: 2000
     },
     {
-      message: t('boxMethod3D.tutorial.addSecondCellBlocks'),
+      message: "Let's add the blocks for 6 × 4. We need two ten blocks and four one blocks.",
       action: async () => {
         setIsTutorialActionInProgress(true);
         await new Promise(resolve => setTimeout(resolve, 500));
@@ -175,7 +173,7 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
       delay: 2000
     },
     {
-      message: t('boxMethod3D.tutorial.checkSecondCell'),
+      message: "Let's check if our second cell is correct.",
       action: async () => {
         setIsTutorialActionInProgress(true);
         await new Promise(resolve => setTimeout(resolve, 500));
@@ -186,11 +184,11 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
       delay: 2000
     },
     {
-      message: t('boxMethod3D.tutorial.explainSum'),
+      message: "Now we can add all the cells together to get our final answer: 6 × 24 = 144.",
       delay: 3000
     },
     {
-      message: t('boxMethod3D.tutorial.complete'),
+      message: "Great! You've completed the tutorial. Now you can try solving problems on your own!",
       action: async () => {
         setIsTutorialActionInProgress(true);
         // Set the first problem to 2 × 10 before the final message
@@ -309,7 +307,7 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
   const handleUserInteraction = (e: React.MouseEvent) => {
     if (isTutorialMode && !isTutorialActionInProgress) {
       e.preventDefault();
-      toast.info(t('boxMethod3D.followTutorial'));
+      toast.info('Please follow the tutorial. Click on the highlighted cell.');
     }
   };
 
@@ -364,9 +362,9 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
   const getProgressLabel = () => {
     const theme = getCurrentTheme();
     switch (theme) {
-      case 'Tree': return t('boxMethod3D.progressLabel.tree');
-      case 'Household': return t('boxMethod3D.progressLabel.household');
-      default: return t('boxMethod3D.progressLabel.solar');
+      case 'Tree': return 'Trees planted';
+      case 'Household': return 'Homes with power';
+      default: return 'Solar panels built';
     }
   };
   
@@ -374,9 +372,9 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
   const getGoalLabel = () => {
     const theme = getCurrentTheme();
     switch (theme) {
-      case 'Tree': return t('boxMethod3D.goalLabel.tree');
-      case 'Household': return t('boxMethod3D.goalLabel.household');
-      default: return t('boxMethod3D.goalLabel.solar');
+      case 'Tree': return 'Help replant the forest!';
+      case 'Household': return 'Help power the community!';
+      default: return 'Help build a solar farm!';
     }
   };
   
@@ -384,9 +382,9 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
   const getCompletionMessage = () => {
     const theme = getCurrentTheme();
     switch (theme) {
-      case 'Tree': return t('boxMethod3D.completion.tree');
-      case 'Household': return t('boxMethod3D.completion.household');
-      default: return t('boxMethod3D.completion.solar');
+      case 'Tree': return 'You have planted a forest!';
+      case 'Household': return 'You have powered a community!';
+      default: return 'You have built a solar farm!';
     }
   };
   
@@ -394,9 +392,9 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
   const getDetailsMessage = () => {
     const theme = getCurrentTheme();
     switch (theme) {
-      case 'Tree': return t('boxMethod3D.details.tree');
-      case 'Household': return t('boxMethod3D.details.household');
-      default: return t('boxMethod3D.details.solar');
+      case 'Tree': return 'Your multiplication skills have helped plant trees and restore natural habitats. Great work!';
+      case 'Household': return 'Your multiplication skills have helped deliver clean energy to homes in the community. Great work!';
+      default: return 'Your multiplication skills have helped generate clean energy for the community. Great work!';
     }
   };
   
@@ -453,7 +451,7 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
     if (isAnswerCorrect) {
       if (isAudioEnabled) playSound('correct');
       
-      setFeedback(t('boxMethod3D.correct'));
+      setFeedback('Correct! Well done!');
       setIsCorrect(true);
       
       // Add cell to completed cells
@@ -479,7 +477,7 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
     } else {
       if (isAudioEnabled) playSound('error');
       
-      setFeedback(t('boxMethod3D.incorrect'));
+      setFeedback('Not quite right. Try again!');
       setIsCorrect(false);
       setAttempts(prev => prev + 1);
       
@@ -503,7 +501,7 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
     // If cell is already completed, don't allow further interaction
     if (completedCells.includes(cellId)) {
       if (isAudioEnabled) playSound('error');
-      toast.error(t('boxMethod3D.cellCompleted'));
+      toast.error('This cell is already completed!');
       return;
     }
     
@@ -541,7 +539,7 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
       [activeCell]: []
     }));
     
-    toast.info(t('boxMethod3D.blocksReset'));
+    toast.info('Blocks reset');
   };
   
   // Called when the entire exercise is completed
@@ -552,7 +550,7 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
     setIsCorrect(success);
     
     if (success) {
-      setFeedback(t('boxMethod3D.problemComplete'));
+      setFeedback('Awesome! You have completed all parts of the problem!');
       
       const timeSpent = Math.floor((Date.now() - startTime) / 1000);
       
@@ -709,12 +707,12 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
               onValueChange={(value: Difficulty) => handleDifficultySelect(value)}
             >
               <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder={t('boxMethod3D.selectDifficulty')} />
+                <SelectValue placeholder="Select Difficulty" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="easy">{t('boxMethod3D.difficulty.easy')}</SelectItem>
-                <SelectItem value="medium">{t('boxMethod3D.difficulty.medium')}</SelectItem>
-                <SelectItem value="hard">{t('boxMethod3D.difficulty.hard')}</SelectItem>
+                <SelectItem value="easy">Easy</SelectItem>
+                <SelectItem value="medium">Medium</SelectItem>
+                <SelectItem value="hard">Hard</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -743,7 +741,7 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
                 size="sm"
                 onClick={handleNewExercise}
               >
-                {t('boxMethod3D.newExercise')}
+                New Exercise
               </Button>
             </div>
             <CardTitle className="text-2xl font-bold text-center w-full">
