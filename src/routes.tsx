@@ -5,4 +5,8 @@ export const routes = [
     path: '/',
     element: <BoxMethodMultiplication />,
   },
+  {
+    path: '/box',
+    element: <BoxMethodMultiplication />,
+  },
 ];
