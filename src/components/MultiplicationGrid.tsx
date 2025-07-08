@@ -80,12 +80,12 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
                 <GridCell 
                   row={rowIndex} 
                   col={colIndex} 
-                  isActive={isActive} 
+                  isActive={false} 
                   isComplete={isComplete} 
                   label={`${digit1} × ${digit2}`} 
                   blocks={cellBlocks[cellId] || []} 
-                  onClick={onCellClick} 
-                  onRemoveBlock={onRemoveBlock && !isComplete ? blockIndex => handleRemoveBlock(cellId, blockIndex) : undefined} 
+                  onClick={() => {}} 
+                  onRemoveBlock={!isComplete ? blockIndex => handleRemoveBlock(cellId, blockIndex) : undefined}
                   onDropBlock={onDropBlock && !isComplete ? value => onDropBlock(cellId, value) : undefined} 
                   expectedProduct={product} 
                   className="h-full" 

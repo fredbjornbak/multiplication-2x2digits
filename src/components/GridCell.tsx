@@ -59,13 +59,11 @@ const GridCell: React.FC<GridCellProps> = ({
   return (
     <div 
       className={cn(
-        "h-full border-2 rounded-xl p-8 transition-all min-h-[320px]", 
-        isActive ? "border-blue-500 bg-blue-50 shadow-xl" : "border-gray-300 bg-white",
+        "h-full border-2 rounded-xl p-8 transition-all min-h-[320px] border-gray-300 bg-white", 
         isComplete ? "border-green-500 bg-green-50" : "",
         isDragOver && !isComplete ? "border-blue-400 bg-blue-100 border-dashed border-4" : "",
         className
       )}
-      onClick={() => onClick(row, col)}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
@@ -92,7 +90,7 @@ const GridCell: React.FC<GridCellProps> = ({
                 <MathBlock 
                   key={`${block}-${index}`} 
                   value={block} 
-                  isRemovable={isActive && onRemoveBlock !== undefined}
+                  isRemovable={onRemoveBlock !== undefined}
                   onRemove={() => onRemoveBlock?.(index)}
                 />
               ))
