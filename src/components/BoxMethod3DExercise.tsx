@@ -62,12 +62,29 @@ const BoxMethod3DExercise = ({
     setIsAudioEnabled(!isAudioEnabled);
   };
 
-  // Initialize with first problem
+  // Generate a randomized sequence of 8 problems with difficulty progression
+  const generateRandomizedSequence = () => {
+    const allProblems = getBoxMethod3DProblems();
+    const easyProblems = allProblems.filter(p => p.difficulty === 'easy');
+    const mediumProblems = allProblems.filter(p => p.difficulty === 'medium');
+    const hardProblems = allProblems.filter(p => p.difficulty === 'hard');
+
+    // Create a progression: 4 easy, 2 medium, 2 hard
+    const sequence = [
+      ...easyProblems.sort(() => Math.random() - 0.5).slice(0, 4),
+      ...mediumProblems.sort(() => Math.random() - 0.5).slice(0, 2),
+      ...hardProblems.sort(() => Math.random() - 0.5).slice(0, 2)
+    ];
+
+    return sequence;
+  };
+
+  // Initialize with randomized sequence
   useEffect(() => {
-    const easyProblems = getBoxMethod3DProblems().filter(p => p.difficulty === 'easy');
-    if (easyProblems.length > 0) {
-      setProblems([easyProblems[0]]);
-      const factors = easyProblems[0].problem.split('×').map(n => parseInt(n.trim()));
+    const randomizedProblems = generateRandomizedSequence();
+    setProblems(randomizedProblems);
+    if (randomizedProblems.length > 0) {
+      const factors = randomizedProblems[0].problem.split('×').map(n => parseInt(n.trim()));
       setFactor1(factors[0]);
       setFactor2(factors[1]);
     }
@@ -346,25 +363,11 @@ const BoxMethod3DExercise = ({
         if (currentProblemIndex < problems.length - 1) {
           handleNavigation('next');
         } else {
-          // Get the next problem in the progression
-          const allProblems = getBoxMethod3DProblems();
-          const currentProblemIndex = allProblems.findIndex(p => p.problem === currentProblem.problem);
-          if (currentProblemIndex < allProblems.length - 1) {
-            // Move to the next problem in the sequence
-            const nextProblem = allProblems[currentProblemIndex + 1];
-            setProblems([nextProblem]);
-            setCurrentProblemIndex(0);
-            const factors = nextProblem.problem.split('×').map(n => parseInt(n.trim()));
-            setFactor1(factors[0]);
-            setFactor2(factors[1]);
-            resetProblem();
-          } else {
-            // If we've completed all problems, get random problems from easy to medium
-            const randomProblems = getBoxMethod3DProblems().filter(p => p.difficulty === 'easy' || p.difficulty === 'medium').sort(() => Math.random() - 0.5).slice(0, 3);
-            setProblems(randomProblems);
-            setCurrentProblemIndex(0);
-            resetProblem();
-          }
+          // We've completed all 8 problems, generate a new randomized sequence
+          const newRandomizedProblems = generateRandomizedSequence();
+          setProblems(newRandomizedProblems);
+          setCurrentProblemIndex(0);
+          resetProblem();
         }
       }, 2000);
     }
@@ -412,33 +415,30 @@ const BoxMethod3DExercise = ({
     setAttempts(prev => prev + 1);
   };
   const handleNewExercise = () => {
-    // Get new problems based on selected difficulty
-    const newProblems = getBoxMethod3DProblems().filter(p => p.difficulty === selectedDifficulty).sort(() => Math.random() - 0.5).slice(0, 1);
-    if (newProblems.length > 0) {
-      const newProblem = newProblems[0];
+    // Generate a new randomized sequence of 8 problems
+    const newRandomizedProblems = generateRandomizedSequence();
+    setProblems(newRandomizedProblems);
+    setCurrentProblemIndex(0);
 
-      // Update the problems array with the new problem
-      setProblems([newProblem]);
-      setCurrentProblemIndex(0);
+    // Reset the exercise state
+    resetProblem();
 
-      // Reset the exercise state
-      resetProblem();
-
-      // Extract and set the factors
-      const factors = newProblem.problem.split('×').map(n => parseInt(n.trim()));
+    // Extract and set the factors from the first problem
+    if (newRandomizedProblems.length > 0) {
+      const factors = newRandomizedProblems[0].problem.split('×').map(n => parseInt(n.trim()));
       setFactor1(factors[0]);
       setFactor2(factors[1]);
-
-      // Reset other states
-      setFeedback('');
-      setAttempts(0);
-      setStartTime(Date.now());
-      setIsCorrect(null);
-      setShowHint(false);
-      setCellBlocks({});
-      setCompletedCells([]);
-      setActiveCell(null);
     }
+
+    // Reset other states
+    setFeedback('');
+    setAttempts(0);
+    setStartTime(Date.now());
+    setIsCorrect(null);
+    setShowHint(false);
+    setCellBlocks({});
+    setCompletedCells([]);
+    setActiveCell(null);
   };
   const currentProblem = getCurrentProblem();
   if (!currentProblem) return null;
