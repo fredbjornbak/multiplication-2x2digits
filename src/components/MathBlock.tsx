@@ -23,17 +23,17 @@ const MathBlock: React.FC<MathBlockProps> = ({
 }) => {
   // Define different styles based on block value (made smaller)
   const getBlockStyles = () => {
-    const baseStyles = "flex items-center justify-center font-medium text-white rounded-md transition-all relative group cursor-pointer";
+    const baseStyles = "flex items-center justify-center font-medium text-white rounded-md transition-all relative group cursor-pointer w-16 h-16 text-lg shadow-md";
     
     switch (value) {
       case 1:
-        return cn(baseStyles, "w-14 h-14 text-lg bg-amber-500 hover:bg-amber-600 shadow-md", isDraggable ? "cursor-grab active:cursor-grabbing" : "", className);
+        return cn(baseStyles, "bg-amber-500 hover:bg-amber-600", isDraggable ? "cursor-grab active:cursor-grabbing" : "", className);
       case 10:
-        return cn(baseStyles, "w-16 h-16 text-lg bg-green-600 hover:bg-green-700 shadow-md", isDraggable ? "cursor-grab active:cursor-grabbing" : "", className);
+        return cn(baseStyles, "bg-green-600 hover:bg-green-700", isDraggable ? "cursor-grab active:cursor-grabbing" : "", className);
       case 100:
-        return cn(baseStyles, "w-18 h-18 text-xl bg-indigo-700 hover:bg-indigo-800 shadow-md", isDraggable ? "cursor-grab active:cursor-grabbing" : "", className);
+        return cn(baseStyles, "bg-indigo-700 hover:bg-indigo-800", isDraggable ? "cursor-grab active:cursor-grabbing" : "", className);
       default:
-        return cn(baseStyles, "w-14 h-14 text-lg bg-amber-500 hover:bg-amber-600 shadow-md", isDraggable ? "cursor-grab active:cursor-grabbing" : "", className);
+        return cn(baseStyles, "bg-amber-500 hover:bg-amber-600", isDraggable ? "cursor-grab active:cursor-grabbing" : "", className);
     }
   };
 
