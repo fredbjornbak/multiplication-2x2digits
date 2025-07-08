@@ -463,19 +463,9 @@ const BoxMethod3DExercise = ({
       {/* Main Problem Card */}
       <Card className="overflow-hidden">
         <CardHeader className="text-center bg-muted/30 py-6">
-          <div className="flex items-center justify-center gap-3">
-            <CardTitle className="text-3xl font-bold text-foreground">
-              {getCurrentProblem()?.problem}
-            </CardTitle>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setShowHelpDialog(true)}
-              className="rounded-full w-8 h-8 p-0 bg-primary/10 hover:bg-primary/20 border-primary/20"
-            >
-              <HelpCircle className="h-4 w-4 text-primary" />
-            </Button>
-          </div>
+          <CardTitle className="text-3xl font-bold text-foreground">
+            {getCurrentProblem()?.problem}
+          </CardTitle>
         </CardHeader>
         
         {/* Control Panel */}
@@ -501,6 +491,7 @@ const BoxMethod3DExercise = ({
               completedCells={completedCells} 
               activeCell={activeCell} 
               className="shadow-xl" 
+              onShowHelp={() => setShowHelpDialog(true)}
             />
           </div>
         </CardContent>

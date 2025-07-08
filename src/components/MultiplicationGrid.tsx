@@ -1,6 +1,8 @@
 import React from 'react';
 import GridCell from './GridCell';
 import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+import { HelpCircle } from 'lucide-react';
 interface MultiplicationGridProps {
   factor1: number;
   factor2: number;
@@ -11,6 +13,7 @@ interface MultiplicationGridProps {
   completedCells: string[];
   activeCell: string | null;
   className?: string;
+  onShowHelp?: () => void;
 }
 const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
   factor1,
@@ -21,7 +24,8 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
   cellBlocks,
   completedCells,
   activeCell,
-  className
+  className,
+  onShowHelp
 }) => {
   // Split numbers into digits for place value
   const splitNumber = (num: number): number[] => {
@@ -53,7 +57,18 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
   return <div className={cn("relative bg-background rounded-2xl overflow-hidden w-fit mx-auto border-4 border-border", className)}>
       {/* Top row with factor2 digits */}
       <div className="flex">
-        <div className="w-24 h-20 flex items-center justify-center bg-muted border-b-2 border-r-2 border-border"></div> {/* Empty top-left corner */}
+        <div className="w-24 h-20 flex items-center justify-center bg-muted border-b-2 border-r-2 border-border relative">
+          {onShowHelp && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={onShowHelp}
+              className="rounded-full w-8 h-8 p-0 bg-primary/10 hover:bg-primary/20 border-primary/20"
+            >
+              <HelpCircle className="h-4 w-4 text-primary" />
+            </Button>
+          )}
+        </div>
         {factor2Digits.map((digit, index) => (
           <div key={`top-${index}`} className="flex-1 min-w-48 flex items-center justify-center h-20 font-bold text-xl text-foreground bg-muted border-b-2 border-r-2 border-border">
             {digit}
