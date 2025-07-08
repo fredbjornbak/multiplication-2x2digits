@@ -95,17 +95,11 @@ const MultiplicationHelp = ({ open, onOpenChange, factor1, factor2, problem }: M
   };
 
   // Generate skip counting sequence
-  const generateSkipCounting = (step: number, count: number, maxSteps: number = 10) => {
+  const generateSkipCounting = () => {
     const sequence = [];
-    const actualCount = Math.min(count, maxSteps);
-    
-    for (let i = 1; i < actualCount; i++) {
-      sequence.push((step * i).toString());
+    for (let i = 1; i <= factor2; i++) {
+      sequence.push((factor1 * i).toString());
     }
-    
-    // Add "?" as the final step
-    sequence.push('?');
-    
     return sequence.join(', ');
   };
 
@@ -145,7 +139,7 @@ const MultiplicationHelp = ({ open, onOpenChange, factor1, factor2, problem }: M
                           First, solve the simpler problem:
                         </div>
                         <div className="text-3xl font-bold text-yellow-700 dark:text-yellow-300 bg-yellow-100 dark:bg-yellow-900/50 p-4 rounded-lg">
-                          {generateSkipCounting(zeroHelp.simplifiedFactor1, zeroHelp.simplifiedFactor2)}
+                          {zeroHelp.simplifiedFactor1} × {zeroHelp.simplifiedFactor2} = {zeroHelp.simplifiedResult}
                         </div>
                         <div className="flex items-center justify-center gap-2 text-lg text-yellow-700 dark:text-yellow-300">
                           <ArrowRight className="h-5 w-5" />
@@ -178,12 +172,12 @@ const MultiplicationHelp = ({ open, onOpenChange, factor1, factor2, problem }: M
                   const breakdown = generatePlaceValueBreakdown();
                   return (
                     <>
-                       <div className="text-3xl font-bold text-yellow-700 dark:text-yellow-300 bg-yellow-100 dark:bg-yellow-900/50 p-4 rounded-lg">
-                         {generateSkipCounting(factor1, factor2)}
-                       </div>
-                       <p className="text-sm text-yellow-600 dark:text-yellow-400">
-                         Skip counting by {factor1}
-                       </p>
+                      <div className="text-3xl font-bold text-yellow-700 dark:text-yellow-300 bg-yellow-100 dark:bg-yellow-900/50 p-4 rounded-lg">
+                        {breakdown.factor1Breakdown} × {breakdown.factor2Breakdown} = ?
+                      </div>
+                      <p className="text-sm text-yellow-600 dark:text-yellow-400">
+                        Breaking down {factor1} × {factor2} using place values
+                      </p>
                     </>
                   );
                 })()}
