@@ -1,5 +1,5 @@
 import React from 'react';
-import { RotateCcw, Check } from 'lucide-react';
+import { RotateCcw, Check, HelpCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import MathBlock from './MathBlock';
@@ -9,6 +9,7 @@ interface BlockControlsProps {
   onResetCell: () => void;
   onCheckGrid: () => void;
   onAutoComplete?: () => void;
+  onShowHelp?: () => void;
   isDisabled?: boolean;
   className?: string;
   isActive?: boolean;
@@ -20,6 +21,7 @@ const BlockControls: React.FC<BlockControlsProps> = ({
   onResetCell,
   onCheckGrid,
   onAutoComplete,
+  onShowHelp,
   isDisabled = false,
   className
 }) => {
@@ -72,6 +74,20 @@ const BlockControls: React.FC<BlockControlsProps> = ({
           <Check size={8} className="mr-1" />
           Check
         </Button>
+
+        {onShowHelp && (
+          <Button 
+            onClick={onShowHelp} 
+            disabled={isDisabled} 
+            data-testid="help-btn" 
+            variant="outline" 
+            size="sm" 
+            className="min-w-[50px] text-xs px-2 h-6"
+          >
+            <HelpCircle size={8} className="mr-1" />
+            Help
+          </Button>
+        )}
 
         {onAutoComplete && (
           <Button 

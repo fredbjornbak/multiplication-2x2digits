@@ -98,21 +98,6 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
             const product = digit1 * digit2;
             return (
               <div key={`cell-${rowIndex}-${colIndex}`} className={cn("flex-1 border-b border-r border-border relative", cellWidth, cellHeight)}>
-                {/* Help button for this specific cell */}
-                {onShowHelp && (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => onShowHelp(digit1, digit2, `${digit1} × ${digit2}`)}
-                    className={cn("absolute top-0.5 right-0.5 z-20 rounded-full p-0 bg-background/90 hover:bg-background border-border shadow-sm hover:shadow-md transition-all duration-200",
-                      isLargeGrid ? "w-1 h-1" : "w-1.5 h-1.5"
-                    )}
-                  >
-                    <HelpCircle className={cn("text-muted-foreground hover:text-foreground transition-colors",
-                      isLargeGrid ? "h-0.5 w-0.5" : "h-1 w-1"
-                    )} />
-                  </Button>
-                )}
                 <GridCell 
                   row={rowIndex} 
                   col={colIndex} 

@@ -52,6 +52,7 @@ const ExerciseProblemCard = ({
           onResetCell={onResetCell} 
           onCheckGrid={onCheckGrid} 
           onAutoComplete={onAutoComplete}
+          onShowHelp={() => onShowHelp(factor1, factor2, problem)}
           isDisabled={false} 
           className="max-w-4xl mx-auto" 
         />
