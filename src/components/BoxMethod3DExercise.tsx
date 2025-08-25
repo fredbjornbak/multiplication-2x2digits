@@ -87,12 +87,12 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
   if (!currentProblem) return null;
 
   return (
-    <div className="max-w-7xl mx-auto p-2 space-y-2">
+    <div className="max-w-7xl mx-auto p-1 lg:p-2 space-y-1 lg:space-y-2 max-h-screen overflow-hidden">
       {/* Visual Progress Indicator */}
       <VisualProgress 
         currentIndex={currentProblemIndex} 
         totalQuestions={problems.length || 8} 
-        className=""
+        className="flex-shrink-0"
       />
 
       {/* Main Problem Card */}

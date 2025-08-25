@@ -15,8 +15,8 @@ const GridTotalCounter = ({ cellBlocks, className }: GridTotalCounterProps) => {
   return (
     <div className={cn("flex items-center justify-center p-2 rounded-lg border-2 border-blue-200 bg-blue-50", className)}>
       <div className="text-center">
-        <div className="text-sm text-muted-foreground mb-1">Grid Total</div>
-        <div className="text-xl font-bold text-blue-600">
+        <div className="text-xs lg:text-sm text-muted-foreground mb-1">Grid Total</div>
+        <div className="text-lg lg:text-xl font-bold text-blue-600">
           {currentTotal}
         </div>
       </div>

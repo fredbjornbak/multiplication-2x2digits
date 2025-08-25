@@ -29,30 +29,30 @@ const PageLayout: React.FC<PageLayoutProps> = ({
       navigate('/');
     }
   };
-  return <div className="flex flex-col h-screen">
+  return <div className="flex flex-col h-screen overflow-hidden">
       {/* Header */}
-      <header className="flex-none p-2 border-b-2 border-border bg-background">
-        <div className="max-w-7xl mx-auto flex items-center gap-4">
+      <header className="flex-none p-1 lg:p-2 border-b-2 border-border bg-background">
+        <div className="max-w-7xl mx-auto flex items-center gap-2 lg:gap-4">
           {location.pathname !== '/' && (
             <Button 
               variant="outline" 
               size="sm" 
               onClick={handleBackClick}
-              className="flex items-center gap-2"
+              className="flex items-center gap-1 lg:gap-2 text-xs lg:text-sm"
             >
-              <ArrowLeft className="h-4 w-4" />
+              <ArrowLeft className="h-3 w-3 lg:h-4 lg:w-4" />
               Back to Tutorial
             </Button>
           )}
           
-          <h1 className="text-2xl font-heading font-bold text-foreground">{title}</h1>
+          <h1 className="text-lg lg:text-2xl font-heading font-bold text-foreground">{title}</h1>
           
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-auto p-2 bg-background">
-        <div className="max-w-4xl mx-auto">
+      <main className="flex-1 overflow-hidden p-1 lg:p-2 bg-background">
+        <div className="max-w-4xl mx-auto h-full">
           {children}
           
           {showNextButton && onNextClick && <div className="mt-8 flex justify-center">

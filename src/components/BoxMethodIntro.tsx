@@ -49,10 +49,10 @@ const BoxMethodIntro = ({ onComplete }: BoxMethodIntroProps) => {
   const currentStepName = steps[step];
 
   return (
-    <div className="flex flex-col items-center space-y-8 p-6">
+    <div className="flex flex-col items-center space-y-3 p-2 lg:space-y-4 lg:p-4">
       {/* Main visual area */}
-      <Card className="w-full max-w-2xl p-8">
-        <div className="flex flex-col items-center space-y-8">
+      <Card className="w-full max-w-xl lg:max-w-2xl p-3 lg:p-6">
+        <div className="flex flex-col items-center space-y-3 lg:space-y-6">
           
           {/* Step 1: Show numbers */}
           {currentStepName === 'show-numbers' && (
@@ -60,11 +60,11 @@ const BoxMethodIntro = ({ onComplete }: BoxMethodIntroProps) => {
               "flex items-center space-x-4 transition-all duration-500",
               showAnimation && "animate-scale-in"
             )}>
-              <div className="text-6xl font-bold text-primary bg-primary/10 rounded-full w-24 h-24 flex items-center justify-center">
+              <div className="text-3xl lg:text-5xl font-bold text-primary bg-primary/10 rounded-full w-14 h-14 lg:w-20 lg:h-20 flex items-center justify-center">
                 {factor1}
               </div>
-              <div className="text-4xl font-bold text-muted-foreground">×</div>
-              <div className="text-6xl font-bold text-accent bg-accent/10 rounded-full w-24 h-24 flex items-center justify-center">
+              <div className="text-2xl lg:text-3xl font-bold text-muted-foreground">×</div>
+              <div className="text-3xl lg:text-5xl font-bold text-accent bg-accent/10 rounded-full w-14 h-14 lg:w-20 lg:h-20 flex items-center justify-center">
                 {factor2}
               </div>
             </div>
@@ -73,29 +73,29 @@ const BoxMethodIntro = ({ onComplete }: BoxMethodIntroProps) => {
           {/* Step 2: Split first number */}
           {currentStepName === 'split-first-number' && (
             <div className={cn(
-              "flex flex-col items-center space-y-6",
+              "flex flex-col items-center space-y-3 lg:space-y-4",
               showAnimation && "animate-fade-in"
             )}>
-              <div className="flex items-center space-x-4">
-                <div className="flex space-x-2">
-                  <div className="text-4xl font-bold text-primary bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center">
+              <div className="flex items-center space-x-2 lg:space-x-4">
+                <div className="flex space-x-1 lg:space-x-2">
+                  <div className="text-2xl lg:text-3xl font-bold text-primary bg-primary/10 rounded-full w-10 h-10 lg:w-14 lg:h-14 flex items-center justify-center">
                     {factor1Parts[0]}
                   </div>
-                  <div className="text-2xl font-bold text-muted-foreground self-center">+</div>
-                  <div className="text-4xl font-bold text-primary bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center">
+                  <div className="text-lg lg:text-xl font-bold text-muted-foreground self-center">+</div>
+                  <div className="text-2xl lg:text-3xl font-bold text-primary bg-primary/10 rounded-full w-10 h-10 lg:w-14 lg:h-14 flex items-center justify-center">
                     {factor1Parts[1]}
                   </div>
                 </div>
-                <div className="text-4xl font-bold text-muted-foreground">×</div>
-                <div className="text-6xl font-bold text-accent bg-accent/10 rounded-full w-24 h-24 flex items-center justify-center">
+                <div className="text-2xl lg:text-3xl font-bold text-muted-foreground">×</div>
+                <div className="text-3xl lg:text-5xl font-bold text-accent bg-accent/10 rounded-full w-14 h-14 lg:w-20 lg:h-20 flex items-center justify-center">
                   {factor2}
                 </div>
               </div>
               
               {/* Visual breakdown with connecting lines */}
-              <div className="flex space-x-4">
-                <div className="h-1 w-16 bg-primary rounded-full"></div>
-                <div className="h-1 w-16 bg-primary rounded-full"></div>
+              <div className="flex space-x-2 lg:space-x-4">
+                <div className="h-1 w-10 lg:w-16 bg-primary rounded-full"></div>
+                <div className="h-1 w-10 lg:w-16 bg-primary rounded-full"></div>
               </div>
             </div>
           )}
@@ -103,26 +103,26 @@ const BoxMethodIntro = ({ onComplete }: BoxMethodIntroProps) => {
           {/* Step 3: Split second number */}
           {currentStepName === 'split-second-number' && (
             <div className={cn(
-              "flex flex-col items-center space-y-6",
+              "flex flex-col items-center space-y-3 lg:space-y-4",
               showAnimation && "animate-fade-in"
             )}>
-              <div className="flex items-center space-x-4">
-                <div className="flex space-x-2">
-                  <div className="text-4xl font-bold text-primary bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center">
+              <div className="flex items-center space-x-2 lg:space-x-4">
+                <div className="flex space-x-1 lg:space-x-2">
+                  <div className="text-2xl lg:text-3xl font-bold text-primary bg-primary/10 rounded-full w-10 h-10 lg:w-14 lg:h-14 flex items-center justify-center">
                     {factor1Parts[0]}
                   </div>
-                  <div className="text-2xl font-bold text-muted-foreground self-center">+</div>
-                  <div className="text-4xl font-bold text-primary bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center">
+                  <div className="text-lg lg:text-xl font-bold text-muted-foreground self-center">+</div>
+                  <div className="text-2xl lg:text-3xl font-bold text-primary bg-primary/10 rounded-full w-10 h-10 lg:w-14 lg:h-14 flex items-center justify-center">
                     {factor1Parts[1]}
                   </div>
                 </div>
-                <div className="text-4xl font-bold text-muted-foreground">×</div>
-                <div className="flex space-x-2">
-                  <div className="text-4xl font-bold text-accent bg-accent/10 rounded-full w-16 h-16 flex items-center justify-center">
+                <div className="text-2xl lg:text-3xl font-bold text-muted-foreground">×</div>
+                <div className="flex space-x-1 lg:space-x-2">
+                  <div className="text-2xl lg:text-3xl font-bold text-accent bg-accent/10 rounded-full w-10 h-10 lg:w-14 lg:h-14 flex items-center justify-center">
                     {factor2Parts[0]}
                   </div>
-                  <div className="text-2xl font-bold text-muted-foreground self-center">+</div>
-                  <div className="text-4xl font-bold text-accent bg-accent/10 rounded-full w-16 h-16 flex items-center justify-center">
+                  <div className="text-lg lg:text-xl font-bold text-muted-foreground self-center">+</div>
+                  <div className="text-2xl lg:text-3xl font-bold text-accent bg-accent/10 rounded-full w-10 h-10 lg:w-14 lg:h-14 flex items-center justify-center">
                     {factor2Parts[1]}
                   </div>
                 </div>
@@ -137,29 +137,29 @@ const BoxMethodIntro = ({ onComplete }: BoxMethodIntroProps) => {
               showAnimation && "animate-scale-in"
             )}>
               {/* Headers */}
-              <div className="flex space-x-4">
-                <div className="w-20"></div>
-                <div className="text-3xl font-bold text-accent bg-accent/10 rounded-lg w-20 h-16 flex items-center justify-center">
+              <div className="flex space-x-2 lg:space-x-3">
+                <div className="w-12 lg:w-16"></div>
+                <div className="text-lg lg:text-2xl font-bold text-accent bg-accent/10 rounded-lg w-12 h-10 lg:w-16 lg:h-12 flex items-center justify-center">
                   {factor2Parts[0]}
                 </div>
-                <div className="text-3xl font-bold text-accent bg-accent/10 rounded-lg w-20 h-16 flex items-center justify-center">
+                <div className="text-lg lg:text-2xl font-bold text-accent bg-accent/10 rounded-lg w-12 h-10 lg:w-16 lg:h-12 flex items-center justify-center">
                   {factor2Parts[1]}
                 </div>
               </div>
               
               {/* Grid */}
-              <div className="grid grid-cols-3 gap-4">
-                <div className="text-3xl font-bold text-primary bg-primary/10 rounded-lg w-20 h-16 flex items-center justify-center">
+              <div className="grid grid-cols-3 gap-2 lg:gap-3">
+                <div className="text-lg lg:text-2xl font-bold text-primary bg-primary/10 rounded-lg w-12 h-10 lg:w-16 lg:h-12 flex items-center justify-center">
                   {factor1Parts[0]}
                 </div>
-                <div className="border-4 border-dashed border-muted-foreground rounded-lg w-20 h-16"></div>
-                <div className="border-4 border-dashed border-muted-foreground rounded-lg w-20 h-16"></div>
+                <div className="border-2 lg:border-4 border-dashed border-muted-foreground rounded-lg w-12 h-10 lg:w-16 lg:h-12"></div>
+                <div className="border-2 lg:border-4 border-dashed border-muted-foreground rounded-lg w-12 h-10 lg:w-16 lg:h-12"></div>
                 
-                <div className="text-3xl font-bold text-primary bg-primary/10 rounded-lg w-20 h-16 flex items-center justify-center">
+                <div className="text-lg lg:text-2xl font-bold text-primary bg-primary/10 rounded-lg w-12 h-10 lg:w-16 lg:h-12 flex items-center justify-center">
                   {factor1Parts[1]}
                 </div>
-                <div className="border-4 border-dashed border-muted-foreground rounded-lg w-20 h-16"></div>
-                <div className="border-4 border-dashed border-muted-foreground rounded-lg w-20 h-16"></div>
+                <div className="border-2 lg:border-4 border-dashed border-muted-foreground rounded-lg w-12 h-10 lg:w-16 lg:h-12"></div>
+                <div className="border-2 lg:border-4 border-dashed border-muted-foreground rounded-lg w-12 h-10 lg:w-16 lg:h-12"></div>
               </div>
             </div>
           )}
@@ -167,39 +167,39 @@ const BoxMethodIntro = ({ onComplete }: BoxMethodIntroProps) => {
           {/* Step 5: Fill products */}
           {currentStepName === 'fill-products' && (
             <div className={cn(
-              "flex flex-col items-center space-y-6",
+              "flex flex-col items-center space-y-3 lg:space-y-4",
               showAnimation && "animate-fade-in"
             )}>
               {/* Headers */}
-              <div className="flex space-x-4">
-                <div className="w-20"></div>
-                <div className="text-3xl font-bold text-accent bg-accent/10 rounded-lg w-20 h-16 flex items-center justify-center">
+              <div className="flex space-x-2 lg:space-x-3">
+                <div className="w-12 lg:w-16"></div>
+                <div className="text-lg lg:text-2xl font-bold text-accent bg-accent/10 rounded-lg w-12 h-10 lg:w-16 lg:h-12 flex items-center justify-center">
                   {factor2Parts[0]}
                 </div>
-                <div className="text-3xl font-bold text-accent bg-accent/10 rounded-lg w-20 h-16 flex items-center justify-center">
+                <div className="text-lg lg:text-2xl font-bold text-accent bg-accent/10 rounded-lg w-12 h-10 lg:w-16 lg:h-12 flex items-center justify-center">
                   {factor2Parts[1]}
                 </div>
               </div>
               
               {/* Grid with products */}
-              <div className="grid grid-cols-3 gap-4">
-                <div className="text-3xl font-bold text-primary bg-primary/10 rounded-lg w-20 h-16 flex items-center justify-center">
+              <div className="grid grid-cols-3 gap-2 lg:gap-3">
+                <div className="text-lg lg:text-2xl font-bold text-primary bg-primary/10 rounded-lg w-12 h-10 lg:w-16 lg:h-12 flex items-center justify-center">
                   {factor1Parts[0]}
                 </div>
-                <div className="text-2xl font-bold bg-card border-4 border-foreground rounded-lg w-20 h-16 flex items-center justify-center animate-scale-in">
+                <div className="text-sm lg:text-lg font-bold bg-card border-2 lg:border-4 border-foreground rounded-lg w-12 h-10 lg:w-16 lg:h-12 flex items-center justify-center animate-scale-in">
                   {factor1Parts[0] * factor2Parts[0]}
                 </div>
-                <div className="text-2xl font-bold bg-card border-4 border-foreground rounded-lg w-20 h-16 flex items-center justify-center animate-scale-in">
+                <div className="text-sm lg:text-lg font-bold bg-card border-2 lg:border-4 border-foreground rounded-lg w-12 h-10 lg:w-16 lg:h-12 flex items-center justify-center animate-scale-in">
                   {factor1Parts[0] * factor2Parts[1]}
                 </div>
                 
-                <div className="text-3xl font-bold text-primary bg-primary/10 rounded-lg w-20 h-16 flex items-center justify-center">
+                <div className="text-lg lg:text-2xl font-bold text-primary bg-primary/10 rounded-lg w-12 h-10 lg:w-16 lg:h-12 flex items-center justify-center">
                   {factor1Parts[1]}
                 </div>
-                <div className="text-2xl font-bold bg-card border-4 border-foreground rounded-lg w-20 h-16 flex items-center justify-center animate-scale-in">
+                <div className="text-sm lg:text-lg font-bold bg-card border-2 lg:border-4 border-foreground rounded-lg w-12 h-10 lg:w-16 lg:h-12 flex items-center justify-center animate-scale-in">
                   {factor1Parts[1] * factor2Parts[0]}
                 </div>
-                <div className="text-2xl font-bold bg-card border-4 border-foreground rounded-lg w-20 h-16 flex items-center justify-center animate-scale-in">
+                <div className="text-sm lg:text-lg font-bold bg-card border-2 lg:border-4 border-foreground rounded-lg w-12 h-10 lg:w-16 lg:h-12 flex items-center justify-center animate-scale-in">
                   {factor1Parts[1] * factor2Parts[1]}
                 </div>
               </div>
@@ -209,33 +209,33 @@ const BoxMethodIntro = ({ onComplete }: BoxMethodIntroProps) => {
           {/* Step 6: Show addition */}
           {currentStepName === 'show-addition' && (
             <div className={cn(
-              "flex flex-col items-center space-y-8",
+              "flex flex-col items-center space-y-4 lg:space-y-6",
               showAnimation && "animate-fade-in"
             )}>
               {/* Products in a row */}
-              <div className="flex items-center space-x-3">
-                <div className="text-2xl font-bold bg-card border-4 border-foreground rounded-lg w-16 h-12 flex items-center justify-center">
+              <div className="flex items-center space-x-2 lg:space-x-3">
+                <div className="text-lg lg:text-xl font-bold bg-card border-2 lg:border-4 border-foreground rounded-lg w-12 h-8 lg:w-14 lg:h-10 flex items-center justify-center">
                   {factor1Parts[0] * factor2Parts[0]}
                 </div>
-                <div className="text-xl font-bold text-muted-foreground">+</div>
-                <div className="text-2xl font-bold bg-card border-4 border-foreground rounded-lg w-16 h-12 flex items-center justify-center">
+                <div className="text-lg lg:text-xl font-bold text-muted-foreground">+</div>
+                <div className="text-lg lg:text-xl font-bold bg-card border-2 lg:border-4 border-foreground rounded-lg w-12 h-8 lg:w-14 lg:h-10 flex items-center justify-center">
                   {factor1Parts[0] * factor2Parts[1]}
                 </div>
-                <div className="text-xl font-bold text-muted-foreground">+</div>
-                <div className="text-2xl font-bold bg-card border-4 border-foreground rounded-lg w-16 h-12 flex items-center justify-center">
+                <div className="text-lg lg:text-xl font-bold text-muted-foreground">+</div>
+                <div className="text-lg lg:text-xl font-bold bg-card border-2 lg:border-4 border-foreground rounded-lg w-12 h-8 lg:w-14 lg:h-10 flex items-center justify-center">
                   {factor1Parts[1] * factor2Parts[0]}
                 </div>
-                <div className="text-xl font-bold text-muted-foreground">+</div>
-                <div className="text-2xl font-bold bg-card border-4 border-foreground rounded-lg w-16 h-12 flex items-center justify-center">
+                <div className="text-lg lg:text-xl font-bold text-muted-foreground">+</div>
+                <div className="text-lg lg:text-xl font-bold bg-card border-2 lg:border-4 border-foreground rounded-lg w-12 h-8 lg:w-14 lg:h-10 flex items-center justify-center">
                   {factor1Parts[1] * factor2Parts[1]}
                 </div>
               </div>
               
               {/* Equals */}
-              <div className="text-3xl font-bold text-muted-foreground">=</div>
+              <div className="text-2xl lg:text-3xl font-bold text-muted-foreground">=</div>
               
               {/* Calculation */}
-              <div className="text-xl font-medium text-muted-foreground">
+              <div className="text-lg lg:text-xl font-medium text-muted-foreground text-center">
                 {factor1Parts[0] * factor2Parts[0]} + {factor1Parts[0] * factor2Parts[1]} + {factor1Parts[1] * factor2Parts[0]} + {factor1Parts[1] * factor2Parts[1]}
               </div>
             </div>
@@ -244,25 +244,25 @@ const BoxMethodIntro = ({ onComplete }: BoxMethodIntroProps) => {
           {/* Step 7: Show result */}
           {currentStepName === 'show-result' && (
             <div className={cn(
-              "flex flex-col items-center space-y-8",
+              "flex flex-col items-center space-y-4 lg:space-y-6",
               showAnimation && "animate-scale-in"
             )}>
-              <div className="flex items-center space-x-4">
-                <div className="text-4xl font-bold text-primary bg-primary/10 rounded-full w-20 h-20 flex items-center justify-center">
+              <div className="flex items-center space-x-2 lg:space-x-4">
+                <div className="text-2xl lg:text-3xl font-bold text-primary bg-primary/10 rounded-full w-12 h-12 lg:w-16 lg:h-16 flex items-center justify-center">
                   {factor1}
                 </div>
-                <div className="text-3xl font-bold text-muted-foreground">×</div>
-                <div className="text-4xl font-bold text-accent bg-accent/10 rounded-full w-20 h-20 flex items-center justify-center">
+                <div className="text-2xl lg:text-3xl font-bold text-muted-foreground">×</div>
+                <div className="text-2xl lg:text-3xl font-bold text-accent bg-accent/10 rounded-full w-12 h-12 lg:w-16 lg:h-16 flex items-center justify-center">
                   {factor2}
                 </div>
-                <div className="text-3xl font-bold text-muted-foreground">=</div>
-                <div className="text-5xl font-bold text-secondary bg-secondary/10 rounded-full w-24 h-24 flex items-center justify-center animate-pulse">
+                <div className="text-2xl lg:text-3xl font-bold text-muted-foreground">=</div>
+                <div className="text-3xl lg:text-4xl font-bold text-secondary bg-secondary/10 rounded-full w-16 h-16 lg:w-20 lg:h-20 flex items-center justify-center animate-pulse">
                   {factor1 * factor2}
                 </div>
               </div>
               
               {/* Celebration particles */}
-              <div className="text-6xl animate-bounce">🎉</div>
+              <div className="text-4xl lg:text-5xl animate-bounce">🎉</div>
             </div>
           )}
         </div>

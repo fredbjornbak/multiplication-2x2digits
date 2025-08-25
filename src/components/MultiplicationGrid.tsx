@@ -3,6 +3,7 @@ import GridCell from './GridCell';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { HelpCircle } from 'lucide-react';
+
 interface MultiplicationGridProps {
   factor1: number;
   factor2: number;
@@ -15,6 +16,7 @@ interface MultiplicationGridProps {
   className?: string;
   onShowHelp?: (factor1: number, factor2: number, problem: string) => void;
 }
+
 const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
   factor1,
   factor2,
@@ -45,6 +47,7 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
     }
     return digits;
   };
+  
   const factor1Digits = splitNumber(factor1);
   const factor2Digits = splitNumber(factor2);
 
@@ -54,13 +57,15 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
       onRemoveBlock(cellId, blockIndex);
     }
   };
-  return <div className={cn("relative bg-background rounded-2xl overflow-hidden w-fit mx-auto border-4 border-border", className)}>
+
+  return (
+    <div className={cn("relative bg-background rounded-xl overflow-hidden w-fit mx-auto border-2 border-border", className)}>
       {/* Top row with factor2 digits */}
       <div className="flex">
-        <div className="w-16 h-12 flex items-center justify-center bg-muted border-b-2 border-r-2 border-border">
+        <div className="w-12 lg:w-14 h-8 lg:h-10 flex items-center justify-center bg-muted border-b-2 border-r-2 border-border">
         </div>
         {factor2Digits.map((digit, index) => (
-          <div key={`top-${index}`} className="flex-1 min-w-28 flex items-center justify-center h-12 font-bold text-base text-foreground bg-muted border-b-2 border-r-2 border-border">
+          <div key={`top-${index}`} className="flex-1 min-w-20 lg:min-w-24 flex items-center justify-center h-8 lg:h-10 font-bold text-sm lg:text-base text-foreground bg-muted border-b-2 border-r-2 border-border">
             {digit}
           </div>
         ))}
@@ -70,7 +75,7 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
       {factor1Digits.map((digit1, rowIndex) => (
         <div key={`row-${rowIndex}`} className="flex">
           {/* Left column with factor1 digits */}
-          <div className="w-16 min-h-32 flex items-center justify-center font-bold text-base text-foreground bg-muted border-b-2 border-r-2 border-border">
+          <div className="w-12 lg:w-14 min-h-20 lg:min-h-24 flex items-center justify-center font-bold text-sm lg:text-base text-foreground bg-muted border-b-2 border-r-2 border-border">
             {digit1}
           </div>
           
@@ -81,16 +86,16 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
             const isComplete = completedCells.includes(cellId);
             const product = digit1 * digit2;
             return (
-              <div key={`cell-${rowIndex}-${colIndex}`} className="flex-1 min-w-28 min-h-32 border-b-2 border-r-2 border-border relative">
+              <div key={`cell-${rowIndex}-${colIndex}`} className="flex-1 min-w-20 lg:min-w-24 min-h-20 lg:min-h-24 border-b-2 border-r-2 border-border relative">
                 {/* Help button for this specific cell */}
                 {onShowHelp && (
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={() => onShowHelp(digit1, digit2, `${digit1} × ${digit2}`)}
-                    className="absolute top-3 right-3 z-20 rounded-full w-7 h-7 p-0 bg-background/90 hover:bg-background border-border shadow-sm hover:shadow-md transition-all duration-200"
+                    className="absolute top-1 lg:top-2 right-1 lg:right-2 z-20 rounded-full w-5 h-5 lg:w-6 lg:h-6 p-0 bg-background/90 hover:bg-background border-border shadow-sm hover:shadow-md transition-all duration-200"
                   >
-                    <HelpCircle className="h-4 w-4 text-muted-foreground hover:text-foreground transition-colors" />
+                    <HelpCircle className="h-3 w-3 lg:h-4 lg:w-4 text-muted-foreground hover:text-foreground transition-colors" />
                   </Button>
                 )}
                 <GridCell 
@@ -111,6 +116,8 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
           })}
         </div>
       ))}
-    </div>;
+    </div>
+  );
 };
+
 export default MultiplicationGrid;

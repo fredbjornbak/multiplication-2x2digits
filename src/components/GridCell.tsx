@@ -59,7 +59,7 @@ const GridCell: React.FC<GridCellProps> = ({
   return (
     <div 
       className={cn(
-        "h-full border-2 rounded-xl p-4 transition-all min-h-[220px] border-gray-300 bg-white",
+        "h-full border-2 rounded-xl p-2 lg:p-3 transition-all min-h-[100px] md:min-h-[120px] lg:min-h-[140px] border-gray-300 bg-white",
         isComplete ? "border-green-500 bg-green-50" : "",
         isDragOver && !isComplete ? "border-blue-400 bg-blue-100 border-dashed border-4" : "",
         className
@@ -69,22 +69,22 @@ const GridCell: React.FC<GridCellProps> = ({
       onDrop={handleDrop}
       data-testid={`grid-cell-${row}-${col}`}
     >
-      <div className="text-gray-700 text-lg font-semibold mb-4">{label}</div>
+      <div className="text-gray-700 text-sm lg:text-base font-semibold mb-2">{label}</div>
       
       {isComplete ? (
-        <div className="text-green-600 font-bold text-xl flex items-center justify-center gap-2 mt-6">
-          <CheckCircle2 size={24} />
-          <span className="text-lg">Complete!</span>
+        <div className="text-green-600 font-bold text-lg flex items-center justify-center gap-1 mt-2">
+          <CheckCircle2 size={18} />
+          <span className="text-sm">Complete!</span>
         </div>
       ) : (
         <>
-          <div className="text-blue-600 font-bold text-xl mb-4">
+          <div className="text-blue-600 font-bold text-lg mb-2">
             Current: {currentSum}
           </div>
           
-          <div className="flex flex-wrap gap-3 justify-center items-center min-h-[120px] p-4 bg-gray-50 rounded-lg border-4 border-dashed border-gray-400">
+          <div className="flex flex-wrap gap-2 justify-center items-center min-h-[60px] md:min-h-[80px] lg:min-h-[100px] p-2 bg-gray-50 rounded-lg border-2 border-dashed border-gray-400">
             {blocks.length === 0 ? (
-              <div className="text-gray-500 text-lg font-medium">Drop blocks here</div>
+              <div className="text-gray-500 text-sm font-medium">Drop blocks here</div>
             ) : (
               blocks.map((block, index) => (
                 <MathBlock 

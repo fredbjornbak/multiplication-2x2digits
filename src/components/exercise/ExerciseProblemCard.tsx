@@ -36,33 +36,33 @@ const ExerciseProblemCard = ({
   onShowHelp
 }: ExerciseProblemCardProps) => {
   return (
-    <Card className="overflow-hidden">
-      <CardHeader className="text-center bg-muted/30 py-2">
-        <CardTitle className="text-2xl font-bold text-foreground">
+    <Card className="overflow-hidden h-full max-h-[calc(100vh-6rem)]">
+      <CardHeader className="text-center bg-muted/30 py-1 lg:py-2 flex-shrink-0">
+        <CardTitle className="text-lg lg:text-xl font-bold text-foreground">
           {problem}
         </CardTitle>
       </CardHeader>
       
       {/* Control Panel */}
-      <div className="bg-muted/20 border-b p-3">
+      <div className="bg-muted/20 border-b p-2 lg:p-3 flex-shrink-0">
         <BlockControls 
           onAddBlock={onAddBlock} 
           onResetCell={onResetCell} 
           onCheckGrid={onCheckGrid} 
           isDisabled={false} 
-          className="max-w-2xl mx-auto" 
+          className="max-w-xl mx-auto" 
         />
       </div>
 
-      <CardContent className="p-3 space-y-2">
+      <CardContent className="p-2 lg:p-3 space-y-2 flex-1 min-h-0 overflow-hidden flex flex-col">
         {/* Grid Total Counter */}
         <GridTotalCounter 
           cellBlocks={cellBlocks}
-          className="mx-auto max-w-md"
+          className="mx-auto max-w-md flex-shrink-0"
         />
         
         {/* Multiplication Grid */}
-        <div className="flex justify-center">
+        <div className="flex justify-center flex-1 min-h-0 overflow-auto">
           <MultiplicationGrid 
             factor1={factor1} 
             factor2={factor2} 
@@ -72,7 +72,7 @@ const ExerciseProblemCard = ({
             cellBlocks={cellBlocks} 
             completedCells={completedCells} 
             activeCell={activeCell} 
-            className="shadow-xl" 
+            className="shadow-lg" 
             onShowHelp={onShowHelp}
           />
         </div>
