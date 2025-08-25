@@ -28,21 +28,21 @@ const BlockControls: React.FC<BlockControlsProps> = ({
       {/* Drag Blocks Section */}
       <div className="text-center mb-1">
         <h3 className="text-xs font-semibold text-foreground mb-1">Drag!</h3>
-        <div className="flex justify-center gap-1">
+        <div className="flex justify-center gap-3">
           <MathBlock 
             value={100} 
             isDraggable={true} 
-            className="hover:scale-110 transition-transform w-6 h-6 text-xs" 
+            className="hover:scale-110 transition-transform w-10 h-10 text-sm" 
           />
           <MathBlock 
             value={10} 
             isDraggable={true} 
-            className="hover:scale-110 transition-transform w-6 h-6 text-xs" 
+            className="hover:scale-110 transition-transform w-10 h-10 text-sm" 
           />
           <MathBlock 
             value={1} 
             isDraggable={true} 
-            className="hover:scale-110 transition-transform w-6 h-6 text-xs" 
+            className="hover:scale-110 transition-transform w-10 h-10 text-sm" 
           />
         </div>
       </div>
