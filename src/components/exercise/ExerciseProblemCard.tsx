@@ -60,7 +60,7 @@ const ExerciseProblemCard = ({
 
       <CardContent className="flex-1 flex flex-col min-h-0">
         {/* Multiplication Grid */}
-        <div className="flex-1 min-h-0 flex items-start justify-center">
+        <div className="flex-1 min-h-0 flex flex-col items-center justify-start">
           <MultiplicationGrid 
             factor1={factor1} 
             factor2={factor2} 
@@ -73,13 +73,13 @@ const ExerciseProblemCard = ({
             className="border border-border" 
             onShowHelp={onShowHelp}
           />
+          
+          {/* Grid Total Counter - positioned directly under the grid */}
+          <GridTotalCounter 
+            cellBlocks={cellBlocks}
+            className="mt-2 max-w-32"
+          />
         </div>
-        
-        {/* Grid Total Counter - moved below grid */}
-        <GridTotalCounter 
-          cellBlocks={cellBlocks}
-          className="mx-auto flex-shrink-0 max-w-32"
-        />
       </CardContent>
     </Card>
   );
