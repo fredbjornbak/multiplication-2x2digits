@@ -80,11 +80,12 @@ const BlockControls: React.FC<BlockControlsProps> = ({
             onClick={onShowHelp} 
             disabled={isDisabled} 
             data-testid="help-btn" 
-            variant="default" 
+            variant="outline" 
             size="sm" 
-            className="min-w-[50px] text-xs px-2 h-6 bg-orange-500 hover:bg-orange-600 text-white border-orange-500 rounded-full shadow-sm hover:shadow-md transition-all duration-200"
+            className="min-w-[50px] text-xs px-2 h-6"
           >
-            ❓ HELP
+            <HelpCircle size={8} className="mr-1" />
+            Help
           </Button>
         )}
 
