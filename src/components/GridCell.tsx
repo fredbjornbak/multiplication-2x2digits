@@ -35,14 +35,7 @@ const GridCell: React.FC<GridCellProps> = ({
   const currentSum = blocks.reduce((sum, block) => sum + block, 0);
   const [isDragOver, setIsDragOver] = React.useState(false);
   
-  // Count blocks by type for compact display
-  const blockCounts = blocks.reduce((counts, block) => {
-    counts[block] = (counts[block] || 0) + 1;
-    return counts;
-  }, {} as Record<number, number>);
-  
-  // Use compact view when there are many blocks or in large grids
-  const useCompactView = blocks.length > 8 || isLargeGrid;
+  // Always show visual blocks - no compact view
   
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
@@ -90,6 +83,13 @@ const GridCell: React.FC<GridCellProps> = ({
     >
       <div className={cn("text-foreground font-semibold mb-1", labelSize)}>{label}</div>
       
+      {/* Individual cell counter */}
+      {!isComplete && blocks.length > 0 && (
+        <div className={cn("text-center font-bold text-primary mb-1", currentSize)}>
+          {currentSum}
+        </div>
+      )}
+      
       {isComplete ? (
         <div className={cn("text-green-600 font-bold flex items-center justify-center gap-1 mt-1", completeSize)}>
           <CheckCircle2 size={isLargeGrid ? 14 : 18} />
@@ -101,33 +101,29 @@ const GridCell: React.FC<GridCellProps> = ({
               <div className={cn("text-muted-foreground font-medium", isLargeGrid ? "text-xs" : "text-sm")}>
                 Drop blocks here
               </div>
-            ) : useCompactView ? (
-              // Compact view - show counts instead of individual blocks
-              <div className="flex flex-col gap-1 text-center">
-                {Object.entries(blockCounts).map(([value, count]) => (
-                  <div key={value} className={cn("font-medium text-foreground", isLargeGrid ? "text-xs" : "text-sm")}>
-                    {count}×{value}
-                  </div>
-                ))}
-                <button 
-                  onClick={() => onRemoveBlock?.(blocks.length - 1)}
-                  className={cn("text-red-500 hover:text-red-700 font-bold", isLargeGrid ? "text-xs" : "text-sm")}
-                >
-                  Remove Last
-                </button>
-              </div>
             ) : (
-              // Normal view - show individual blocks
-              blocks.map((block, index) => (
-                <MathBlock 
-                  key={`${block}-${index}`} 
-                  value={block} 
-                  isRemovable={onRemoveBlock !== undefined}
-                  onRemove={() => onRemoveBlock?.(index)}
-                  showAsDots={!isLargeGrid}
-                  className={isLargeGrid ? "w-6 h-6 text-xs" : undefined}
-                />
-              ))
+              <>
+                {/* Always show individual visual blocks */}
+                {blocks.map((block, index) => (
+                  <MathBlock 
+                    key={`${block}-${index}`} 
+                    value={block} 
+                    isRemovable={onRemoveBlock !== undefined}
+                    onRemove={() => onRemoveBlock?.(index)}
+                    showAsDots={!isLargeGrid}
+                    className={isLargeGrid ? "w-6 h-6 text-xs" : undefined}
+                  />
+                ))}
+                {/* Remove last button for many blocks */}
+                {blocks.length > 8 && (
+                  <button 
+                    onClick={() => onRemoveBlock?.(blocks.length - 1)}
+                    className={cn("text-red-500 hover:text-red-700 font-bold px-2 py-1 rounded", isLargeGrid ? "text-xs" : "text-sm")}
+                  >
+                    Remove Last
+                  </button>
+                )}
+              </>
             )}
           </div>
       )}
