@@ -1,7 +1,7 @@
 import React from 'react';
 import MathBlock from './MathBlock';
 import { cn } from '@/lib/utils';
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, X } from 'lucide-react';
 
 interface GridCellProps {
   row: number;
@@ -16,6 +16,7 @@ interface GridCellProps {
   expectedProduct: number;
   className?: string;
   isLargeGrid?: boolean;
+  validationStatus?: 'correct' | 'incorrect' | null;
 }
 
 const GridCell: React.FC<GridCellProps> = ({
@@ -30,7 +31,8 @@ const GridCell: React.FC<GridCellProps> = ({
   onDropBlock,
   expectedProduct,
   className,
-  isLargeGrid = false
+  isLargeGrid = false,
+  validationStatus
 }) => {
   const currentSum = blocks.reduce((sum, block) => sum + block, 0);
   const [isDragOver, setIsDragOver] = React.useState(false);
@@ -72,6 +74,8 @@ const GridCell: React.FC<GridCellProps> = ({
       className={cn(
         "h-full border-2 rounded-xl transition-all border-border bg-card",
         isComplete ? "border-green-500 bg-green-50" : "",
+        validationStatus === 'correct' && !isComplete ? "border-green-400 bg-green-50" : "",
+        validationStatus === 'incorrect' ? "border-red-400 bg-red-50" : "",
         isDragOver && !isComplete ? "border-blue-400 bg-blue-100 border-dashed border-4" : "",
         cellPadding,
         className
@@ -94,6 +98,16 @@ const GridCell: React.FC<GridCellProps> = ({
         <div className={cn("text-green-600 font-bold flex items-center justify-center gap-1 mt-1", completeSize)}>
           <CheckCircle2 size={isLargeGrid ? 14 : 18} />
           <span className={isLargeGrid ? "text-xs" : "text-sm"}>Complete!</span>
+        </div>
+      ) : validationStatus === 'correct' ? (
+        <div className={cn("text-green-600 font-bold flex items-center justify-center gap-1 mt-1", completeSize)}>
+          <CheckCircle2 size={isLargeGrid ? 14 : 18} />
+          <span className={isLargeGrid ? "text-xs" : "text-sm"}>Correct!</span>
+        </div>
+      ) : validationStatus === 'incorrect' ? (
+        <div className={cn("text-red-600 font-bold flex items-center justify-center gap-1 mt-1", completeSize)}>
+          <X size={isLargeGrid ? 14 : 18} />
+          <span className={isLargeGrid ? "text-xs" : "text-sm"}>Incorrect</span>
         </div>
       ) : (
         <div className={cn("flex flex-wrap gap-1 justify-center items-center p-1 bg-muted rounded-lg border-2 border-dashed border-muted-foreground/30", blockAreaHeight)}>

@@ -15,6 +15,7 @@ interface MultiplicationGridProps {
   activeCell: string | null;
   className?: string;
   onShowHelp?: (factor1: number, factor2: number, problem: string) => void;
+  cellValidationStatus?: Record<string, 'correct' | 'incorrect' | null>;
 }
 
 const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
@@ -27,7 +28,8 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
   completedCells,
   activeCell,
   className,
-  onShowHelp
+  onShowHelp,
+  cellValidationStatus
 }) => {
   // Split numbers into digits for place value
   const splitNumber = (num: number): number[] => {
@@ -111,6 +113,7 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
                   expectedProduct={product} 
                   className="h-full" 
                   isLargeGrid={isLargeGrid}
+                  validationStatus={cellValidationStatus?.[cellId] || null}
                 />
               </div>
             );

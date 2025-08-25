@@ -26,6 +26,9 @@ export const useExerciseState = () => {
   // Theme-specific state
   const [progressAmount, setProgressAmount] = useState(0);
 
+  // Cell validation state
+  const [cellValidationStatus, setCellValidationStatus] = useState<Record<string, 'correct' | 'incorrect' | null>>({});
+
   const getCurrentProblem = useCallback(() => {
     return problems[currentProblemIndex] || null;
   }, [problems, currentProblemIndex]);
@@ -40,6 +43,7 @@ export const useExerciseState = () => {
     setCellBlocks({});
     setCompletedCells([]);
     setProgressAmount(0);
+    setCellValidationStatus({});
   }, []);
 
   return {
@@ -60,6 +64,7 @@ export const useExerciseState = () => {
     completedCells,
     isAudioEnabled,
     progressAmount,
+    cellValidationStatus,
     
     // Setters
     setProblems,
@@ -78,6 +83,7 @@ export const useExerciseState = () => {
     setCompletedCells,
     setIsAudioEnabled,
     setProgressAmount,
+    setCellValidationStatus,
     
     // Helper functions
     getCurrentProblem,

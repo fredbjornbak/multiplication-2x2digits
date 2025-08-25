@@ -24,6 +24,7 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
     activeCell,
     cellBlocks,
     completedCells,
+    cellValidationStatus,
     setShowHelpDialog,
     setHelpFactors,
     setFactor1,
@@ -115,6 +116,7 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
           onCheckGrid={handleCheckGrid}
           onAutoComplete={handleAutoComplete}
           onShowHelp={handleShowHelp}
+          cellValidationStatus={cellValidationStatus}
         />
       </div>
 

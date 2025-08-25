@@ -17,6 +17,7 @@ interface UseExerciseLogicProps {
   currentProblemIndex: number;
   problems: BoxMethodProblem3D[];
   activeCell: string | null;
+  cellValidationStatus: Record<string, 'correct' | 'incorrect' | null>;
   onComplete?: () => void;
   
   setIsCorrect: (correct: boolean | null) => void;
@@ -32,6 +33,7 @@ interface UseExerciseLogicProps {
   setCurrentProblemIndex: (index: number) => void;
   setFactor1: (factor: number) => void;
   setFactor2: (factor: number) => void;
+  setCellValidationStatus: (status: Record<string, 'correct' | 'incorrect' | null> | ((prev: Record<string, 'correct' | 'incorrect' | null>) => Record<string, 'correct' | 'incorrect' | null>)) => void;
 }
 
 export const useExerciseLogic = ({
@@ -45,6 +47,7 @@ export const useExerciseLogic = ({
   currentProblemIndex,
   problems,
   activeCell,
+  cellValidationStatus,
   onComplete,
   setIsCorrect,
   setFeedback,
@@ -58,7 +61,8 @@ export const useExerciseLogic = ({
   setProblems,
   setCurrentProblemIndex,
   setFactor1,
-  setFactor2
+  setFactor2,
+  setCellValidationStatus
 }: UseExerciseLogicProps) => {
   const { addExercise } = useUserStore();
 
@@ -130,8 +134,10 @@ export const useExerciseLogic = ({
 
     let allCellsCorrect = true;
     let totalGridSum = 0;
+    let correctCellsCount = 0;
+    const newValidationStatus: Record<string, 'correct' | 'incorrect' | null> = {};
 
-    // Check each cell in the grid
+    // Check each cell in the grid and set validation status
     for (let row = 0; row < currentProblem.placeValueDecomposition.firstNumber.length; row++) {
       for (let col = 0; col < currentProblem.placeValueDecomposition.secondNumber.length; col++) {
         const cellId = `${row}-${col}`;
@@ -141,16 +147,23 @@ export const useExerciseLogic = ({
         const cellIndex = row * currentProblem.placeValueDecomposition.secondNumber.length + col;
         const expectedProduct = currentProblem.boxGrid[cellIndex]?.product || 0;
         
-        if (blocksSum !== expectedProduct) {
-          allCellsCorrect = false;
-        } else {
+        if (blocksSum === expectedProduct) {
+          newValidationStatus[cellId] = 'correct';
           totalGridSum += blocksSum;
+          correctCellsCount++;
+        } else {
+          newValidationStatus[cellId] = 'incorrect';
+          allCellsCorrect = false;
         }
       }
     }
 
+    // Set validation status for all cells
+    setCellValidationStatus(newValidationStatus);
+
     const correctAnswer = currentProblem.sumStep.total;
     const isCompletelyCorrect = allCellsCorrect && totalGridSum === correctAnswer;
+    const totalCells = currentProblem.placeValueDecomposition.firstNumber.length * currentProblem.placeValueDecomposition.secondNumber.length;
 
     if (isCompletelyCorrect) {
       if (isAudioEnabled) playSound('correct');
@@ -171,7 +184,7 @@ export const useExerciseLogic = ({
     } else {
       if (isAudioEnabled) playSound('error');
       if (!allCellsCorrect) {
-        setFeedback('Some cells are incorrect. Check your block placements!');
+        setFeedback(`${correctCellsCount} out of ${totalCells} cells are correct. Check the incorrect cells!`);
       } else {
         setFeedback('The total doesn\'t match. Check all cells!');
       }
@@ -187,7 +200,7 @@ export const useExerciseLogic = ({
       setFeedback('');
       setIsCorrect(null);
     }, 3000);
-  }, [getCurrentProblem, cellBlocks, isAudioEnabled, attempts, showHint, setFeedback, setIsCorrect, setCompletedCells, setProgressAmount, setAttempts, setShowHint, handleProblemComplete]);
+  }, [getCurrentProblem, cellBlocks, isAudioEnabled, attempts, showHint, setFeedback, setIsCorrect, setCompletedCells, setProgressAmount, setAttempts, setShowHint, handleProblemComplete, setCellValidationStatus]);
 
   // Handle cell clicks
   const handleCellClick = useCallback((row: number, col: number) => {
@@ -218,7 +231,12 @@ export const useExerciseLogic = ({
       [activeCell]: [...(prev[activeCell] || []), value]
     }));
     setAttempts(prev => prev + 1);
-  }, [activeCell, isAudioEnabled, setCellBlocks, setAttempts]);
+    // Clear validation status when cell is modified
+    setCellValidationStatus(prev => ({
+      ...prev,
+      [activeCell]: null
+    }));
+  }, [activeCell, isAudioEnabled, setCellBlocks, setAttempts, setCellValidationStatus]);
 
   // Handle dropping blocks onto any cell
   const handleDropBlock = useCallback((cellId: string, value: Block) => {
@@ -230,7 +248,12 @@ export const useExerciseLogic = ({
     }));
     setAttempts(prev => prev + 1);
     setActiveCell(cellId);
-  }, [completedCells, isAudioEnabled, setCellBlocks, setAttempts, setActiveCell]);
+    // Clear validation status when cell is modified
+    setCellValidationStatus(prev => ({
+      ...prev,
+      [cellId]: null
+    }));
+  }, [completedCells, isAudioEnabled, setCellBlocks, setAttempts, setActiveCell, setCellValidationStatus]);
 
   // Reset blocks in the active cell
   const handleResetCell = useCallback(() => {
@@ -265,7 +288,12 @@ export const useExerciseLogic = ({
       return updatedBlocks;
     });
     setAttempts(prev => prev + 1);
-  }, [completedCells, isAudioEnabled, setCellBlocks, setAttempts]);
+    // Clear validation status when cell is modified
+    setCellValidationStatus(prev => ({
+      ...prev,
+      [cellId]: null
+    }));
+  }, [completedCells, isAudioEnabled, setCellBlocks, setAttempts, setCellValidationStatus]);
 
   const handleNewExercise = useCallback(() => {
     const newRandomizedProblems = generateRandomizedSequence();
@@ -286,6 +314,7 @@ export const useExerciseLogic = ({
     setCellBlocks({});
     setCompletedCells([]);
     setActiveCell(null);
+    setCellValidationStatus({});
   }, [generateRandomizedSequence, setProblems, setCurrentProblemIndex, resetProblem, setFactor1, setFactor2, setFeedback, setAttempts, setIsCorrect, setShowHint, setCellBlocks, setCompletedCells, setActiveCell]);
 
   // Auto complete function for testing

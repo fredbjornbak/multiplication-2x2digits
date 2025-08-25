@@ -19,6 +19,7 @@ interface ExerciseProblemCardProps {
   onCheckGrid: () => void;
   onAutoComplete?: () => void;
   onShowHelp: (factor1: number, factor2: number, problem: string) => void;
+  cellValidationStatus: Record<string, 'correct' | 'incorrect' | null>;
 }
 
 const ExerciseProblemCard = ({
@@ -35,7 +36,8 @@ const ExerciseProblemCard = ({
   onResetCell,
   onCheckGrid,
   onAutoComplete,
-  onShowHelp
+  onShowHelp,
+  cellValidationStatus
 }: ExerciseProblemCardProps) => {
   return (
     <Card className="h-full flex flex-col w-full max-w-5xl mx-auto border border-border">
@@ -72,6 +74,7 @@ const ExerciseProblemCard = ({
             activeCell={activeCell} 
             className="border border-border" 
             onShowHelp={onShowHelp}
+            cellValidationStatus={cellValidationStatus}
           />
           
           {/* Grid Total Counter - positioned directly under the grid */}
