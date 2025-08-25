@@ -17,6 +17,7 @@ interface ExerciseProblemCardProps {
   onAddBlock: (value: Block) => void;
   onResetCell: () => void;
   onCheckGrid: () => void;
+  onAutoComplete?: () => void;
   onShowHelp: (factor1: number, factor2: number, problem: string) => void;
 }
 
@@ -33,6 +34,7 @@ const ExerciseProblemCard = ({
   onAddBlock,
   onResetCell,
   onCheckGrid,
+  onAutoComplete,
   onShowHelp
 }: ExerciseProblemCardProps) => {
   return (
@@ -49,6 +51,7 @@ const ExerciseProblemCard = ({
           onAddBlock={onAddBlock} 
           onResetCell={onResetCell} 
           onCheckGrid={onCheckGrid} 
+          onAutoComplete={onAutoComplete}
           isDisabled={false} 
           className="max-w-xl mx-auto" 
         />

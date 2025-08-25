@@ -39,7 +39,8 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
     handleAddBlock,
     handleDropBlock,
     handleResetCell,
-    handleRemoveBlock
+    handleRemoveBlock,
+    handleAutoComplete
   } = exerciseLogic;
 
   // Initialize with randomized sequence
@@ -109,6 +110,7 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
         onAddBlock={handleAddBlock}
         onResetCell={handleResetCell}
         onCheckGrid={handleCheckGrid}
+        onAutoComplete={handleAutoComplete}
         onShowHelp={handleShowHelp}
       />
 

@@ -8,6 +8,7 @@ interface BlockControlsProps {
   onAddBlock: (value: 1 | 10 | 100) => void;
   onResetCell: () => void;
   onCheckGrid: () => void;
+  onAutoComplete?: () => void;
   isDisabled?: boolean;
   className?: string;
   isActive?: boolean;
@@ -18,6 +19,7 @@ const BlockControls: React.FC<BlockControlsProps> = ({
   onAddBlock,
   onResetCell,
   onCheckGrid,
+  onAutoComplete,
   isDisabled = false,
   className
 }) => {
@@ -52,7 +54,7 @@ const BlockControls: React.FC<BlockControlsProps> = ({
       </div>
         
       {/* Action Buttons */}
-      <div className="flex gap-2 justify-center">
+      <div className="flex gap-2 justify-center flex-wrap">
         <Button 
           onClick={onResetCell} 
           disabled={isDisabled} 
@@ -76,6 +78,19 @@ const BlockControls: React.FC<BlockControlsProps> = ({
           <Check size={12} className="mr-1" />
           Check Answer
         </Button>
+
+        {onAutoComplete && (
+          <Button 
+            onClick={onAutoComplete} 
+            disabled={isDisabled} 
+            data-testid="auto-complete-btn" 
+            variant="secondary" 
+            size="sm" 
+            className="min-w-[80px] lg:min-w-[100px] text-xs lg:text-sm"
+          >
+            🎯 Auto Complete
+          </Button>
+        )}
       </div>
     </div>
   );
