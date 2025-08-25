@@ -105,11 +105,11 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
                     size="sm"
                     onClick={() => onShowHelp(digit1, digit2, `${digit1} × ${digit2}`)}
                     className={cn("absolute top-0.5 right-0.5 z-20 rounded-full p-0 bg-background/90 hover:bg-background border-border shadow-sm hover:shadow-md transition-all duration-200",
-                      isLargeGrid ? "w-3 h-3" : "w-4 h-4"
+                      isLargeGrid ? "w-2 h-2" : "w-2.5 h-2.5"
                     )}
                   >
                     <HelpCircle className={cn("text-muted-foreground hover:text-foreground transition-colors",
-                      isLargeGrid ? "h-2 w-2" : "h-2.5 w-2.5"
+                      isLargeGrid ? "h-1.5 w-1.5" : "h-2 w-2"
                     )} />
                   </Button>
                 )}
