@@ -63,11 +63,11 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
   const gridCols = factor2Digits.length;
   const isLargeGrid = gridRows > 2 || gridCols > 2;
   
-  // Dynamic sizing classes based on grid size and viewport
-  const headerSize = isLargeGrid ? "h-6 text-xs" : "h-8 lg:h-10 text-sm lg:text-base";
-  const labelWidth = isLargeGrid ? "w-8" : "w-12 lg:w-14";
-  const cellWidth = isLargeGrid ? "min-w-16" : "min-w-20 lg:min-w-24";
-  const cellHeight = isLargeGrid ? "min-h-16" : "min-h-20 lg:min-h-24";
+  // More compact sizing classes
+  const headerSize = isLargeGrid ? "h-5 text-xs" : "h-6 text-xs";
+  const labelWidth = isLargeGrid ? "w-6" : "w-8";
+  const cellWidth = isLargeGrid ? "min-w-12" : "min-w-16";
+  const cellHeight = isLargeGrid ? "min-h-12" : "min-h-16";
 
   return (
     <div className={cn("relative bg-background rounded-xl overflow-hidden w-fit mx-auto border-2 border-border", className)}>

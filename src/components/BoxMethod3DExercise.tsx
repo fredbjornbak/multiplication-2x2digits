@@ -88,9 +88,9 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
   if (!currentProblem) return null;
 
   return (
-    <div className="h-screen flex flex-col max-w-7xl mx-auto p-1 lg:p-2 overflow-hidden">
-      {/* Visual Progress Indicator - Fixed height */}
-      <div className="flex-shrink-0 h-12 lg:h-16">
+    <div className="h-screen flex flex-col max-w-7xl mx-auto p-1 overflow-hidden">
+      {/* Visual Progress Indicator - Compact */}
+      <div className="flex-shrink-0 h-8">
         <VisualProgress 
           currentIndex={currentProblemIndex} 
           totalQuestions={problems.length || 8} 
@@ -118,8 +118,8 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
         />
       </div>
 
-      {/* Feedback Section - Fixed height */}
-      <div className="flex-shrink-0 h-16 lg:h-20">
+      {/* Feedback Section - Compact */}
+      <div className="flex-shrink-0 h-10">
         <ExerciseFeedback feedback={feedback} isCorrect={isCorrect} />
       </div>
 

@@ -39,14 +39,14 @@ const ExerciseProblemCard = ({
 }: ExerciseProblemCardProps) => {
   return (
     <Card className="h-full flex flex-col w-full max-w-5xl mx-auto shadow-lg border-2 border-border">
-      <CardHeader className="flex-shrink-0 text-center bg-muted/30 py-1 lg:py-2">
-        <CardTitle className="text-base lg:text-lg font-bold text-foreground">
+      <CardHeader className="flex-shrink-0 text-center bg-muted/30 py-1">
+        <CardTitle className="text-sm font-bold text-foreground">
           {problem}
         </CardTitle>
       </CardHeader>
       
       {/* Control Panel */}
-      <div className="bg-muted/20 border-b p-1 lg:p-2 flex-shrink-0">
+      <div className="bg-muted/20 border-b p-1 flex-shrink-0">
         <BlockControls 
           onAddBlock={onAddBlock} 
           onResetCell={onResetCell} 
@@ -57,7 +57,7 @@ const ExerciseProblemCard = ({
         />
       </div>
 
-      <CardContent className="flex-1 flex flex-col pt-1 lg:pt-2 px-1 lg:px-3 pb-1 lg:pb-2 min-h-0">
+      <CardContent className="flex-1 flex flex-col pt-1 px-2 pb-1 min-h-0">
         {/* Grid Total Counter */}
         <GridTotalCounter 
           cellBlocks={cellBlocks}

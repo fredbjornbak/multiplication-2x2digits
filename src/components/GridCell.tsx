@@ -67,12 +67,12 @@ const GridCell: React.FC<GridCellProps> = ({
     }
   };
   
-  // Dynamic sizing based on grid size
-  const cellPadding = isLargeGrid ? "p-1" : "p-2 lg:p-3";
-  const labelSize = isLargeGrid ? "text-xs" : "text-sm lg:text-base";
-  const currentSize = isLargeGrid ? "text-sm" : "text-lg";
-  const completeSize = isLargeGrid ? "text-sm" : "text-lg";
-  const blockAreaHeight = isLargeGrid ? "min-h-[40px]" : "min-h-[60px] md:min-h-[80px] lg:min-h-[100px]";
+  // Dynamic sizing based on grid size - More compact
+  const cellPadding = isLargeGrid ? "p-0.5" : "p-1";
+  const labelSize = isLargeGrid ? "text-xs" : "text-xs";
+  const currentSize = isLargeGrid ? "text-xs" : "text-sm";
+  const completeSize = isLargeGrid ? "text-xs" : "text-sm";
+  const blockAreaHeight = isLargeGrid ? "min-h-[30px]" : "min-h-[40px]";
 
   return (
     <div 
