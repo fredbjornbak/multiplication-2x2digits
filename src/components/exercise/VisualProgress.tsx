@@ -9,11 +9,6 @@ interface VisualProgressProps {
 const VisualProgress = ({ currentIndex, totalQuestions, className }: VisualProgressProps) => {
   return (
     <div className={cn("flex items-center justify-center gap-2", className)}>
-      {/* Numeric Counter */}
-      <div className="text-base font-bold text-muted-foreground">
-        {currentIndex + 1}/{totalQuestions}
-      </div>
-      
       {/* Visual Dots */}
       <div className="flex items-center gap-2">
         {Array.from({ length: totalQuestions }).map((_, index) => (

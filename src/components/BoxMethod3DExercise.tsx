@@ -31,7 +31,7 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
     setStartTime
   } = exerciseState;
 
-  const exerciseLogic = useExerciseLogic(exerciseState);
+  const exerciseLogic = useExerciseLogic({ ...exerciseState, onComplete });
   const {
     generateRandomizedSequence,
     handleCheckGrid,

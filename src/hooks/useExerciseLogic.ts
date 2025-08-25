@@ -17,6 +17,7 @@ interface UseExerciseLogicProps {
   currentProblemIndex: number;
   problems: BoxMethodProblem3D[];
   activeCell: string | null;
+  onComplete?: () => void;
   
   setIsCorrect: (correct: boolean | null) => void;
   setFeedback: (feedback: string) => void;
@@ -44,6 +45,7 @@ export const useExerciseLogic = ({
   currentProblemIndex,
   problems,
   activeCell,
+  onComplete,
   setIsCorrect,
   setFeedback,
   setAttempts,
@@ -103,16 +105,23 @@ export const useExerciseLogic = ({
 
       setTimeout(() => {
         if (currentProblemIndex < problems.length - 1) {
-          handleNavigation('next');
-        } else {
-          const newRandomizedProblems = generateRandomizedSequence();
-          setProblems(newRandomizedProblems);
-          setCurrentProblemIndex(0);
+          setCurrentProblemIndex(currentProblemIndex + 1);
           resetProblem();
+        } else {
+          // All problems completed - show final congratulations
+          setFeedback('🎉 Congratulations! You completed all problems!');
+          confetti({
+            particleCount: 300,
+            spread: 180,
+            origin: { y: 0.4 }
+          });
+          setTimeout(() => {
+            onComplete?.();
+          }, 1000);
         }
       }, 2000);
     }
-  }, [getCurrentProblem, startTime, attempts, addExercise, currentProblemIndex, problems, generateRandomizedSequence, setIsCorrect, setFeedback, resetProblem, setProblems, setCurrentProblemIndex]);
+  }, [getCurrentProblem, startTime, attempts, addExercise, currentProblemIndex, problems, onComplete, setCurrentProblemIndex, resetProblem, setIsCorrect, setFeedback]);
 
   // Handle checking the entire grid
   const handleCheckGrid = useCallback(() => {

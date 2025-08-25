@@ -4,7 +4,8 @@ import PageLayout from '@/components/PageLayout';
 
 const BoxMethodMultiplication = () => {
   const handleExerciseComplete = () => {
-    console.log('Exercise completed!');
+    // Exercise completed - could show options to continue or navigate elsewhere
+    console.log('🎉 Exercise completed! All 8 problems solved!');
   };
 
   return (
