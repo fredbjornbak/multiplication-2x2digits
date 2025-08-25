@@ -114,15 +114,6 @@ const GridCell: React.FC<GridCellProps> = ({
                     className={isLargeGrid ? "w-6 h-6 text-xs" : undefined}
                   />
                 ))}
-                {/* Remove last button for many blocks */}
-                {blocks.length > 8 && (
-                  <button 
-                    onClick={() => onRemoveBlock?.(blocks.length - 1)}
-                    className={cn("text-red-500 hover:text-red-700 font-bold px-2 py-1 rounded", isLargeGrid ? "text-xs" : "text-sm")}
-                  >
-                    Remove Last
-                  </button>
-                )}
               </>
             )}
           </div>
