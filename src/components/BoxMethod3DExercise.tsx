@@ -88,34 +88,40 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
   if (!currentProblem) return null;
 
   return (
-    <div className="max-w-7xl mx-auto p-1 lg:p-2 space-y-1 lg:space-y-2 max-h-screen overflow-hidden">
-      {/* Visual Progress Indicator */}
-      <VisualProgress 
-        currentIndex={currentProblemIndex} 
-        totalQuestions={problems.length || 8} 
-        className="flex-shrink-0"
-      />
+    <div className="h-screen flex flex-col max-w-7xl mx-auto p-1 lg:p-2 overflow-hidden">
+      {/* Visual Progress Indicator - Fixed height */}
+      <div className="flex-shrink-0 h-12 lg:h-16">
+        <VisualProgress 
+          currentIndex={currentProblemIndex} 
+          totalQuestions={problems.length || 8} 
+          className="h-full"
+        />
+      </div>
 
-      {/* Main Problem Card */}
-      <ExerciseProblemCard
-        problem={currentProblem.problem}
-        factor1={factor1}
-        factor2={factor2}
-        onCellClick={handleCellClick}
-        onRemoveBlock={handleRemoveBlock}
-        onDropBlock={handleDropBlock}
-        cellBlocks={cellBlocks}
-        completedCells={completedCells}
-        activeCell={activeCell}
-        onAddBlock={handleAddBlock}
-        onResetCell={handleResetCell}
-        onCheckGrid={handleCheckGrid}
-        onAutoComplete={handleAutoComplete}
-        onShowHelp={handleShowHelp}
-      />
+      {/* Main Problem Card - Takes remaining space */}
+      <div className="flex-1 min-h-0">
+        <ExerciseProblemCard
+          problem={currentProblem.problem}
+          factor1={factor1}
+          factor2={factor2}
+          onCellClick={handleCellClick}
+          onRemoveBlock={handleRemoveBlock}
+          onDropBlock={handleDropBlock}
+          cellBlocks={cellBlocks}
+          completedCells={completedCells}
+          activeCell={activeCell}
+          onAddBlock={handleAddBlock}
+          onResetCell={handleResetCell}
+          onCheckGrid={handleCheckGrid}
+          onAutoComplete={handleAutoComplete}
+          onShowHelp={handleShowHelp}
+        />
+      </div>
 
-      {/* Feedback Section */}
-      <ExerciseFeedback feedback={feedback} isCorrect={isCorrect} />
+      {/* Feedback Section - Fixed height */}
+      <div className="flex-shrink-0 h-16 lg:h-20">
+        <ExerciseFeedback feedback={feedback} isCorrect={isCorrect} />
+      </div>
 
       {/* Help Dialog */}
       <MultiplicationHelp

@@ -15,6 +15,7 @@ interface GridCellProps {
   onDropBlock?: (value: 1 | 10 | 100) => void;
   expectedProduct: number;
   className?: string;
+  isLargeGrid?: boolean;
 }
 
 const GridCell: React.FC<GridCellProps> = ({
@@ -28,10 +29,20 @@ const GridCell: React.FC<GridCellProps> = ({
   onRemoveBlock,
   onDropBlock,
   expectedProduct,
-  className
+  className,
+  isLargeGrid = false
 }) => {
   const currentSum = blocks.reduce((sum, block) => sum + block, 0);
   const [isDragOver, setIsDragOver] = React.useState(false);
+  
+  // Count blocks by type for compact display
+  const blockCounts = blocks.reduce((counts, block) => {
+    counts[block] = (counts[block] || 0) + 1;
+    return counts;
+  }, {} as Record<number, number>);
+  
+  // Use compact view when there are many blocks or in large grids
+  const useCompactView = blocks.length > 8 || isLargeGrid;
   
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
@@ -56,12 +67,20 @@ const GridCell: React.FC<GridCellProps> = ({
     }
   };
   
+  // Dynamic sizing based on grid size
+  const cellPadding = isLargeGrid ? "p-1" : "p-2 lg:p-3";
+  const labelSize = isLargeGrid ? "text-xs" : "text-sm lg:text-base";
+  const currentSize = isLargeGrid ? "text-sm" : "text-lg";
+  const completeSize = isLargeGrid ? "text-sm" : "text-lg";
+  const blockAreaHeight = isLargeGrid ? "min-h-[40px]" : "min-h-[60px] md:min-h-[80px] lg:min-h-[100px]";
+
   return (
     <div 
       className={cn(
-        "h-full border-2 rounded-xl p-2 lg:p-3 transition-all min-h-[100px] md:min-h-[120px] lg:min-h-[140px] border-gray-300 bg-white",
+        "h-full border-2 rounded-xl transition-all border-border bg-card",
         isComplete ? "border-green-500 bg-green-50" : "",
         isDragOver && !isComplete ? "border-blue-400 bg-blue-100 border-dashed border-4" : "",
+        cellPadding,
         className
       )}
       onDragOver={handleDragOver}
@@ -69,30 +88,49 @@ const GridCell: React.FC<GridCellProps> = ({
       onDrop={handleDrop}
       data-testid={`grid-cell-${row}-${col}`}
     >
-      <div className="text-gray-700 text-sm lg:text-base font-semibold mb-2">{label}</div>
+      <div className={cn("text-foreground font-semibold mb-1", labelSize)}>{label}</div>
       
       {isComplete ? (
-        <div className="text-green-600 font-bold text-lg flex items-center justify-center gap-1 mt-2">
-          <CheckCircle2 size={18} />
-          <span className="text-sm">Complete!</span>
+        <div className={cn("text-green-600 font-bold flex items-center justify-center gap-1 mt-1", completeSize)}>
+          <CheckCircle2 size={isLargeGrid ? 14 : 18} />
+          <span className={isLargeGrid ? "text-xs" : "text-sm"}>Complete!</span>
         </div>
       ) : (
         <>
-          <div className="text-blue-600 font-bold text-lg mb-2">
+          <div className={cn("text-blue-600 font-bold mb-1", currentSize)}>
             Current: {currentSum}
           </div>
           
-          <div className="flex flex-wrap gap-2 justify-center items-center min-h-[60px] md:min-h-[80px] lg:min-h-[100px] p-2 bg-gray-50 rounded-lg border-2 border-dashed border-gray-400">
+          <div className={cn("flex flex-wrap gap-1 justify-center items-center p-1 bg-muted rounded-lg border-2 border-dashed border-muted-foreground/30", blockAreaHeight)}>
             {blocks.length === 0 ? (
-              <div className="text-gray-500 text-sm font-medium">Drop blocks here</div>
+              <div className={cn("text-muted-foreground font-medium", isLargeGrid ? "text-xs" : "text-sm")}>
+                Drop blocks here
+              </div>
+            ) : useCompactView ? (
+              // Compact view - show counts instead of individual blocks
+              <div className="flex flex-col gap-1 text-center">
+                {Object.entries(blockCounts).map(([value, count]) => (
+                  <div key={value} className={cn("font-medium text-foreground", isLargeGrid ? "text-xs" : "text-sm")}>
+                    {count}×{value}
+                  </div>
+                ))}
+                <button 
+                  onClick={() => onRemoveBlock?.(blocks.length - 1)}
+                  className={cn("text-red-500 hover:text-red-700 font-bold", isLargeGrid ? "text-xs" : "text-sm")}
+                >
+                  Remove Last
+                </button>
+              </div>
             ) : (
+              // Normal view - show individual blocks
               blocks.map((block, index) => (
                 <MathBlock 
                   key={`${block}-${index}`} 
                   value={block} 
                   isRemovable={onRemoveBlock !== undefined}
                   onRemove={() => onRemoveBlock?.(index)}
-                  showAsDots={true}
+                  showAsDots={!isLargeGrid}
+                  className={isLargeGrid ? "w-6 h-6 text-xs" : undefined}
                 />
               ))
             )}

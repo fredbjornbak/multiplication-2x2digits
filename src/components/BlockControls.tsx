@@ -24,47 +24,47 @@ const BlockControls: React.FC<BlockControlsProps> = ({
   className
 }) => {
   return (
-    <div className={cn("bg-card border-2 border-border rounded-xl p-2 lg:p-3 shadow-sm", className)}>
+    <div className={cn("bg-card border-2 border-border rounded-xl p-1 lg:p-2 shadow-sm", className)}>
       {/* Drag Blocks Section */}
-      <div className="text-center mb-2">
-        <h3 className="text-sm lg:text-base font-semibold text-foreground mb-2">Drag!</h3>
-        <div className="flex justify-center gap-2 lg:gap-3">
+      <div className="text-center mb-1 lg:mb-2">
+        <h3 className="text-xs lg:text-sm font-semibold text-foreground mb-1 lg:mb-2">Drag!</h3>
+        <div className="flex justify-center gap-1 lg:gap-2">
           <div className="text-center">
             <MathBlock 
               value={100} 
               isDraggable={true} 
-              className="hover:scale-110 transition-transform mb-1 w-12 h-12 lg:w-14 lg:h-14 text-sm lg:text-base" 
+              className="hover:scale-110 transition-transform mb-1 w-8 h-8 lg:w-12 lg:h-12 text-xs lg:text-sm" 
             />
           </div>
           <div className="text-center">
             <MathBlock 
               value={10} 
               isDraggable={true} 
-              className="hover:scale-110 transition-transform mb-1 w-12 h-12 lg:w-14 lg:h-14 text-sm lg:text-base" 
+              className="hover:scale-110 transition-transform mb-1 w-8 h-8 lg:w-12 lg:h-12 text-xs lg:text-sm" 
             />
           </div>
           <div className="text-center">
             <MathBlock 
               value={1} 
               isDraggable={true} 
-              className="hover:scale-110 transition-transform mb-1 w-12 h-12 lg:w-14 lg:h-14 text-sm lg:text-base" 
+              className="hover:scale-110 transition-transform mb-1 w-8 h-8 lg:w-12 lg:h-12 text-xs lg:text-sm" 
             />
           </div>
         </div>
       </div>
         
       {/* Action Buttons */}
-      <div className="flex gap-2 justify-center flex-wrap">
+      <div className="flex gap-1 lg:gap-2 justify-center flex-wrap">
         <Button 
           onClick={onResetCell} 
           disabled={isDisabled} 
           data-testid="reset-btn" 
           variant="outline" 
           size="sm" 
-          className="min-w-[80px] lg:min-w-[100px] text-xs lg:text-sm"
+          className="min-w-[60px] lg:min-w-[80px] text-xs lg:text-sm px-2 lg:px-3 h-7 lg:h-8"
         >
-          <RotateCcw size={12} className="mr-1" />
-          Reset Cell
+          <RotateCcw size={10} className="mr-1" />
+          Reset
         </Button>
         
         <Button 
@@ -73,10 +73,10 @@ const BlockControls: React.FC<BlockControlsProps> = ({
           data-testid="check-btn" 
           variant="default" 
           size="sm" 
-          className="min-w-[80px] lg:min-w-[100px] text-xs lg:text-sm"
+          className="min-w-[60px] lg:min-w-[80px] text-xs lg:text-sm px-2 lg:px-3 h-7 lg:h-8 gradeaid-button-shadow hover-scale"
         >
-          <Check size={12} className="mr-1" />
-          Check Answer
+          <Check size={10} className="mr-1" />
+          Check
         </Button>
 
         {onAutoComplete && (
@@ -86,9 +86,9 @@ const BlockControls: React.FC<BlockControlsProps> = ({
             data-testid="auto-complete-btn" 
             variant="secondary" 
             size="sm" 
-            className="min-w-[80px] lg:min-w-[100px] text-xs lg:text-sm"
+            className="min-w-[60px] lg:min-w-[80px] text-xs lg:text-sm px-2 lg:px-3 h-7 lg:h-8"
           >
-            🎯 Auto Complete
+            🎯 Auto
           </Button>
         )}
       </div>

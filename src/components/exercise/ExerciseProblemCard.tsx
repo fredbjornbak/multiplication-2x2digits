@@ -38,34 +38,34 @@ const ExerciseProblemCard = ({
   onShowHelp
 }: ExerciseProblemCardProps) => {
   return (
-    <Card className="overflow-hidden h-full max-h-[calc(100vh-6rem)]">
-      <CardHeader className="text-center bg-muted/30 py-1 lg:py-2 flex-shrink-0">
-        <CardTitle className="text-lg lg:text-xl font-bold text-foreground">
+    <Card className="h-full flex flex-col w-full max-w-5xl mx-auto shadow-lg border-2 border-border">
+      <CardHeader className="flex-shrink-0 text-center bg-muted/30 py-1 lg:py-2">
+        <CardTitle className="text-base lg:text-lg font-bold text-foreground">
           {problem}
         </CardTitle>
       </CardHeader>
       
       {/* Control Panel */}
-      <div className="bg-muted/20 border-b p-2 lg:p-3 flex-shrink-0">
+      <div className="bg-muted/20 border-b p-1 lg:p-2 flex-shrink-0">
         <BlockControls 
           onAddBlock={onAddBlock} 
           onResetCell={onResetCell} 
           onCheckGrid={onCheckGrid} 
           onAutoComplete={onAutoComplete}
           isDisabled={false} 
-          className="max-w-xl mx-auto" 
+          className="max-w-4xl mx-auto" 
         />
       </div>
 
-      <CardContent className="p-2 lg:p-3 space-y-2 flex-1 min-h-0 overflow-hidden flex flex-col">
+      <CardContent className="flex-1 flex flex-col pt-1 lg:pt-2 px-1 lg:px-3 pb-1 lg:pb-2 min-h-0">
         {/* Grid Total Counter */}
         <GridTotalCounter 
           cellBlocks={cellBlocks}
-          className="mx-auto max-w-md flex-shrink-0"
+          className="mx-auto max-w-md flex-shrink-0 mb-1"
         />
         
         {/* Multiplication Grid */}
-        <div className="flex justify-center flex-1 min-h-0 overflow-auto">
+        <div className="flex-1 min-h-0 flex items-center justify-center overflow-auto">
           <MultiplicationGrid 
             factor1={factor1} 
             factor2={factor2} 
@@ -75,7 +75,7 @@ const ExerciseProblemCard = ({
             cellBlocks={cellBlocks} 
             completedCells={completedCells} 
             activeCell={activeCell} 
-            className="shadow-lg" 
+            className="shadow-lg max-h-full" 
             onShowHelp={onShowHelp}
           />
         </div>

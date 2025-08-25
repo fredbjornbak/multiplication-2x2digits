@@ -58,14 +58,25 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
     }
   };
 
+  // Calculate dynamic sizing based on grid dimensions
+  const gridRows = factor1Digits.length;
+  const gridCols = factor2Digits.length;
+  const isLargeGrid = gridRows > 2 || gridCols > 2;
+  
+  // Dynamic sizing classes based on grid size and viewport
+  const headerSize = isLargeGrid ? "h-6 text-xs" : "h-8 lg:h-10 text-sm lg:text-base";
+  const labelWidth = isLargeGrid ? "w-8" : "w-12 lg:w-14";
+  const cellWidth = isLargeGrid ? "min-w-16" : "min-w-20 lg:min-w-24";
+  const cellHeight = isLargeGrid ? "min-h-16" : "min-h-20 lg:min-h-24";
+
   return (
     <div className={cn("relative bg-background rounded-xl overflow-hidden w-fit mx-auto border-2 border-border", className)}>
       {/* Top row with factor2 digits */}
       <div className="flex">
-        <div className="w-12 lg:w-14 h-8 lg:h-10 flex items-center justify-center bg-muted border-b-2 border-r-2 border-border">
+        <div className={cn("flex items-center justify-center bg-muted border-b-2 border-r-2 border-border", labelWidth, headerSize)}>
         </div>
         {factor2Digits.map((digit, index) => (
-          <div key={`top-${index}`} className="flex-1 min-w-20 lg:min-w-24 flex items-center justify-center h-8 lg:h-10 font-bold text-sm lg:text-base text-foreground bg-muted border-b-2 border-r-2 border-border">
+          <div key={`top-${index}`} className={cn("flex-1 flex items-center justify-center font-bold text-foreground bg-muted border-b-2 border-r-2 border-border", cellWidth, headerSize)}>
             {digit}
           </div>
         ))}
@@ -75,7 +86,7 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
       {factor1Digits.map((digit1, rowIndex) => (
         <div key={`row-${rowIndex}`} className="flex">
           {/* Left column with factor1 digits */}
-          <div className="w-12 lg:w-14 min-h-20 lg:min-h-24 flex items-center justify-center font-bold text-sm lg:text-base text-foreground bg-muted border-b-2 border-r-2 border-border">
+          <div className={cn("flex items-center justify-center font-bold text-foreground bg-muted border-b-2 border-r-2 border-border", labelWidth, cellHeight, headerSize)}>
             {digit1}
           </div>
           
@@ -86,16 +97,20 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
             const isComplete = completedCells.includes(cellId);
             const product = digit1 * digit2;
             return (
-              <div key={`cell-${rowIndex}-${colIndex}`} className="flex-1 min-w-20 lg:min-w-24 min-h-20 lg:min-h-24 border-b-2 border-r-2 border-border relative">
+              <div key={`cell-${rowIndex}-${colIndex}`} className={cn("flex-1 border-b-2 border-r-2 border-border relative", cellWidth, cellHeight)}>
                 {/* Help button for this specific cell */}
                 {onShowHelp && (
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={() => onShowHelp(digit1, digit2, `${digit1} × ${digit2}`)}
-                    className="absolute top-1 lg:top-2 right-1 lg:right-2 z-20 rounded-full w-5 h-5 lg:w-6 lg:h-6 p-0 bg-background/90 hover:bg-background border-border shadow-sm hover:shadow-md transition-all duration-200"
+                    className={cn("absolute top-1 right-1 z-20 rounded-full p-0 bg-background/90 hover:bg-background border-border shadow-sm hover:shadow-md transition-all duration-200",
+                      isLargeGrid ? "w-4 h-4" : "w-5 h-5 lg:w-6 lg:h-6"
+                    )}
                   >
-                    <HelpCircle className="h-3 w-3 lg:h-4 lg:w-4 text-muted-foreground hover:text-foreground transition-colors" />
+                    <HelpCircle className={cn("text-muted-foreground hover:text-foreground transition-colors",
+                      isLargeGrid ? "h-2.5 w-2.5" : "h-3 w-3 lg:h-4 lg:w-4"
+                    )} />
                   </Button>
                 )}
                 <GridCell 
@@ -110,6 +125,7 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
                   onDropBlock={onDropBlock && !isComplete ? value => onDropBlock(cellId, value) : undefined} 
                   expectedProduct={product} 
                   className="h-full" 
+                  isLargeGrid={isLargeGrid}
                 />
               </div>
             );
