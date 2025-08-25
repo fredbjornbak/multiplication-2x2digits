@@ -62,7 +62,7 @@ const ExerciseProblemCard = ({
 
       <CardContent className="flex-1 flex flex-col min-h-0">
         {/* Multiplication Grid */}
-        <div className="flex-1 min-h-0 flex flex-col items-center justify-center">
+        <div className="flex-1 min-h-0 flex flex-col items-center justify-center p-6">
           <MultiplicationGrid 
             factor1={factor1} 
             factor2={factor2} 
