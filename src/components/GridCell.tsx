@@ -96,12 +96,7 @@ const GridCell: React.FC<GridCellProps> = ({
           <span className={isLargeGrid ? "text-xs" : "text-sm"}>Complete!</span>
         </div>
       ) : (
-        <>
-          <div className={cn("text-blue-600 font-bold mb-1", currentSize)}>
-            Current: {currentSum}
-          </div>
-          
-          <div className={cn("flex flex-wrap gap-1 justify-center items-center p-1 bg-muted rounded-lg border-2 border-dashed border-muted-foreground/30", blockAreaHeight)}>
+        <div className={cn("flex flex-wrap gap-1 justify-center items-center p-1 bg-muted rounded-lg border-2 border-dashed border-muted-foreground/30", blockAreaHeight)}>
             {blocks.length === 0 ? (
               <div className={cn("text-muted-foreground font-medium", isLargeGrid ? "text-xs" : "text-sm")}>
                 Drop blocks here
@@ -135,7 +130,6 @@ const GridCell: React.FC<GridCellProps> = ({
               ))
             )}
           </div>
-        </>
       )}
     </div>
   );
