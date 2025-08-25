@@ -4,7 +4,6 @@ import { useExerciseLogic } from '@/hooks/useExerciseLogic';
 import ExerciseProblemCard from './exercise/ExerciseProblemCard';
 import ExerciseFeedback from './exercise/ExerciseFeedback';
 import VisualProgress from './exercise/VisualProgress';
-import MultiplicationHelp from './MultiplicationHelp';
 
 interface BoxMethod3DExerciseProps {
   onComplete: () => void;
@@ -17,16 +16,12 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
     currentProblemIndex,
     feedback,
     isCorrect,
-    showHelpDialog,
-    helpFactors,
     factor1,
     factor2,
     activeCell,
     cellBlocks,
     completedCells,
     cellValidationStatus,
-    setShowHelpDialog,
-    setHelpFactors,
     setFactor1,
     setFactor2,
     setStartTime
@@ -40,8 +35,7 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
     handleAddBlock,
     handleDropBlock,
     handleResetCell,
-    handleRemoveBlock,
-    handleAutoComplete
+    handleRemoveBlock
   } = exerciseLogic;
 
   // Initialize with randomized sequence
@@ -80,11 +74,6 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
     };
   }, [handleCheckGrid]);
 
-  const handleShowHelp = (factor1: number, factor2: number, problem: string) => {
-    setHelpFactors({factor1, factor2, problem});
-    setShowHelpDialog(true);
-  };
-
   const currentProblem = exerciseState.getCurrentProblem();
   if (!currentProblem) return null;
 
@@ -101,38 +90,27 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
 
       {/* Main Problem Card - Takes remaining space */}
       <div className="flex-1 min-h-0">
-        <ExerciseProblemCard
-          problem={currentProblem.problem}
-          factor1={factor1}
-          factor2={factor2}
-          onCellClick={handleCellClick}
-          onRemoveBlock={handleRemoveBlock}
-          onDropBlock={handleDropBlock}
-          cellBlocks={cellBlocks}
-          completedCells={completedCells}
-          activeCell={activeCell}
-          onAddBlock={handleAddBlock}
-          onResetCell={handleResetCell}
-          onCheckGrid={handleCheckGrid}
-          onAutoComplete={handleAutoComplete}
-          onShowHelp={handleShowHelp}
-          cellValidationStatus={cellValidationStatus}
-        />
+          <ExerciseProblemCard
+            problem={currentProblem.problem}
+            factor1={factor1}
+            factor2={factor2}
+            onCellClick={handleCellClick}
+            onRemoveBlock={handleRemoveBlock}
+            onDropBlock={handleDropBlock}
+            cellBlocks={cellBlocks}
+            completedCells={completedCells}
+            activeCell={activeCell}
+            onAddBlock={handleAddBlock}
+            onResetCell={handleResetCell}
+            onCheckGrid={handleCheckGrid}
+            cellValidationStatus={cellValidationStatus}
+          />
       </div>
 
       {/* Feedback Section - Compact */}
       <div className="flex-shrink-0 h-10">
         <ExerciseFeedback feedback={feedback} isCorrect={isCorrect} />
       </div>
-
-      {/* Help Dialog */}
-      <MultiplicationHelp
-        open={showHelpDialog}
-        onOpenChange={setShowHelpDialog}
-        factor1={helpFactors.factor1}
-        factor2={helpFactors.factor2}
-        problem={helpFactors.problem}
-      />
     </div>
   );
 };

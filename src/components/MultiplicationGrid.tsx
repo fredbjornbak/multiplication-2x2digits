@@ -1,8 +1,6 @@
 import React from 'react';
 import GridCell from './GridCell';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
-import { HelpCircle } from 'lucide-react';
 
 interface MultiplicationGridProps {
   factor1: number;
@@ -14,7 +12,6 @@ interface MultiplicationGridProps {
   completedCells: string[];
   activeCell: string | null;
   className?: string;
-  onShowHelp?: (factor1: number, factor2: number, problem: string) => void;
   cellValidationStatus?: Record<string, 'correct' | 'incorrect' | null>;
 }
 
@@ -28,7 +25,6 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
   completedCells,
   activeCell,
   className,
-  onShowHelp,
   cellValidationStatus
 }) => {
   // Split numbers into digits for place value
