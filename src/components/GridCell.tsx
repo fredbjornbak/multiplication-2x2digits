@@ -92,6 +92,7 @@ const GridCell: React.FC<GridCellProps> = ({
                   value={block} 
                   isRemovable={onRemoveBlock !== undefined}
                   onRemove={() => onRemoveBlock?.(index)}
+                  showAsDots={true}
                 />
               ))
             )}
