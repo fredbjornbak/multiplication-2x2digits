@@ -80,7 +80,7 @@ const BlockControls: React.FC<BlockControlsProps> = ({
             onClick={onShowHelp} 
             disabled={isDisabled} 
             data-testid="help-btn" 
-            variant="outline" 
+            variant="secondary" 
             size="sm" 
             className="min-w-[50px] text-xs px-2 h-6"
           >
