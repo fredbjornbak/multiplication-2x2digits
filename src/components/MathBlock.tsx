@@ -58,25 +58,13 @@ const MathBlock: React.FC<MathBlockProps> = ({
   const renderDots = () => {
     switch (value) {
       case 1:
-        return <div className="w-2 h-2 bg-white rounded-full"></div>;
+        return null; // Just the colored background circle
       case 10:
-        return (
-          <div className="flex flex-wrap gap-0.5 justify-center items-center">
-            {Array.from({ length: 4 }).map((_, i) => (
-              <div key={i} className="w-1.5 h-1.5 bg-white rounded-full"></div>
-            ))}
-          </div>
-        );
+        return null; // Just the colored background circle
       case 100:
-        return (
-          <div className="grid grid-cols-3 gap-0.5 justify-center items-center">
-            {Array.from({ length: 9 }).map((_, i) => (
-              <div key={i} className="w-1 h-1 bg-white rounded-full"></div>
-            ))}
-          </div>
-        );
+        return null; // Just the colored background circle
       default:
-        return <div className="w-2 h-2 bg-white rounded-full"></div>;
+        return null; // Just the colored background circle
     }
   };
 
