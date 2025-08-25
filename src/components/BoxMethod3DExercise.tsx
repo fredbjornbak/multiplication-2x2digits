@@ -88,7 +88,7 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
   if (!currentProblem) return null;
 
   return (
-    <div className="h-screen flex flex-col max-w-7xl mx-auto p-1 overflow-hidden">
+    <div className="h-screen flex flex-col max-w-7xl mx-auto overflow-hidden">
       {/* Visual Progress Indicator - Compact */}
       <div className="flex-shrink-0 h-8">
         <VisualProgress 

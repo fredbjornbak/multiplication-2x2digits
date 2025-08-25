@@ -70,13 +70,13 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
   const cellHeight = isLargeGrid ? "min-h-12" : "min-h-16";
 
   return (
-    <div className={cn("relative bg-background rounded-xl overflow-hidden w-fit mx-auto border-2 border-border", className)}>
+    <div className={cn("relative bg-background rounded-xl overflow-hidden w-fit mx-auto border border-border", className)}>
       {/* Top row with factor2 digits */}
       <div className="flex">
-        <div className={cn("flex items-center justify-center bg-muted border-b-2 border-r-2 border-border", labelWidth, headerSize)}>
+        <div className={cn("flex items-center justify-center bg-muted border-b border-r border-border", labelWidth, headerSize)}>
         </div>
         {factor2Digits.map((digit, index) => (
-          <div key={`top-${index}`} className={cn("flex-1 flex items-center justify-center font-bold text-foreground bg-muted border-b-2 border-r-2 border-border", cellWidth, headerSize)}>
+          <div key={`top-${index}`} className={cn("flex-1 flex items-center justify-center font-bold text-foreground bg-muted border-b border-r border-border", cellWidth, headerSize)}>
             {digit}
           </div>
         ))}
@@ -86,7 +86,7 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
       {factor1Digits.map((digit1, rowIndex) => (
         <div key={`row-${rowIndex}`} className="flex">
           {/* Left column with factor1 digits */}
-          <div className={cn("flex items-center justify-center font-bold text-foreground bg-muted border-b-2 border-r-2 border-border", labelWidth, cellHeight, headerSize)}>
+          <div className={cn("flex items-center justify-center font-bold text-foreground bg-muted border-b border-r border-border", labelWidth, cellHeight, headerSize)}>
             {digit1}
           </div>
           
@@ -97,19 +97,19 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
             const isComplete = completedCells.includes(cellId);
             const product = digit1 * digit2;
             return (
-              <div key={`cell-${rowIndex}-${colIndex}`} className={cn("flex-1 border-b-2 border-r-2 border-border relative", cellWidth, cellHeight)}>
+              <div key={`cell-${rowIndex}-${colIndex}`} className={cn("flex-1 border-b border-r border-border relative", cellWidth, cellHeight)}>
                 {/* Help button for this specific cell */}
                 {onShowHelp && (
                   <Button
                     variant="outline"
                     size="sm"
                     onClick={() => onShowHelp(digit1, digit2, `${digit1} × ${digit2}`)}
-                    className={cn("absolute top-1 right-1 z-20 rounded-full p-0 bg-background/90 hover:bg-background border-border shadow-sm hover:shadow-md transition-all duration-200",
-                      isLargeGrid ? "w-4 h-4" : "w-5 h-5 lg:w-6 lg:h-6"
+                    className={cn("absolute top-0.5 right-0.5 z-20 rounded-full p-0 bg-background/90 hover:bg-background border-border shadow-sm hover:shadow-md transition-all duration-200",
+                      isLargeGrid ? "w-3 h-3" : "w-4 h-4"
                     )}
                   >
                     <HelpCircle className={cn("text-muted-foreground hover:text-foreground transition-colors",
-                      isLargeGrid ? "h-2.5 w-2.5" : "h-3 w-3 lg:h-4 lg:w-4"
+                      isLargeGrid ? "h-2 w-2" : "h-2.5 w-2.5"
                     )} />
                   </Button>
                 )}

@@ -38,7 +38,7 @@ const ExerciseProblemCard = ({
   onShowHelp
 }: ExerciseProblemCardProps) => {
   return (
-    <Card className="h-full flex flex-col w-full max-w-5xl mx-auto shadow-lg border-2 border-border">
+    <Card className="h-full flex flex-col w-full max-w-5xl mx-auto border border-border">
       <CardHeader className="flex-shrink-0 text-center bg-muted/30 py-1">
         <CardTitle className="text-sm font-bold text-foreground">
           {problem}
@@ -57,15 +57,15 @@ const ExerciseProblemCard = ({
         />
       </div>
 
-      <CardContent className="flex-1 flex flex-col pt-1 px-2 pb-1 min-h-0">
+      <CardContent className="flex-1 flex flex-col pt-1 px-1 pb-0 min-h-0">
         {/* Grid Total Counter */}
         <GridTotalCounter 
           cellBlocks={cellBlocks}
-          className="mx-auto max-w-md flex-shrink-0 mb-1"
+          className="mx-auto flex-shrink-0 mb-1 max-w-32"
         />
         
         {/* Multiplication Grid */}
-        <div className="flex-1 min-h-0 flex items-center justify-center overflow-auto">
+        <div className="flex-1 min-h-0 flex items-start justify-center pt-2">
           <MultiplicationGrid 
             factor1={factor1} 
             factor2={factor2} 
@@ -75,7 +75,7 @@ const ExerciseProblemCard = ({
             cellBlocks={cellBlocks} 
             completedCells={completedCells} 
             activeCell={activeCell} 
-            className="shadow-lg max-h-full" 
+            className="border border-border" 
             onShowHelp={onShowHelp}
           />
         </div>
