@@ -58,7 +58,7 @@ const ExerciseProblemCard = ({
         />
       </div>
 
-      <CardContent className="flex-1 flex flex-col pt-1 px-1 pb-1 min-h-0">
+      <CardContent className="flex-1 flex flex-col min-h-0">
         {/* Multiplication Grid */}
         <div className="flex-1 min-h-0 flex items-start justify-center">
           <MultiplicationGrid 
