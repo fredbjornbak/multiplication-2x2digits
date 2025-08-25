@@ -78,7 +78,7 @@ const ExerciseProblemCard = ({
         {/* Grid Total Counter - moved below grid */}
         <GridTotalCounter 
           cellBlocks={cellBlocks}
-          className="mx-auto flex-shrink-0 mt-2 max-w-32"
+          className="mx-auto flex-shrink-0 max-w-32"
         />
       </CardContent>
     </Card>
