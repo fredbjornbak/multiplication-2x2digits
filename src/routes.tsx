@@ -1,5 +1,6 @@
 import BoxMethodMultiplication from './pages/BoxMethodMultiplication';
 import BoxMethodIntroPage from './pages/BoxMethodIntroPage';
+import BoxMethodIntro2Page from './pages/BoxMethodIntro2Page';
 import InteractiveTutorialPage from './pages/InteractiveTutorialPage';
 
 export const routes = [
@@ -10,6 +11,10 @@ export const routes = [
   {
     path: '/intro',
     element: <BoxMethodIntroPage />,
+  },
+  {
+    path: '/intro2',
+    element: <BoxMethodIntro2Page />,
   },
   {
     path: '/tutorial',

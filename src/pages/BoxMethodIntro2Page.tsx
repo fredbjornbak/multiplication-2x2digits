@@ -1,19 +1,19 @@
 import { useNavigate } from 'react-router-dom';
-import BoxMethodIntro from '@/components/BoxMethodIntro';
+import BoxMethodIntro2 from '@/components/BoxMethodIntro2';
 import PageLayout from '@/components/PageLayout';
 
-const BoxMethodIntroPage = () => {
+const BoxMethodIntro2Page = () => {
   const navigate = useNavigate();
 
   const handleIntroComplete = () => {
-    navigate('/intro2');
+    navigate('/tutorial');
   };
 
   return (
     <PageLayout title="📊">
-      <BoxMethodIntro onComplete={handleIntroComplete} />
+      <BoxMethodIntro2 onComplete={handleIntroComplete} />
     </PageLayout>
   );
 };
 
-export default BoxMethodIntroPage;
+export default BoxMethodIntro2Page;
