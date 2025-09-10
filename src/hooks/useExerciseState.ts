@@ -9,9 +9,6 @@ export const useExerciseState = () => {
   const [attempts, setAttempts] = useState(0);
   const [startTime, setStartTime] = useState(0);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
-  const [showHint, setShowHint] = useState(false);
-  const [showHelpDialog, setShowHelpDialog] = useState(false);
-  const [helpFactors, setHelpFactors] = useState<{factor1: number, factor2: number, problem: string}>({factor1: 0, factor2: 0, problem: ''});
 
   // Box Method Math Blocks state
   const [factor1, setFactor1] = useState(0);
@@ -38,7 +35,6 @@ export const useExerciseState = () => {
     setAttempts(0);
     setStartTime(Date.now());
     setIsCorrect(null);
-    setShowHint(false);
     setActiveCell(null);
     setCellBlocks({});
     setCompletedCells([]);
@@ -54,9 +50,6 @@ export const useExerciseState = () => {
     attempts,
     startTime,
     isCorrect,
-    showHint,
-    showHelpDialog,
-    helpFactors,
     factor1,
     factor2,
     activeCell,
@@ -73,9 +66,6 @@ export const useExerciseState = () => {
     setAttempts,
     setStartTime,
     setIsCorrect,
-    setShowHint,
-    setShowHelpDialog,
-    setHelpFactors,
     setFactor1,
     setFactor2,
     setActiveCell,

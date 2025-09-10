@@ -13,7 +13,6 @@ interface UseExerciseLogicProps {
   attempts: number;
   startTime: number;
   isAudioEnabled: boolean;
-  showHint: boolean;
   currentProblemIndex: number;
   problems: BoxMethodProblem3D[];
   activeCell: string | null;
@@ -25,7 +24,6 @@ interface UseExerciseLogicProps {
   setAttempts: (attempts: number | ((prev: number) => number)) => void;
   setCompletedCells: (cells: string[]) => void;
   setProgressAmount: (amount: number) => void;
-  setShowHint: (show: boolean) => void;
   setCellBlocks: (blocks: Record<string, Block[]> | ((prev: Record<string, Block[]>) => Record<string, Block[]>)) => void;
   setActiveCell: (cell: string | null) => void;
   resetProblem: () => void;
@@ -43,7 +41,6 @@ export const useExerciseLogic = ({
   attempts,
   startTime,
   isAudioEnabled,
-  showHint,
   currentProblemIndex,
   problems,
   activeCell,
@@ -54,7 +51,6 @@ export const useExerciseLogic = ({
   setAttempts,
   setCompletedCells,
   setProgressAmount,
-  setShowHint,
   setCellBlocks,
   setActiveCell,
   resetProblem,
@@ -206,17 +202,13 @@ export const useExerciseLogic = ({
       }
       setIsCorrect(false);
       setAttempts(prev => prev + 1);
-
-      if (attempts > 1 && !showHint) {
-        setShowHint(true);
-      }
     }
 
     setTimeout(() => {
       setFeedback('');
       setIsCorrect(null);
     }, 3000);
-  }, [getCurrentProblem, cellBlocks, isAudioEnabled, attempts, showHint, setFeedback, setIsCorrect, setCompletedCells, setProgressAmount, setAttempts, setShowHint, handleProblemComplete, setCellValidationStatus]);
+  }, [getCurrentProblem, cellBlocks, isAudioEnabled, attempts, setFeedback, setIsCorrect, setCompletedCells, setProgressAmount, setAttempts, handleProblemComplete, setCellValidationStatus]);
 
   // Handle cell clicks
   const handleCellClick = useCallback((row: number, col: number) => {
@@ -326,61 +318,11 @@ export const useExerciseLogic = ({
     setFeedback('');
     setAttempts(0);
     setIsCorrect(null);
-    setShowHint(false);
     setCellBlocks({});
     setCompletedCells([]);
     setActiveCell(null);
     setCellValidationStatus({});
-  }, [generateRandomizedSequence, setProblems, setCurrentProblemIndex, resetProblem, setFactor1, setFactor2, setFeedback, setAttempts, setIsCorrect, setShowHint, setCellBlocks, setCompletedCells, setActiveCell]);
-
-  // Auto complete function for testing
-  const handleAutoComplete = useCallback(() => {
-    const currentProblem = getCurrentProblem();
-    if (!currentProblem) return;
-
-    const newCellBlocks: Record<string, Block[]> = {};
-    
-    // Function to convert number to blocks (100s, 10s, 1s)
-    const numberToBlocks = (num: number): Block[] => {
-      const blocks: Block[] = [];
-      let remaining = num;
-      
-      // Add 100s
-      while (remaining >= 100) {
-        blocks.push(100);
-        remaining -= 100;
-      }
-      
-      // Add 10s
-      while (remaining >= 10) {
-        blocks.push(10);
-        remaining -= 10;
-      }
-      
-      // Add 1s
-      while (remaining >= 1) {
-        blocks.push(1);
-        remaining -= 1;
-      }
-      
-      return blocks;
-    };
-
-    // Fill each cell with correct blocks
-    for (let row = 0; row < currentProblem.placeValueDecomposition.firstNumber.length; row++) {
-      for (let col = 0; col < currentProblem.placeValueDecomposition.secondNumber.length; col++) {
-        const cellId = `${row}-${col}`;
-        const cellIndex = row * currentProblem.placeValueDecomposition.secondNumber.length + col;
-        const expectedProduct = currentProblem.boxGrid[cellIndex]?.product || 0;
-        
-        newCellBlocks[cellId] = numberToBlocks(expectedProduct);
-      }
-    }
-
-    setCellBlocks(newCellBlocks);
-    if (isAudioEnabled) playSound('correct');
-    toast.success('Auto completed for testing!');
-  }, [getCurrentProblem, setCellBlocks, isAudioEnabled]);
+  }, [generateRandomizedSequence, setProblems, setCurrentProblemIndex, resetProblem, setFactor1, setFactor2, setFeedback, setAttempts, setIsCorrect, setCellBlocks, setCompletedCells, setActiveCell]);
 
   return {
     generateRandomizedSequence,
@@ -388,12 +330,10 @@ export const useExerciseLogic = ({
     handleCheckGrid,
     handleCellClick,
     handleAddBlock,
-    handleDropBlock,
     handleResetCell,
     handleNavigation,
     handleRemoveBlock,
     handleNewExercise,
-    handleAutoComplete,
     autoSelectFirstCell,
     handleProblemChange
   };

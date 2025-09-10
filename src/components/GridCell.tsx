@@ -12,7 +12,6 @@ interface GridCellProps {
   blocks: Array<1 | 10 | 100>;
   onClick: (row: number, col: number) => void;
   onRemoveBlock?: (index: number) => void;
-  onDropBlock?: (value: 1 | 10 | 100) => void;
   expectedProduct: number;
   className?: string;
   isLargeGrid?: boolean;
@@ -28,15 +27,12 @@ const GridCell: React.FC<GridCellProps> = ({
   blocks,
   onClick,
   onRemoveBlock,
-  onDropBlock,
   expectedProduct,
   className,
   isLargeGrid = false,
   validationStatus
 }) => {
   const currentSum = blocks.reduce((sum, block) => sum + block, 0);
-  
-  // Always show visual blocks - no compact view
   
   // Dynamic sizing based on grid size - More compact
   const cellPadding = isLargeGrid ? "p-0.5" : "p-1";
