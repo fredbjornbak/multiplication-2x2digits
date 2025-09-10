@@ -234,13 +234,19 @@ const InteractiveTutorial = ({ onComplete }: InteractiveTutorialProps) => {
       {/* Cursor Indicator */}
       {showCursor && cursorPosition && (
         <div
-          className="fixed pointer-events-none z-50 animate-pulse"
+          className="fixed pointer-events-none z-50"
           style={{
-            left: cursorPosition.x - 12,
-            top: cursorPosition.y - 12,
+            left: cursorPosition.x - 16,
+            top: cursorPosition.y - 16,
           }}
         >
-          <MousePointer2 className="w-6 h-6 text-red-500 drop-shadow-lg" />
+          <div className="relative animate-pulse">
+            <MousePointer2 className="w-8 h-8 text-black drop-shadow-2xl" fill="white" strokeWidth={2} />
+            {/* Outer glow for better visibility */}
+            <div className="absolute inset-0 w-8 h-8 bg-white rounded-full opacity-50 blur-sm -z-10"></div>
+            {/* Click indicator */}
+            <div className="absolute top-0 left-0 w-8 h-8 border-2 border-black rounded-full animate-ping opacity-75"></div>
+          </div>
         </div>
       )}
 
