@@ -8,8 +8,7 @@ interface MathBlockProps {
   className?: string;
   onRemove?: () => void;
   isRemovable?: boolean;
-  isDraggable?: boolean;
-  onDragStart?: (value: 1 | 10 | 100) => void;
+  onClick?: () => void;
   showAsDots?: boolean;
 }
 
@@ -19,8 +18,7 @@ const MathBlock: React.FC<MathBlockProps> = ({
   className,
   onRemove,
   isRemovable = false,
-  isDraggable = false,
-  onDragStart,
+  onClick,
   showAsDots = false
 }) => {
   // Define different styles based on block value and display mode
@@ -39,17 +37,17 @@ const MathBlock: React.FC<MathBlockProps> = ({
           return cn(baseDotStyles, "bg-amber-500 hover:bg-amber-600 w-4 h-4", className);
       }
     } else {
-      // Regular numbered block styling for drag controls
+      // Regular numbered block styling for click controls
       const baseStyles = "flex items-center justify-center font-medium text-white rounded-md transition-all relative group cursor-pointer w-16 h-16 text-lg shadow-md";
       switch (value) {
         case 1:
-          return cn(baseStyles, "bg-amber-500 hover:bg-amber-600", isDraggable ? "cursor-grab active:cursor-grabbing" : "", className);
+          return cn(baseStyles, "bg-amber-500 hover:bg-amber-600 hover:scale-105", className);
         case 10:
-          return cn(baseStyles, "bg-green-600 hover:bg-green-700", isDraggable ? "cursor-grab active:cursor-grabbing" : "", className);
+          return cn(baseStyles, "bg-green-600 hover:bg-green-700 hover:scale-105", className);
         case 100:
-          return cn(baseStyles, "bg-indigo-700 hover:bg-indigo-800", isDraggable ? "cursor-grab active:cursor-grabbing" : "", className);
+          return cn(baseStyles, "bg-indigo-700 hover:bg-indigo-800 hover:scale-105", className);
         default:
-          return cn(baseStyles, "bg-amber-500 hover:bg-amber-600", isDraggable ? "cursor-grab active:cursor-grabbing" : "", className);
+          return cn(baseStyles, "bg-amber-500 hover:bg-amber-600 hover:scale-105", className);
       }
     }
   };
@@ -72,14 +70,8 @@ const MathBlock: React.FC<MathBlockProps> = ({
     e.stopPropagation(); // Prevent triggering the GridCell onClick
     if (isRemovable && onRemove) {
       onRemove();
-    }
-  };
-
-  const handleDragStart = (e: React.DragEvent) => {
-    e.dataTransfer.setData('text/plain', value.toString());
-    e.dataTransfer.effectAllowed = 'copy';
-    if (onDragStart) {
-      onDragStart(value);
+    } else if (onClick) {
+      onClick();
     }
   };
 
@@ -88,10 +80,8 @@ const MathBlock: React.FC<MathBlockProps> = ({
       className={getBlockStyles()}
       data-testid={`math-block-${value}`}
       onClick={handleClick}
-      draggable={isDraggable}
-      onDragStart={handleDragStart}
-      role={isRemovable ? "button" : undefined}
-      aria-label={isRemovable ? `Remove ${value} block` : isDraggable ? `Drag ${value} block` : undefined}
+      role="button"
+      aria-label={isRemovable ? `Remove ${value} block` : `Add ${value} block`}
     >
       {showAsDots ? renderDots() : value}
       {isRemovable && (

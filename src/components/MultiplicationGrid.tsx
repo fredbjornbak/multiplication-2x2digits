@@ -7,7 +7,6 @@ interface MultiplicationGridProps {
   factor2: number;
   onCellClick: (row: number, col: number) => void;
   onRemoveBlock?: (cellId: string, blockIndex: number) => void;
-  onDropBlock?: (cellId: string, value: 1 | 10 | 100) => void;
   cellBlocks: Record<string, Array<1 | 10 | 100>>;
   completedCells: string[];
   activeCell: string | null;
@@ -20,7 +19,6 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
   factor2,
   onCellClick,
   onRemoveBlock,
-  onDropBlock,
   cellBlocks,
   completedCells,
   activeCell,
@@ -99,13 +97,12 @@ const MultiplicationGrid: React.FC<MultiplicationGridProps> = ({
                 <GridCell 
                   row={rowIndex} 
                   col={colIndex} 
-                  isActive={false} 
+                  isActive={isActive} 
                   isComplete={isComplete} 
                   label={`${digit1} × ${digit2}`} 
                   blocks={cellBlocks[cellId] || []} 
-                  onClick={() => {}} 
+                  onClick={onCellClick} 
                   onRemoveBlock={!isComplete ? blockIndex => handleRemoveBlock(cellId, blockIndex) : undefined}
-                  onDropBlock={onDropBlock && !isComplete ? value => onDropBlock(cellId, value) : undefined} 
                   expectedProduct={product} 
                   className="h-full" 
                   isLargeGrid={isLargeGrid}

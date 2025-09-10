@@ -10,7 +10,6 @@ interface ExerciseProblemCardProps {
   factor2: number;
   onCellClick: (row: number, col: number) => void;
   onRemoveBlock: (cellId: string, blockIndex: number) => void;
-  onDropBlock: (cellId: string, value: Block) => void;
   cellBlocks: Record<string, Block[]>;
   completedCells: string[];
   activeCell: string | null;
@@ -26,7 +25,6 @@ const ExerciseProblemCard = ({
   factor2,
   onCellClick,
   onRemoveBlock,
-  onDropBlock,
   cellBlocks,
   completedCells,
   activeCell,
@@ -62,7 +60,6 @@ const ExerciseProblemCard = ({
             factor2={factor2} 
             onCellClick={onCellClick} 
             onRemoveBlock={onRemoveBlock} 
-            onDropBlock={onDropBlock} 
             cellBlocks={cellBlocks} 
             completedCells={completedCells} 
             activeCell={activeCell} 

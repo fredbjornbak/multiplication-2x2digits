@@ -35,32 +35,8 @@ const GridCell: React.FC<GridCellProps> = ({
   validationStatus
 }) => {
   const currentSum = blocks.reduce((sum, block) => sum + block, 0);
-  const [isDragOver, setIsDragOver] = React.useState(false);
   
   // Always show visual blocks - no compact view
-  
-  const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
-    e.dataTransfer.dropEffect = 'copy';
-    setIsDragOver(true);
-  };
-
-  const handleDragLeave = (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragOver(false);
-  };
-
-  const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragOver(false);
-    
-    if (isComplete) return;
-    
-    const value = parseInt(e.dataTransfer.getData('text/plain')) as 1 | 10 | 100;
-    if (value && onDropBlock) {
-      onDropBlock(value);
-    }
-  };
   
   // Dynamic sizing based on grid size - More compact
   const cellPadding = isLargeGrid ? "p-0.5" : "p-1";
@@ -72,17 +48,15 @@ const GridCell: React.FC<GridCellProps> = ({
   return (
     <div 
       className={cn(
-        "h-full border-2 rounded-xl transition-all border-border bg-card",
+        "h-full border-2 rounded-xl transition-all border-border bg-card cursor-pointer",
+        isActive ? "border-blue-500 bg-blue-50 border-4" : "",
         isComplete ? "border-green-500 bg-green-50" : "",
         validationStatus === 'correct' && !isComplete ? "border-green-400 bg-green-50" : "",
         validationStatus === 'incorrect' ? "border-red-400 bg-red-50" : "",
-        isDragOver && !isComplete ? "border-blue-400 bg-blue-100 border-dashed border-4" : "",
         cellPadding,
         className
       )}
-      onDragOver={handleDragOver}
-      onDragLeave={handleDragLeave}
-      onDrop={handleDrop}
+      onClick={() => onClick(row, col)}
       data-testid={`grid-cell-${row}-${col}`}
     >
       <div className={cn("text-foreground font-semibold mb-1", labelSize)}>{label}</div>
@@ -113,7 +87,7 @@ const GridCell: React.FC<GridCellProps> = ({
         <div className={cn("flex flex-wrap gap-1 justify-center items-center p-1 bg-muted rounded-lg border-2 border-dashed border-muted-foreground/30", blockAreaHeight)}>
             {blocks.length === 0 ? (
               <div className={cn("text-muted-foreground font-medium", isLargeGrid ? "text-xs" : "text-sm")}>
-                Drop blocks here
+                Click blocks to add
               </div>
             ) : (
               <>

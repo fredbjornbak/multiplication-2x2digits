@@ -82,6 +82,15 @@ export const useExerciseLogic = ({
     return sequence;
   }, []);
 
+  // Auto-select first cell when starting a new problem
+  const autoSelectFirstCell = useCallback(() => {
+    const currentProblem = getCurrentProblem();
+    if (!currentProblem) return;
+    
+    // Auto-select the first cell (0-0) to guide the user
+    setActiveCell('0-0');
+  }, [getCurrentProblem, setActiveCell]);
+
   // Called when the entire exercise is completed
   const handleProblemComplete = useCallback((success: boolean) => {
     const currentProblem = getCurrentProblem();
@@ -125,7 +134,14 @@ export const useExerciseLogic = ({
         }
       }, 2000);
     }
-  }, [getCurrentProblem, startTime, attempts, addExercise, currentProblemIndex, problems, onComplete, setCurrentProblemIndex, resetProblem, setIsCorrect, setFeedback]);
+  }, [getCurrentProblem, startTime, attempts, addExercise, currentProblemIndex, problems, onComplete, setCurrentProblemIndex, resetProblem, setIsCorrect, setFeedback, autoSelectFirstCell]);
+
+  // Call autoSelectFirstCell when problem changes
+  const handleProblemChange = useCallback(() => {
+    setTimeout(() => {
+      autoSelectFirstCell();
+    }, 100);
+  }, [autoSelectFirstCell]);
 
   // Handle checking the entire grid
   const handleCheckGrid = useCallback(() => {
@@ -377,6 +393,8 @@ export const useExerciseLogic = ({
     handleNavigation,
     handleRemoveBlock,
     handleNewExercise,
-    handleAutoComplete
+    handleAutoComplete,
+    autoSelectFirstCell,
+    handleProblemChange
   };
 };

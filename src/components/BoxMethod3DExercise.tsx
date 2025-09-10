@@ -33,9 +33,9 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
     handleCheckGrid,
     handleCellClick,
     handleAddBlock,
-    handleDropBlock,
     handleResetCell,
-    handleRemoveBlock
+    handleRemoveBlock,
+    autoSelectFirstCell
   } = exerciseLogic;
 
   // Initialize with randomized sequence
@@ -56,6 +56,8 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
       const factors = problem.problem.split('×').map(n => parseInt(n.trim()));
       setFactor1(factors[0]);
       setFactor2(factors[1]);
+      // Auto-select first cell when problem changes
+      autoSelectFirstCell();
     }
   }, [problems, currentProblemIndex]);
 
@@ -96,7 +98,7 @@ const BoxMethod3DExercise = ({ onComplete }: BoxMethod3DExerciseProps) => {
             factor2={factor2}
             onCellClick={handleCellClick}
             onRemoveBlock={handleRemoveBlock}
-            onDropBlock={handleDropBlock}
+            
             cellBlocks={cellBlocks}
             completedCells={completedCells}
             activeCell={activeCell}

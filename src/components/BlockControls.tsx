@@ -23,24 +23,24 @@ const BlockControls: React.FC<BlockControlsProps> = ({
 }) => {
   return (
     <div className={cn("bg-card border border-border rounded-lg p-1 shadow-sm", className)}>
-      {/* Drag Blocks Section */}
+      {/* Click Blocks Section */}
       <div className="text-center mb-1">
-        <h3 className="text-xs font-semibold text-foreground mb-1">Drag!</h3>
+        <h3 className="text-xs font-semibold text-foreground mb-1">Click!</h3>
         <div className="flex justify-center gap-3">
           <MathBlock 
             value={100} 
-            isDraggable={true} 
-            className="hover:scale-110 transition-transform w-10 h-10 text-sm" 
+            onClick={() => onAddBlock(100)}
+            className="hover:scale-110 transition-transform w-10 h-10 text-sm cursor-pointer" 
           />
           <MathBlock 
             value={10} 
-            isDraggable={true} 
-            className="hover:scale-110 transition-transform w-10 h-10 text-sm" 
+            onClick={() => onAddBlock(10)}
+            className="hover:scale-110 transition-transform w-10 h-10 text-sm cursor-pointer" 
           />
           <MathBlock 
             value={1} 
-            isDraggable={true} 
-            className="hover:scale-110 transition-transform w-10 h-10 text-sm" 
+            onClick={() => onAddBlock(1)}
+            className="hover:scale-110 transition-transform w-10 h-10 text-sm cursor-pointer" 
           />
         </div>
       </div>
