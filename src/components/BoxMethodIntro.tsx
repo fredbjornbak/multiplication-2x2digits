@@ -13,12 +13,12 @@ const BoxMethodIntro = ({ onComplete }: BoxMethodIntroProps) => {
   const [showAnimation, setShowAnimation] = useState(false);
 
   // Demo numbers for visual introduction
-  const factor1 = 23;
-  const factor2 = 15;
+  const factor1 = 34;
+  const factor2 = 26;
 
   // Break down factors for visual representation
-  const factor1Parts = [20, 3];
-  const factor2Parts = [10, 5];
+  const factor1Parts = [30, 4];
+  const factor2Parts = [20, 6];
 
   const steps = [
     'show-numbers',
