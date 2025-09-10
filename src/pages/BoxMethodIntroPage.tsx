@@ -6,7 +6,7 @@ const BoxMethodIntroPage = () => {
   const navigate = useNavigate();
 
   const handleIntroComplete = () => {
-    navigate('/box');
+    navigate('/tutorial');
   };
 
   return (
